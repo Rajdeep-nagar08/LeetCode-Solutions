@@ -4,8 +4,7 @@ public:
     vector<vector<string>> displayTable(vector<vector<string>>& ord) {
         
       map<int,unordered_map<string,int>>mp;  // table no => food,count
-    
-                
+         
         unordered_map<string,int>mp1;
       
       int n=ord.size();
@@ -15,8 +14,6 @@ public:
               mp[no][ord[i][2]]++;
               mp1[ord[i][2]]++;
         }
-        
-  //    int sz=mp1.size();
         
         vector<string>v;
         
@@ -35,7 +32,7 @@ public:
         int n1=v.size();
         
       for(auto it:mp){
-        //  cout<<it.first<<endl;
+          
           vector<string>v1;
           
           string s1=to_string(it.first);
