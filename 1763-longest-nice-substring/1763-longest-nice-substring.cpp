@@ -25,7 +25,6 @@ public:
             for(int i=0;i<sz;i++){
                 char c1=str[i];
                 char c2=rev(c1);
-              //  cout<<c2<<" ";
                 bool f1=false;
                 for(int j=0;j<sz;j++){
                     if(str[j]==c2){
