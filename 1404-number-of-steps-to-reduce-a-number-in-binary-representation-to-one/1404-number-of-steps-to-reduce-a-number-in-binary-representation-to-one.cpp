@@ -20,7 +20,7 @@ public:
                 carry=1;
                 ans++;
                 
-                // NOW number becomes even, devide it by 2 , or right shift
+                // NOW number becomes even, devide it by 2 , and right shift
                 i--;
                 ans++;
                 
