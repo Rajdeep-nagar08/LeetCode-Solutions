@@ -13,7 +13,7 @@ public:
        
         while(true){
             
-    // checking a component that cose max cell to damage
+    // checking a component that cause max cell to damage
             
         queue<pair<int,int>>q;
         vector<vector<bool>>vis(n,vector<bool>(m,false));
@@ -31,8 +31,6 @@ public:
                     if(cell>c){
                         c=cell,w=wall,i1=i,j1=j;
                     }
-                  //  cout<<wall<<" "<<i<<" "<<j<<endl;
-                   // return 13;
                 }
             }
         }
