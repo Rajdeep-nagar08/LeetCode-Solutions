@@ -9,6 +9,8 @@ public:
         
         int i=0,j=0;
         
+        // handeling diagonals start from topmost row 
+        
         while(j<m){
             int j1=j;
             int i1=0;
@@ -35,7 +37,8 @@ public:
         
         
       
-           
+      // handeling diagonals starting from leftmost column and 1st row  
+        
         i=1,j=0;
         
         while(i<n){
