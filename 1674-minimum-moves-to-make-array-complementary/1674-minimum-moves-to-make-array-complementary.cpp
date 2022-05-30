@@ -57,11 +57,12 @@ NOTE: for X=mn+mx
         
         int i=0,j=n-1;
         
+        int mn,mx;
         while(i<j){
             
-            int mn=min(nums[i],nums[j]);
+            mn=min(nums[i],nums[j]);
             
-            int mx=max(nums[i],nums[j]);
+            mx=max(nums[i],nums[j]);
             
             changes[2]+=2, changes[mn+1]-=2;
             
