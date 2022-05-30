@@ -1,8 +1,4 @@
-class Solution {
-public:
-    int minMoves(vector<int>& nums, int lim) {
-        
-        /*
+/*
         
         min sum= 2
         max sum= 2*lim
@@ -47,9 +43,11 @@ ans= min (changes[X])
 NOTE: for X=mn+mx
       we need 0 changes
 
-       */
+*/
         
-        
+class Solution {
+public:
+    int minMoves(vector<int>& nums, int lim) {        
         
         int n=nums.size();
         
