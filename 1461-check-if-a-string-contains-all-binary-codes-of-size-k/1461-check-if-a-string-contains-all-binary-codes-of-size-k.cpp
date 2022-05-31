@@ -24,8 +24,8 @@ public:
 
        while(i<=k-1){
            
-           if(i>=n)
-               return false;
+         if(i>=n)
+       return false;
 
         if(str[i]=='1')
             no=no|(1<<j);
@@ -35,11 +35,9 @@ public:
        }
         
 
-       if(no<=mx){
-    
+       if(no<=mx)
          v[no]=1;  
-                        
-        }
+
         
        while(i<n){
           
@@ -50,23 +48,16 @@ public:
             no=no|1;
 
         i++;
-       
-        
-         if(no<=mx){
-    
-         v[no]=1;  
-            
-            
-        }
-               
-     }
+      
+         if(no<=mx)
+           v[no]=1;  
+    }
 
        
-               for(int x:v){
-               if(x==-1)
-               return false;
+      for(int x:v)
+        if(x==-1)
+      return false;
                    
-               }
                
         return true;
         
