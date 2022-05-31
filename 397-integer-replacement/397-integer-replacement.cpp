@@ -1,4 +1,5 @@
 #define lln long long int
+unordered_map<lln,int>mp;
 class Solution {
 public:
     int integerReplacement(int n) {
@@ -12,19 +13,14 @@ public:
         
          if(n==1)
             return 0;
-   /*     
-        if(n>1ll*2*INT_MAX || n<1)
-            return INT_MAX;
         
-        */
+        if(mp.count(n)==1)
+            return mp[n];
+  
         if(n%2==0)
-            return 1+find(n/2);
-       /* 
-        else if(n==INT_MAX)
-            return 1+integerReplacement(n-1);
-          */  
-        
-     return min(1+find(n+1),1+find(n-1));
+            return mp[n]=1+find(n/2);
+      
+     return mp[n]=min(1+find(n+1),1+find(n-1));
 
         
     }
