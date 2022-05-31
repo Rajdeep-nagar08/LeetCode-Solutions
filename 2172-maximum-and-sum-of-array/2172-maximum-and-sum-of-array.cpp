@@ -2,17 +2,17 @@
 
 for each  nums[i] we have choices among n slots
 
-to store the condition of slots we use mask
+to store the condition of slots, we use bit mask
 
-two adjacent bits represent the situation of slot
+two adjacent bits represent the situation of any slot
 
-00 00 00 11 01 => it means 1st slot 1 integer , 2nd slot have 2 integers 
+00 00 00 11 01 => it means 1st slot have 1 integer , 2nd slot have 2 integers 
                   and other slots are empty
 
 as max no of slots =9
 so size of bitmask=18
 
-dp[i][mask] = max And sum using [i...n-1] array if condition of slots till now is stored in mask
+dp[i][mask] = max And sum using [i...n-1] array, if condition of slots till now is stored in mask
 
 */
 
@@ -23,20 +23,6 @@ public:
     int maximumANDSum(vector<int>& nums, int slots) {
         
         int n=nums.size();
-        
-        /*
-        
-        max n = 2*9 = 18
-        
-        no of slots = 9
-        
-        for each slot, we use bitmask
-        00 = empty
-        01 = having one integer
-        11 = having 2 integers (slot is full)
-        
-        
-        */
         
         memset(dp,-1,sizeof(dp));
         
