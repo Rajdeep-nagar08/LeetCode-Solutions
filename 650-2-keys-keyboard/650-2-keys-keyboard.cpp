@@ -1,15 +1,17 @@
+  /*
+        
+        dp[i][j]=min no of operations needed to form n A's if currently we have i A's and no of copied A's =j
+               
+
+ */
+        
+
 int dp[1001][1001];
 
 class Solution {
 public:
     int minSteps(int n) {
-       
-        /*
-        
-        dp[i][j]=min no of operations needed to form n A's if currently we have i A's and no of copied A's =j
-               
-               */
-        
+      
       memset(dp,-1,sizeof(dp));
      
       return find(1,0,n);
@@ -23,9 +25,7 @@ public:
         
         if(i>n || j>n)
             return 1e6;
-        
-    //   cout<<i<<" "<<j<<" "<<isCopy<<endl;
-            
+                    
         if(dp[i][j]!=-1)
             return dp[i][j];
         
@@ -37,7 +37,6 @@ public:
         if(j!=0)
         ch2=min(ch2,1+find(i+j,j,n)); //past
 
-        
         return dp[i][j]=min(ch1,ch2);
         
     }
