@@ -1,5 +1,8 @@
   /*
-        
+      
+      here we have choices
+      so think about dp
+      
         dp[i][j]=min no of operations needed to form n A's if currently we have i A's and no of copied A's =j
                
 
