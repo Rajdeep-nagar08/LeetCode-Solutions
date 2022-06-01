@@ -1,3 +1,15 @@
+/*
+
+
+[i1=NSL[i]+1.......i.......i2=NSR[i]-1]
+
+so 
+
+nums[i] is smallest in the range [i1......i......i2]
+
+ans=max(ans,nums[i]*sum[i1....i2])
+
+*/
 
 #define lln long long int
 
@@ -119,19 +131,8 @@ public:
                 ans=max(ans,1ll*sum*h[i]);
                
             }
-        
-          //  cout<<sum*h[i]<<" ";
-
+    
         }
-        
-        /*
-        cout<<endl;
-        
-         for(int i=0;i<n;i++){
-            cout<<NSL[i]<<NSR[i]<<" ";
-        }
-        
-        */
         
         int md=1e9+7;
         
