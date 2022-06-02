@@ -1,8 +1,4 @@
-class Solution {
-public:
-    double frogPosition(int n, vector<vector<int>>& edges, int t, int target) {
-    
-        /*
+  /*
         
          after t moves , frog will should be at position target
          
@@ -30,6 +26,10 @@ all vertices are unique
 
         */
         
+class Solution {
+public:
+    double frogPosition(int n, vector<vector<int>>& edges, int t, int target) {
+    
         vector<int>g[n+1];
         
         
@@ -41,10 +41,10 @@ all vertices are unique
 
         }
         
-       vector<double>out(n+1,0.00000);  // store outdegree of each vertix
+       vector<double>out(n+1,0.00000);  // store outdegree of each vrtx
 
-        
         queue<pair<int,vector<int>>>q;
+        
         vector<bool>vis(n+1,false);
         
         q.push({1,{1}});
@@ -83,22 +83,14 @@ all vertices are unique
         }
       
         int c=path.size();
-        
-        /*
-        for(int x:v)
-            cout<<x<<" ";
-        */
-        
-     //   cout<<c<<" "<<t<<endl;
-        
-        // c-1 = no of jumps needs to perform
-        
+
         if(c==0 || c-1>t)
             return 0.00000;
         
-        if(c-1 < t){   //needs to perform extra jumps as compared to required
+        
+ //if needs to perform extra jumps as compared to required jumps than there shoukd not be any nodes under target node , or outdegree of tarfet node should be 0
+        if(c-1 < t){  
             if(out[target]>0.00000)
-        //some unvisited nodes connected to target node , so frog jumps to that unvisited nodes and never comes back
                 return 0.00000;
         }
         
@@ -110,20 +102,13 @@ all vertices are unique
         for(int i=0;i<=c-2;i++){
             
             double move=(double)(out[path[i]]*1.00000);
-            
-         //   cout<<out[v[i]]<<" ";
-            
+                    
             double probMove=((double)1.00000/(double)move);
-            
-        //    cout<<probMove<<" ";
-            
+                    
             ans=(double)ans*probMove;
-            
-          //  cout<<ans<<" ";
-            
+                        
         }
         
-        
-        return ans;
+         return ans;
     }
 };
