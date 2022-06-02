@@ -1,26 +1,23 @@
 class Solution {
 public:
-    bool digitCount(string num) {
+    bool digitCount(string str) {
         
         
-        unordered_map<int,int>mp;
+        int n=str.size();
         
-        for(char ch:num){
-            mp[ch-'0']++;
+        for(int i=0;i<n;i++){
+            char ch=char(i+'0');
+            int no=str[i]-'0';
+            
+            int count=0;
+            
+            for(int j=0;j<n;j++){
+                if(str[j]==ch)
+                    count++;
+            }
+            if(count!=no)
+                return false;
         }
-        
-       for(int i=0;i<num.size();i++){
-           int c=num[i]-'0';
-           if(mp.count(i)==1){
-               if(mp[i]!=c)
-               return false;
-           }
-           else{
-               if(c!=0)
-                   return false;
-           }
-       }
-        
         return true;
     }
 };
