@@ -1,16 +1,4 @@
-#define lln long long int
-
-int mod=1e9+7;
-
-int dp[100001];
-
-class Solution {
-public:
-    int numberOfArrays(string s, int k) {
-        
-        int n=s.size();
-        
-        /*
+ /*
         
         No of possible ways to break s into parts such that 
         value of each part belonges to the range [1,k]
@@ -24,7 +12,23 @@ public:
         dp[i]= no of ways to break the string [i...n-1]
         so that each part belongs to [1,k]
         
-        */
+        MCM pattern
+        
+*/
+
+#define lln long long int
+
+int mod=1e9+7;
+
+int dp[100001];
+
+class Solution {
+public:
+    int numberOfArrays(string s, int k) {
+        
+        int n=s.size();
+        
+       
         
         memset(dp,-1,sizeof(dp));
         
@@ -45,14 +49,16 @@ public:
           
           for(int j=i;j<s.size();j++){
               str.push_back(s[j]);
+              
               if(str.size()>10)
                   break;
+              
               lln no=stol(str);
+              
                   if(j<s.size()-1 && s[j+1]=='0')
                       continue;
               
               if(no>=1 && no<=k){
-                 // cout<<str<<" ";
                   count+=find(j+1,s,k);
               }
               
