@@ -12,7 +12,7 @@
         dp[i]= no of ways to break the string [i...n-1]
         so that each part belongs to [1,k]
         
-        MCM pattern
+        MCM pattern -:
         
 */
 
@@ -27,9 +27,7 @@ public:
     int numberOfArrays(string s, int k) {
         
         int n=s.size();
-        
-       
-        
+    
         memset(dp,-1,sizeof(dp));
         
         return find(0,s,k);
@@ -47,7 +45,8 @@ public:
           
           string str="";
           
-          for(int j=i;j<s.size();j++){
+          for(int j=i;j<s.size();j++){   
+              // O(10) at most , so overall T.C = O(1e5*10) = O(1e6)
               str.push_back(s[j]);
               
               if(str.size()>10)
