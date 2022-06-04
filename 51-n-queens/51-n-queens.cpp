@@ -46,7 +46,7 @@ public:
         for(int i=0;i<r;i++){
           for(int j=0;j<n;j++){
               if(board[i][j]=='Q'){
-            if(i==r || j==c || (i-j)==(r-c) || (j-i)==(c-r) || (i+j)==(r+c))
+            if(i==r || j==c || (i-j)==(r-c) || (j-i)==(c-r)  || (i+j)==(r+c))
                       return false;
               }
           }
