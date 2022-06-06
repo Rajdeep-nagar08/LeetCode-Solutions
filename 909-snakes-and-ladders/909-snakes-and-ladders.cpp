@@ -1,14 +1,5 @@
 
-int dp[401];
-
-class Solution {
-public:
-    int n;
-    int snakesAndLadders(vector<vector<int>>& board) {
-        
-        n=board.size();
-        
-        /*
+/*
         
         from each cell we have 6 choices to move ,
         
@@ -54,8 +45,16 @@ public:
         than index(1 based) of no x = [r][c]
         
         index(0 based) of no x  = [r-1][c-1]
+
+*/
         
-        */
+        
+class Solution {
+public:
+    int n;
+    int snakesAndLadders(vector<vector<int>>& board) {
+        
+        n=board.size();
         
         int step=0;
         
@@ -89,6 +88,7 @@ public:
                     return step;
                 
             for(int k=1;k<=6;k++){
+                
              int x=curr+k;
              
              if(x>n*n)
@@ -105,7 +105,6 @@ public:
                  c=n-(x-start);
              }
               
-             //   cout<<r<<" "<<c<<endl;
             if(board[r-1][c-1]==-1){
                 if(vis[x]==false){
                     vis[x]=true;
