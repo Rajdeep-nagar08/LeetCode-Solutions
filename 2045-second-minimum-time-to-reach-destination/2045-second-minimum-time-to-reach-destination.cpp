@@ -73,12 +73,12 @@
  
         For BFS, two cases arises
         
-       if for any node, its curr time < its firstMinTime , than update its firstMinTime and to find its second min time push it into the queue
+       if for any node, its curr time < its firstMinTime , than update its firstMinTime and secondMinTime 
        
        for for any node , its curr time > Its firstMinTime and 
        its curr time < its SecindMinTime , than update its secondMinTime and push it into the queue
        
-                
+        if currTime > firstMinTime and currTime > secondMinTime than no needs to push into queue becouse now there is no possiblity of any lower time        
         
     */
 
@@ -92,11 +92,11 @@ class Solution {
             g[e[1]].push_back(e[0]);
         }
         
-         vector<int> dis1(n+1, INT_MAX);  // store firstMinTime
-         vector<int>dis2(n+1, INT_MAX);   // store secondMinTime
+         vector<int> time1(n+1, INT_MAX);  // store firstMinTime
+         vector<int>time2(n+1, INT_MAX);   // store secondMinTime
         
         
-        dis1[1] = 0;
+        time1[1] = 0;
         
         queue<pair<int,int>> q; 
         
@@ -138,18 +138,20 @@ class Solution {
       
         
 				// update two distances.
-                if (dis1[y] > newTime){
-                    dis2[y] = dis1[y]; 
-                    dis1[y] = newTime;
+                if (time1[y] > newTime){
+                    time2[y] = time1[y]; 
+                    time1[y] = newTime;
                     q.push({newTime, y});
                 } 
-                else if (newTime > dis1[y] && newTime < dis2[y] ) {
-                    dis2[y] = newTime;
+                else if (newTime > time1[y] && newTime < time2[y] ) {
+                    time2[y] = newTime;
                     q.push({newTime, y});
                 }
+                else
+                    continue;
             }
         }
-        return dis2[n];
+        return time2[n];
     }
 };
 
