@@ -3,7 +3,7 @@
 
 ith batter can run a computer for batt[i] minutes
 
-Max no of minutes we can run all the computers
+Max no of minutes we can run all the computers ?
 
 Clearly
 
@@ -22,10 +22,11 @@ But how to check whether all computers can be charged or not charged till any fi
 to run all computers for time t:
      total time we needed= t*no of computers
      
-     no for any battery of amount = x, we can use it = min(x,t) minutes
-     so we calcu;ate available time from all batteries
+     now for any battery of amount = x, we can use it = min(x,t) minutes during      the time of t minutes
      
-     if available time >= total time, than it is possible to charge all computers for time t
+     so we calculate total available time from all batteries
+     
+     if total available time >= total time, than it is possible to charge all        computers for time t simultaneously
 
 
 */
