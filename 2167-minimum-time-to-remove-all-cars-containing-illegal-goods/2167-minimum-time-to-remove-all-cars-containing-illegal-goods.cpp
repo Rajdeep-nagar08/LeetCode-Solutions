@@ -43,7 +43,9 @@ For left and right we paid just their lengths. For middle we pay twice number of
 So, in fact what we need to found is the subarray with the smallest count(middle, 1) - count(middle, 0) value. 
 If we now replace all 0 with -1, it is the same as found the subarray with the smallest sum! 
 
-Then we use Standard Kedan's algorithm to find this
+Ans= n + (minimum sum subarray after replacing all 0 by -1)
+
+So use Standard Kedan's algorithm to find this
 
 */
       
@@ -70,8 +72,8 @@ public:
             mn=min(mn,temp);
         }
         
-        return min(mn,0)+n;
-        
+      return min(n+mn,n);
+       
     }
     
 };
