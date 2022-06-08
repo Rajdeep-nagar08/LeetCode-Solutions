@@ -1,10 +1,11 @@
 /*
 
-You can stamp a m * n area if the sum of all elements in that area is zero (no blocked cells). We calculate the prefix sum matrix pref for our grid, and use the range sum 2D approach to find all areas we can stamp.
+WE can stamp a m * n area if the sum of all elements in that area is zero (no blocked cells). We calculate the prefix sum matrix pref1 for our grid, and use the range sum 2D approach to find all areas we can stamp.
 
 We will mark right bottom corner of those areas in the stamps grid.
 
-How do we know if a cell [i][j] is covered by some stamp? It is covered if there is a stamp with right bottom corner within [i][j] - [i + h - 1][j + w - 1].
+How do we know if a cell [i][j] is covered by some stamp? It is covered if there is a atleast one stamp in the region [i][j] ~ [i + h - 1][j + w - 1].
+tO check if there is any stamp in this region , we make another pref2 for stamp grid
 
 So, we just count stamps within that area. To do it in O(1), we create another prefix sum matrix pref2 from the stamps grid.
 
