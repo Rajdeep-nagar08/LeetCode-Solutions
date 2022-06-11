@@ -8,12 +8,9 @@
     
         
         
-        for each stone i , we check it with all the stones and we move with optimal one
+for each stone i , we check it with all the stones and we move with optimal one
     
-       
-        
-        
-        
+           
 // Backtracking solution (TLEEEEEEEEEEEEE)
 
 
@@ -110,6 +107,7 @@ break;
 }
 
 
+
 subsetSum(s) = Is there any subset of array whose sum = s
 
 dp[i][s]= Is there any subset in array [i...n-1] whose sum=s
@@ -140,9 +138,7 @@ public:
         }
         
       int ans=INT_MAX;
-        
-      //  subsetSu
-        
+                
         for(int s=sum/2;s>=0;s++){
             if(subsetSum(s,nums,0)==true){
                 int s1=s;
