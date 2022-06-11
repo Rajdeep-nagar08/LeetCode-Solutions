@@ -108,7 +108,7 @@ break;
 
 
 
-subsetSum(s) = Is there any subset of array whose sum = s
+subsetSum(s) = Is there any subset of array whose sum = s  , s<=sum/2
 
 dp[i][s]= Is there any subset in array [i...n-1] whose sum=s
 
@@ -118,9 +118,10 @@ for each element i , we have two choices either choose it for subset or not choo
 
 */
 
+// max sum = 100*30=3000
+// so max s= 1500
 
-
-int dp[31][3001];
+int dp[31][1501];
 
 class Solution {
 public:
