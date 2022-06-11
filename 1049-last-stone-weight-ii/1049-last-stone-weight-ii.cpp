@@ -140,7 +140,7 @@ public:
         
       int ans=INT_MAX;
                 
-        for(int s=sum/2;s>=0;s++){
+        for(int s=sum/2;s>=0;s--){
             if(subsetSum(s,nums,0)==true){
                 int s1=s;
                 int s2=sum-s;
