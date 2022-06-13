@@ -1,4 +1,4 @@
-int dp[1000][1000]; // ith row and jth column 
+int dp[201][201]; // ith row
 class Solution {
 public:
     int minimumTotal(vector<vector<int>>& tr) {
