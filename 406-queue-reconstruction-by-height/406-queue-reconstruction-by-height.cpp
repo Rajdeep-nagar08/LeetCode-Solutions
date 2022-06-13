@@ -1,11 +1,4 @@
-class Solution {
-public:
-    vector<vector<int>> reconstructQueue(vector<vector<int>>& p) {
-     
-        
-        int n=p.size();
-        
-        
+ 
         /*
         
         rearrange the persons such that
@@ -22,7 +15,23 @@ public:
         
         Than position of second shortest person = its k
         
+input: [[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
+sort: [[7,0], [7,1], [6,1], [5,0], [5,2], [4,4]]
+step1: [[7,0]]
+step2: [[7,0], [7,1]]
+step3: [[7,0], [6,1], [7,1]]
+step4: [[5,0], [7,0], [6,1], [7,1]]
+step5: [[5,0], [7,0], [5,2], [6,1], [7,1]]
+step6: [[5,0], [7,0], [5,2], [4,4], [6,1], [7,1]]
+        
         */
+
+class Solution {
+public:
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& p) {
+     
+        
+        int n=p.size();
         
         sort(p.begin(),p.end(),[](vector<int>&p1,vector<int>&p2){
             if(p1[0]>p2[0])
@@ -32,13 +41,6 @@ public:
             else
                 return false;
         });
-        
-        /*
-        
-        for(int i=0;i<n;i++){
-            cout<<p[i][0]<<" "<<p[i][1]<<endl;
-        }
-        */
         
              
              for(int i=1;i<n;i++){
