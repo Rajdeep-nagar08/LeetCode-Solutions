@@ -9,17 +9,20 @@
         
         find the time taken by each cars to reach destination
         
-        [10,8,5,3,0] [2,4,1,3,1]
+        target=12
+        [10,8,5,3,0]=> distance need to cover [2,4,7,9,12] (sorted) [2,4,1,3,1]
         
         time = [1,1,7,3,12]
         
-        clearly 2 comes first
-        next 2 will catch it just at destination
+        clearly 1 comes first
+        next 1 will catch it just at destination
         
-        7 > 2 , cannot catch them, start new group from here [7]
-        3 < 7 , catch 7 
+        7 > 1 , cannot catch them, start new group from here [7]
+        3 will catch 7 so both 3 and 7 comes in group
         
-        12>7 , cannot catch 
+        12 will not catch 7 , so it makes another group
+        
+        Total group formed = 3
         
         */
         
@@ -67,13 +70,15 @@ public:
         return group;
     }
     
+    
+    
     /*
     
 10
 [6,8] , [3,2]  => [4,2]  => sort [2,4] pos,  [2,3] speed
 
 
-time : [1,1]
+time : [1.0,1.33]
 
 */
     
