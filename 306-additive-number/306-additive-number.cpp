@@ -8,6 +8,11 @@ dp[i][j]= Is there exist a valid sequence if 1st number is of length i and secon
 
 i<=9 , j<=9
 
+Take care of all the cornerv cases:
+1) no should not be of type "0..."
+2) no can be "0"
+3) there should exsist atleast one triplet of a,b,c such that  a+b=c
+
 */
 
 #define lln long long int
@@ -17,7 +22,6 @@ public:
     bool isAdditiveNumber(string num) {
         
         n=num.size();
-        
         
        for(int i=1;i<=min(9,n-1);i++){   // i= length of n1
            
@@ -36,12 +40,9 @@ public:
                
                string sum=to_string(n1+n2);
                
-               if(i+j<n){
-               bool b=isValid(n2,sum,i+j,num);
-         //    cout<<n1<<" "<<n2<<" "<<b<<endl;
-               if(b)
+               if(i+j<n && (isValid(n2,sum,i+j,num)))
                    return true;
-               }
+              
            }
        }
         return false;
