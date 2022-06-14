@@ -1,7 +1,27 @@
+  /*
+
+we needs to focus on first and the second number
+
+if 1st and 2nd no. fatched successfully, than we can fatch other numbers easily
+
+dp[i][j]= Is there exist a valid sequence if 1st number is of length i and second number of length j
+
+i<=9 , j<=9
+
+Take care of all the cornerv cases:
+1) no should not be of type "0..."
+2) no can be "0"
+3) there should exsist atleast one triplet of a,b,c such that  a+b=c
+
+*/
+
 #define lln long long int
 class Solution {
 public:
     int n;
+    
+    vector<int>ans;
+
     vector<int> splitIntoFibonacci(string num) {
     
           n=num.size();
@@ -24,7 +44,6 @@ public:
                
                string sum=to_string(n1+n2);
                
-               vector<int>ans;
                
                ans.push_back(n1);
                ans.push_back(n2);
@@ -32,6 +51,8 @@ public:
                
                if(i+j<n && (isValid(n2,sum,i+j,num,ans)))
                    return ans;
+               
+               ans.clear();
               
            }
        }
