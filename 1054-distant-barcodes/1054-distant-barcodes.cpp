@@ -1,3 +1,10 @@
+/*
+
+always pick two max frequency elements
+and arrange them as [f1,f2]
+
+*/
+
 class Solution {
 public:
     vector<int> rearrangeBarcodes(vector<int>& bar) {
