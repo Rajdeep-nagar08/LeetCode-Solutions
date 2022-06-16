@@ -11,8 +11,10 @@ public:
             v[i]=i+1;
         }
         
+      vector<int>v1(n);
+
         for(int i=0;i<n;i++){
-            vector<int>v1(n);
+            v1.resize(n,0);
             for(int j=0;j<n;j++){
                 v1[j]=mat[i][j];
             }
@@ -21,8 +23,10 @@ public:
                 return false;
         }
         
+
         for(int i=0;i<n;i++){
-            vector<int>v1(n);
+            v1.resize(n,0);
+
             for(int j=0;j<n;j++){
                 v1[j]=mat[j][i];
             }
