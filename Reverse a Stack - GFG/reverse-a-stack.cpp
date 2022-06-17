@@ -28,7 +28,7 @@ void help(stack<int>&st){
 
     vector<int> Reverse(stack<int>& st){
         
-    //  help(st);
+     help(st);
   
      vector<int>v;
     
