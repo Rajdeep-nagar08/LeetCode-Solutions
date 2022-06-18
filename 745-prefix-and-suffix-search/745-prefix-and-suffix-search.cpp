@@ -73,6 +73,8 @@ struct TrieNode* pNode = new TrieNode;
         
         int n2=v2.size();
         
+        // finding greatest index present inj both the vectors
+        
         for(int i=n1-1;i>=0;i--){
             
             int no=v1[i];
