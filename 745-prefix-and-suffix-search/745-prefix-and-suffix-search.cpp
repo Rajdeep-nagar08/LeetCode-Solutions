@@ -1,21 +1,21 @@
 class WordFilter {
 public:
     
-    struct TrieNodeF {
+    struct TrieNode {
 
     vector<int>allIdx;   // used to store indexes
         
-    struct TrieNodeF* children[26];
+    struct TrieNode* children[26];
         
     };
 
   
     
-struct TrieNodeF* getNodeF()
+struct TrieNode* getNode()
 {
 
     
-struct TrieNodeF* pNode = new TrieNodeF;
+struct TrieNode* pNode = new TrieNode;
  
    
  for (int i = 0; i < 26; i++)
@@ -28,37 +28,12 @@ struct TrieNodeF* pNode = new TrieNodeF;
     
     
 
-  struct TrieNodeF *rootF = getNodeF();
-    
-    
-struct TrieNodeB {
-
-    vector<int>allIdx;
-        
-    struct TrieNodeB* children[26];
-        
-    };
-
-  
-    
-struct TrieNodeB* getNodeB()
-{
-
-    
-struct TrieNodeB* pNode = new TrieNodeB;
- 
-   
- for (int i = 0; i < 26; i++)
-   pNode->children[i] = NULL;
- 
-    pNode->allIdx={};
-           
-    return pNode;
-}
+  struct TrieNode *rootF = getNode();
     
     
 
-  struct TrieNodeF *rootB = getNodeF();
+
+  struct TrieNode *rootB = getNode();
 
 
 
@@ -68,13 +43,13 @@ struct TrieNodeB* pNode = new TrieNodeB;
         for (int i = 0; i < words.size(); i++){
            
            
-           insertF(rootF, words[i],i,1);   // forward
+           insert(rootF, words[i],i,1);   // forward
             
             
            reverse(words[i].begin(),words[i].end());
 
     
-           insertF(rootB, words[i],i,0);   // backward
+           insert(rootB, words[i],i,0);   // backward
  
             
         }
@@ -85,11 +60,11 @@ struct TrieNodeB* pNode = new TrieNodeB;
     
     int f(string pref, string suff) {
         
-        vector<int>v1=findF(rootF,pref,1);
+        vector<int>v1=find(rootF,pref,1);
         
         reverse(suff.begin(),suff.end());
         
-        vector<int>v2=findF(rootB,suff,0);
+        vector<int>v2=find(rootB,suff,0);
         
         if(v1.size()==0 || v2.size()==0)
             return -1;
@@ -113,10 +88,10 @@ struct TrieNodeB* pNode = new TrieNodeB;
     }
     
 
-void insertF(struct TrieNodeF* rootF, string key,int idx,int f)
+void insert(struct TrieNode* rootF, string key,int idx,int f)
 {
     
-    struct TrieNodeF* pCrawl;
+    struct TrieNode* pCrawl;
 
     if(f)
     pCrawl = rootF;
@@ -131,7 +106,7 @@ void insertF(struct TrieNodeF* rootF, string key,int idx,int f)
 
         if (!pCrawl->children[index])
         
-        pCrawl->children[index] = getNodeF();
+        pCrawl->children[index] = getNode();
         
      
         pCrawl->children[index]->allIdx.push_back(idx);
@@ -142,38 +117,12 @@ void insertF(struct TrieNodeF* rootF, string key,int idx,int f)
     }
     
 }
- 
-void insertB(struct TrieNodeB* rootB, string key,int idx)
-{
-
-    struct TrieNodeB* pCrawl = rootB;
- 
-
-    for (int i = 0; i < key.length(); i++) {
-
-        int index = key[i] - 'a';
-
-        if (!pCrawl->children[index])
-        
-        pCrawl->children[index] = getNodeB();
-        
-     
-        pCrawl->children[index]->allIdx.push_back(idx);
-                
-        
-        pCrawl = pCrawl->children[index];
-     
-    }
-    
-}
- 
 
     
-    
-vector<int> findF(struct TrieNodeF* rootF,string key,int f){
+vector<int> find(struct TrieNode* rootF,string key,int f){
     
   
-    struct TrieNodeF* pCrawl;
+    struct TrieNode* pCrawl;
 
     if(f)
     pCrawl = rootF;
@@ -181,28 +130,7 @@ vector<int> findF(struct TrieNodeF* rootF,string key,int f){
     pCrawl = rootB;
 
     
-struct TrieNodeF *curr=rootF;
-    
-for(int i=0;i<key.length();i++)
-{
-    
-int index=key[i]-'a';
-    
-if(curr->children[index]==NULL || curr->children[index]->allIdx.size()==0)
-   return {};
-
- curr=curr->children[index];
-}
-
-
-return curr->allIdx;
-   
-  }
-    
-    
-vector<int> findB(struct TrieNodeB* rootB,string key){
-    
-struct TrieNodeB *curr=rootB;
+struct TrieNode *curr=rootF;
     
 for(int i=0;i<key.length();i++)
 {
