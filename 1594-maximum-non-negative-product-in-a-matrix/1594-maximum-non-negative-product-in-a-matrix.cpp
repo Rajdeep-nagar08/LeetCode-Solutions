@@ -1,3 +1,21 @@
+/*
+similar :
+
+https://leetcode.com/problems/maximum-product-subarray/
+
+
+Bottom up approach
+        
+        dp1[i][j]= max +ve prouct from [0,0] to [i,j]
+        
+        dp[2][i][j]= min -ve product from [0,0] to [i,j]
+        
+        
+        ans=dp[n-1][m-1]
+        
+        
+*/
+
 #define lln long long int
 int mod=1e9+7;
 
@@ -9,18 +27,6 @@ public:
        int n=grid.size();
         
        int m=grid[0].size();
-      
-        
-        /*
-        
-        dp1[i][j]= max +ve prouct from [0,0] to [i,j]
-        
-        dp[2][i][j]= min -ve product from [0,0] to [i,j]
-        
-        
-        ans=dp[n-1][m-1]
-        
-        */
         
         lln dp1[n+1][m+1];
          
