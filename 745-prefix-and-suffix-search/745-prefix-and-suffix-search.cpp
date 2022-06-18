@@ -3,7 +3,7 @@ public:
     
     struct TrieNodeF {
 
-    vector<int>allIdx;
+    vector<int>allIdx;   // used to store indexes
         
     struct TrieNodeF* children[26];
         
@@ -58,7 +58,7 @@ struct TrieNodeB* pNode = new TrieNodeB;
     
     
 
-  struct TrieNodeB *rootB = getNodeB();
+  struct TrieNodeF *rootB = getNodeF();
 
 
 
@@ -68,13 +68,13 @@ struct TrieNodeB* pNode = new TrieNodeB;
         for (int i = 0; i < words.size(); i++){
            
            
-           insertF(rootF, words[i],i);   // forward
+           insertF(rootF, words[i],i,1);   // forward
             
             
            reverse(words[i].begin(),words[i].end());
 
     
-           insertB(rootB, words[i],i);   // backward
+           insertF(rootB, words[i],i,0);   // backward
  
             
         }
@@ -85,11 +85,11 @@ struct TrieNodeB* pNode = new TrieNodeB;
     
     int f(string pref, string suff) {
         
-        vector<int>v1=findF(rootF,pref);
+        vector<int>v1=findF(rootF,pref,1);
         
         reverse(suff.begin(),suff.end());
         
-        vector<int>v2=findB(rootB,suff);
+        vector<int>v2=findF(rootB,suff,0);
         
         if(v1.size()==0 || v2.size()==0)
             return -1;
@@ -99,6 +99,7 @@ struct TrieNodeB* pNode = new TrieNodeB;
         int n2=v2.size();
         
         for(int i=n1-1;i>=0;i--){
+            
             int no=v1[i];
             
             int i1=lower_bound(v2.begin(),v2.end(),no)-v2.begin();
@@ -112,10 +113,16 @@ struct TrieNodeB* pNode = new TrieNodeB;
     }
     
 
-void insertF(struct TrieNodeF* rootF, string key,int idx)
+void insertF(struct TrieNodeF* rootF, string key,int idx,int f)
 {
+    
+    struct TrieNodeF* pCrawl;
 
-    struct TrieNodeF* pCrawl = rootF;
+    if(f)
+    pCrawl = rootF;
+    else
+    pCrawl = rootB;
+
  
 
     for (int i = 0; i < key.length(); i++) {
@@ -163,7 +170,16 @@ void insertB(struct TrieNodeB* rootB, string key,int idx)
 
     
     
-vector<int> findF(struct TrieNodeF* rootF,string key){
+vector<int> findF(struct TrieNodeF* rootF,string key,int f){
+    
+  
+    struct TrieNodeF* pCrawl;
+
+    if(f)
+    pCrawl = rootF;
+    else
+    pCrawl = rootB;
+
     
 struct TrieNodeF *curr=rootF;
     
