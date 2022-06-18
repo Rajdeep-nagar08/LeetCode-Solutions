@@ -30,11 +30,7 @@ struct TrieNode* pNode = new TrieNode;
 
   struct TrieNode *rootF = getNode();
     
-    
-
-
   struct TrieNode *rootB = getNode();
-
 
 
     WordFilter(vector<string>& words) {
@@ -66,14 +62,17 @@ struct TrieNode* pNode = new TrieNode;
         
         vector<int>v2=find(rootB,suff,0);
         
-        if(v1.size()==0 || v2.size()==0)
-            return -1;
         
         int n1=v1.size();
         
         int n2=v2.size();
         
-        // finding greatest index present inj both the vectors
+        if(n1==0 || n2==0)
+            return -1;
+        
+        // finding greatest index present in both the vectors
+            
+        if(n1<=n2){
         
         for(int i=n1-1;i>=0;i--){
             
@@ -83,6 +82,21 @@ struct TrieNode* pNode = new TrieNode;
             
             if(i1<n2 && v2[i1]==no)
                 return no;
+        }
+    }
+        
+        else{
+            
+            for(int i=n2-1;i>=0;i--){
+            
+            int no=v2[i];
+            
+            int i1=lower_bound(v1.begin(),v1.end(),no)-v1.begin();
+            
+            if(i1<n1 && v1[i1]==no)
+                return no;
+         }
+            
         }
         
         return -1;
