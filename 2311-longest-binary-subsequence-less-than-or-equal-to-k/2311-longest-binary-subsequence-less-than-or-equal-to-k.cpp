@@ -1,3 +1,12 @@
+/*
+
+move greedly
+
+include each bit from right till the no formed <=k
+
+when no>k, include all 0's towards left side
+
+*/
 
 
 #define lln long long int
