@@ -2,7 +2,7 @@
 
 for each digit we have two choices , either take it alone or take it with next digit considering only numbers [1,26] only as valid formation
 
-In case of start , take it as [1,9] all one by one
+In case of '*' , take it as [1,9] all one by one
 
 dp[i] = number of ways to decode string [i...n-1]
 
