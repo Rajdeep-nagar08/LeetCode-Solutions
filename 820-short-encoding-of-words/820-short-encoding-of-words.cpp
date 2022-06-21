@@ -60,11 +60,6 @@ struct TrieNode* pNode = new TrieNode;
             string s=it.first;
             reverse(s.begin(),s.end());
            int c= find(root,s);
-           
-            /*
-            if(v.size()>1)
-            cout<<words[i]<<" "<<v.size()<<endl;
-            */
             
             if(c==1){
                 c1++;
@@ -76,14 +71,7 @@ struct TrieNode* pNode = new TrieNode;
         
         if(c1==0)                   // all words are similar
             ans+=words[0].size()+1;
-        
-        
-/*        
-        for(string str:words){
-            cout<<str<<" ";
-        }
-        
-        */
+    
         
         return ans;
         
