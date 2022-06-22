@@ -25,7 +25,6 @@ public:
                 end=ts[i]+dur-1;
             }
             
-            cout<<ans<<endl;
             
             i++;
         }
