@@ -1,7 +1,4 @@
-class Solution {
-public:
-    int minimumTime(int n, vector<vector<int>>& rel, vector<int>& t) {
-     
+
         /*
 
 should start moving from nodes having indegree =0
@@ -59,6 +56,10 @@ So as soon as we visit y via any node x, we update minTime[y] = max(minTime[y],m
 Min time to visit all nodes = max(time[nodes])
 
 */
+
+class Solution {
+public:
+    int minimumTime(int n, vector<vector<int>>& rel, vector<int>& t) {
         
         vector<int>g[n];
         
