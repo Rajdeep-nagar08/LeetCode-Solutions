@@ -1,11 +1,4 @@
-#define lln long long int
-
-class Solution {
-public:
-    bool splitString(string s) {
-       
-            
-        /*
+  /*
         
         break string into parts of decreasing order, such that difference between two adjacent numerical values is 1
         
@@ -20,6 +13,13 @@ public:
         accordingly
         
         */
+
+#define lln long long int
+
+class Solution {
+public:
+    bool splitString(string s) {
+       
         
         int i=0;
         
@@ -40,9 +40,7 @@ public:
             string pref=s.substr(0,l);
             
             lln no1=stol(pref);
-            
-            cout<<"no1="<<no1<<endl;
-            
+                    
             int nextIndex=l;
             
             if(nextIndex<n)
@@ -63,21 +61,14 @@ public:
         if(i>=s.size())
             return true;
         
-        int k=i;
-        /*
-         while(k<s.size() && s[k]=='0')
-                k++;
-                */
-        for(int j=k;j<s.size();j++){
+        for(int j=i;j<s.size();j++){
             
             int l=j-i+1;
             
             string str=s.substr(i,l);
         
             lln no2=stol(str);
-            
-            cout<<no2<<endl;
-            
+                    
             if(no2>no1)
                 break;
 
