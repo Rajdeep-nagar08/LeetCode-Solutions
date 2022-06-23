@@ -9,7 +9,7 @@
         
         if we know the first numerical value then we can easily break string into further parts
         
-        so we take all possible prefixes as strating value and check for 
+        so we take all possible prefixes as strating value and check
         accordingly
         
         */
