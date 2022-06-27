@@ -12,11 +12,12 @@ public:
       
       memset(dp,-1,sizeof(dp));
       
-      return solve(0,16,tasks,time);
+      return solve(0,0,tasks,time);
     
     }
   
     int solve(int mask,int t,vector<int>&tasks,int time){
+        
       if(mask==(1<<tasks.size())-1)
         return 0;
       
@@ -28,11 +29,17 @@ public:
       for(int i=0;i<tasks.size();i++){
         if(mask&(1<<i))
           continue;
-        
-        if(t+tasks[i] <= time)
+          
+          if(mask==0)  // starting of first session
+              ans=min(ans,1+solve(mask|(1<<i),tasks[i],tasks,time));
+          
+          else{
+        if(t+tasks[i] <= time)  // do task in current session
           ans=min(ans,solve(mask|(1<<i),t+tasks[i],tasks,time));
-        else
+        else    // take one more session to complete the task
           ans=min(ans,1+solve(mask|(1<<i),tasks[i],tasks,time));
+          }
+          
       }
         return dp[mask][t]=ans;
       
