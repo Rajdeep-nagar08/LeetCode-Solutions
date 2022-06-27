@@ -1,3 +1,82 @@
+/*
+
+Let two edges that we removing are : a------b, c------d
+
+Now there can be two possible cases regarding these two edges
+
+ 1.
+
+     If Both the edges are adjacent or shared any common vertex
+        
+                <
+                <
+                <
+   ^^^^^^^a----(b==c)---d^^^^^^
+                <
+                <
+                <
+                
+NOTE: ^^^^^^ represents any component of graph
+      ------ represent an edge
+      b==c means its a common vertex between two edges
+                
+                
+   so if we break a---b and c---d, 3 components formed are:-
+   
+               <
+               <
+               <
+^^^^^^^a     (b==c)      d^^^^^^
+               <
+               <
+               <
+               
+  
+  if total xor = x4 (xor of all vertices)
+  
+  xor of 1st component=x1=x4^(xor comes from b's side towards a)
+  x1=x4^mp[a][b];
+  
+  xor of third component=x3=x4^(xor comes from c's side towards d)
+  x3=x4^mp[d][c];
+  
+  xor of second component=x2=x4^x1^x3
+  
+  So
+  
+  ans= min(ans,max({x1,x2,x3})-min({x1,x2,x3}))
+  
+  
+  2.
+  
+   if two edges are not adjacent , try to find two vertices (c1,c2), one from each edge, that will be part of single component after breaking down the graph into 3 components
+                
+    ^^^^^a----b^^^^^^^^^^^c-d^^^^^ than , c1=b , c2=c
+    
+    HOW to find c1=b and c2=c ?
+    
+    NOTE: distance of b from c < distance of a from c
+          distance of b from c < distance of b from d
+          
+So in O(n*n) we precalculate the distance of each node from all other nodes
+                
+ Now if we remove the edges a----b and c----d 
+ than 3 components formed are 
+ ^^^^^a     b^^^^^^^^c    d^^^^^^^
+ 
+ if xor of all nodes = x4
+ 
+ xor of 1st component= x1 = x4^(xor comes from b's side towards a)
+ x1= x4^(mp[a][b])
+ 
+ xor of 3rd component = x3 = x4^(xor comes from c's side towards d)
+ x3=x4^(mp[d][c])
+ 
+ xor of 2nd component = x2=x4^x1^x3
+ 
+  */
+  
+
 class Solution {
 public:
     int minimumScore(vector<int>& nums, vector<vector<int>>& e) {
@@ -31,7 +110,7 @@ public:
         }
         
         
-// (u) => (v) directly connected to u, Xor of all values from v's side
+// (u) => (v) directed connected to v, Xor of all values from v's side
         
         unordered_map<int,unordered_map<int,int>>mp1;
         
@@ -87,7 +166,7 @@ public:
                 int c=e[j][0];
                 int d=e[j][1];
                 
-        // if both the edges are adjacent, shared any common vertex
+       
                 
                 int x1,x2,x3;
                 
@@ -112,8 +191,6 @@ public:
                   x2=x4^mp1[c][b];
                   x3=x4^x1^x2;
                 }
-                
-     // if edges are not adjacent , try to find two vertices (c1,c2) one from each edge that will be part of single component after breaking down the graph into 3 parts
                 
                 else{
                     
@@ -168,9 +245,6 @@ public:
                         }
                      }
                     
-    
-         //   cout<<a<<" "<<b<<" "<<c<<" "<<d<<" "<<c1<<" "<<c2<<" "<<x1<<" "<<x2<<" "<<x3<<endl;
-              
                   }
                 
                 
@@ -203,7 +277,6 @@ void dfs(int u,int& xr,vector<bool>&vis,vector<int>g[],vector<int>&nums){
      }
     
 
-    
 void bfs(int node,vector<int>&d,vector<int>g[]){
     
     int n=d.size();
