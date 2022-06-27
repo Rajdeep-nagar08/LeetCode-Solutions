@@ -129,9 +129,7 @@ public:
             return false;
         
         lln need=sum/4;
-        
-     //   cout<<need<<endl;
-        
+                
         memset(dp,-1,sizeof(dp));
         
         vector<lln>temp(4);
@@ -151,20 +149,15 @@ int find(int j,int mask,int maskNeeded,vector<lln>&temp,lln &need,vector<int>&mt
 
         
         if(j>=4){
-            
-           // cout<<mask<<endl;
-           
+                       
             if(mask!=maskNeeded)
                 return 0;
             
             for(int k=0;k<4;k++){
-              //  cout<<temp[k]<<" ";
                if(temp[k]!=need)
                    return 0;
             }
             
-         //  cout<<endl;
-
             return 1;
         }
     
@@ -187,15 +180,12 @@ int find(int j,int mask,int maskNeeded,vector<lln>&temp,lln &need,vector<int>&mt
             if(temp[j]+mt[i]<=need){
                 
                 temp[j]+=mt[i];
-                
-            //    cout<<j<<" "<<temp[j]<<endl;
-                
+                                
     ans=(ans|find(j,mask|(1<<i),maskNeeded,temp,need,mt));
              
                 temp[j]-=mt[i];
                 
             }
-        
         
        }
     
