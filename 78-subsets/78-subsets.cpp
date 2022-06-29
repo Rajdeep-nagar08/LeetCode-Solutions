@@ -5,7 +5,7 @@ public:
     
     vector<vector<int>> subsets(vector<int>& nums) {
         
-        sort(nums.begin(),nums.end());
+    //    sort(nums.begin(),nums.end());
         ans.clear();
         temp.clear();
         subset(nums,0);
@@ -15,11 +15,9 @@ public:
      void subset(vector<int>& nums,int i){
          ans.push_back(temp);
            for(int j=i;j<nums.size();j++){
-              // if(j==i ||nums[j]!=nums[j-1]){
                    temp.push_back(nums[j]);
                    subset(nums,j+1);
                    temp.pop_back();
-             //  }
                    
            }
      
