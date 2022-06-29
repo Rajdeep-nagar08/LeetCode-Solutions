@@ -40,7 +40,7 @@ public:
         
         /*
         
- this can be done by insert function of vector
+ Now inserting any person at a particular position can be done by insert function of vector
 
         
 std::vector::insert() is a built-in function in C++ STL which inserts new elements before the element at the specified position, effectively increasing the container size by the number of elements inserted.
