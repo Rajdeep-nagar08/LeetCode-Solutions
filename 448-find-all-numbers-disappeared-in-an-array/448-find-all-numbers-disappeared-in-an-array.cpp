@@ -4,23 +4,35 @@ public:
         
         
         int n=nums.size();
-        
-        vector<int>ans(n,0);
-        
-        for(int i=0;i<n;i++){
-            ans[nums[i]-1]++;
-        }
                 
-        for(int i=0;i<n;i++){
-            if(ans[i]==0)
-                nums[i]=-1;
+        int i=0;
+        
+        // applying swap sort
+        
+        while(i<n){
+            
+            if(nums[i]==i+1)
+            {
+                i++;
+                continue;
+            }
+            
+            int val=nums[i];
+            
+            while(nums[val-1]!= val){
+                int val1=nums[val-1];
+                nums[val-1]=val;
+                val=val1;
+                
+            }
+            i++;
         }
         
-        ans.clear();
+        vector<int>ans;
         
         for(int i=0;i<n;i++){
-        //    cout<<nums[i]<<" ";
-            if(nums[i]==-1)
+            
+            if(nums[i]!=i+1)
                 ans.push_back(i+1);
         }
         
