@@ -1,33 +1,47 @@
 class Solution {
 public:
-    int maximumUnits(vector<vector<int>>& bt, int sz) {
-       sort(bt.begin(),bt.end(),[](vector<int>&v1,vector<int>&v2){
-           return v1[1]>v2[1];
-       });
+    static bool comp(const vector<int>&a,const vector<int>&b){
+        if(a[1]!=b[1])
+        return a[1]>b[1];
+        else
+            return a[0]>b[0];
         
-        int i=0;
         
-        int n=bt.size();
+    }
+    int maximumUnits(vector<vector<int>>& bt, int n) {
+        sort(bt.begin(),bt.end(),comp);
         
-        int ans=0;
-        
-        while(i<n && sz>0){
-            int c=bt[i][0];
-            int pt=bt[i][1];
-            
-            if(sz>c){
-                sz=sz-c;
-                ans+=c*pt;
+        /*
+        for(int i=0;i<n;i++){
+            for(int j=0;j<2;j++){
+                cout<<bt[i][j]<<" ";
             }
-            else{
-                ans+=sz*pt;
-                break;
-            }
-            
-            i++;
+            cout<<endl;
         }
         
-        return ans;
+        */
         
+        int ans=0;
+        int i=0;
+        int j=0;
+        
+        while(j<bt.size()){
+            
+            if(i+bt[j][0]<n){
+            i+=bt[j][0];
+            ans+=(bt[j][0]*bt[j][1]);
+            }
+            
+  else{
+       int y=n-i;
+        ans+=y*bt[j][1];
+        return  ans;
+          }
+            
+            j++;
+            
+        }
+
+            return ans;
     }
 };
