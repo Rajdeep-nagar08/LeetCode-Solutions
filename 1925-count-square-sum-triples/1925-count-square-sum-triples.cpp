@@ -12,7 +12,10 @@ public:
                 
                 int k1=sqrt(k);
                 
-                if(k1*k1==k && k1<=n){
+                if(k1>n)
+                    break;
+                
+                if(k1*k1==k){
                     count++;
                 
                 if(i!=j)
