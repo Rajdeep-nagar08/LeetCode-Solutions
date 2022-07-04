@@ -39,9 +39,8 @@ public:
         int total3=mx1+mx2+1ll*sum*(k-2)%mod; // taking all arrays
 
         
-        //cout<<sum<<" "<<mx1<<" "<<mx2<<" "<<total1<<" "<<total2<<endl;
-        
         return max({total1,total2,total3})%mod;
+        
     }
     
     int kadans(vector<int>&arr){
