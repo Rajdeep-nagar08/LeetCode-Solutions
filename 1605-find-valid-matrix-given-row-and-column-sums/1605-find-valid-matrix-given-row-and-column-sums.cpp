@@ -1,3 +1,9 @@
+/*
+
+first complete 1st column, than 2nd column and so on
+
+*/
+
 class Solution {
 public:
     vector<vector<int>> restoreMatrix(vector<int>& rs, vector<int>& cs) {
