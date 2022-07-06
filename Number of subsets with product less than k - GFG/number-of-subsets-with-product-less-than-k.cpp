@@ -42,19 +42,6 @@ class Solution {
        
        sort(v2.begin(),v2.end());
        
-       /*
-       for(int x:v1){
-           cout<<x<<" ";
-       }
-       cout<<endl;
-       
-        for(int x:v2){
-           cout<<x<<" ";
-       }
-       cout<<endl;
-      
-       */
-       
        for(int i=0;i<n1;i++){
            
           int val=v1[i];
