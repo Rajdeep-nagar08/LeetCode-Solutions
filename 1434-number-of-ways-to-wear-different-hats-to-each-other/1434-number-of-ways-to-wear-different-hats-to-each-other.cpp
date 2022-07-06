@@ -66,7 +66,7 @@ public:
         // not give this hat to any person
         
         for(int j=0;j<v[h].size();j++){  
-            // give this g=hat to valid person p (who can wear it but not have any hat till now)
+            // give this hat to valid person p (who can wear it but not have any hat till now)
                int p=v[h][j];    
             
             if(((mask>>p)&1)==1)
