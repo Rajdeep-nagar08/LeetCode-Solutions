@@ -139,7 +139,6 @@ public:
         lln ans=1e18;
         
         for(int i=0;i<sz;i++){
-          //  cout<<v1[i]<<" "<<v2[i]<<endl;
             ans=min(ans,v1[i]-v2[i]);
         }
         
