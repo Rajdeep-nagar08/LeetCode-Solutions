@@ -1,4 +1,3 @@
-#define lln long long int
 
 /*
 
@@ -76,6 +75,7 @@ And we use min heap to store top 5 max element on right side of bar for each pos
 
 */
 
+#define lln long long int
 
 class Solution {
 public:
