@@ -34,7 +34,7 @@ Ans = dp[0][target][0]
 */
    
 
-int dp[102][102][22];
+int dp[101][101][21];
 
 
 class Solution {
