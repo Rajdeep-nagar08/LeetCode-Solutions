@@ -38,11 +38,24 @@ Let we have calculated dp[0] , dp[1] , dp[2] , dp[3]
 
 As soon as we caluculating them we store them in deque , front of deque = max among all these
 
-Than for dp[4] = dp[4] + max(dp[0],dp[1],dp[2],dp[3])
-               = dp[4] + front of deque
+Than for dp[4] = nums[4] + max(dp[0],dp[1],dp[2],dp[3])
+               = nums[4] + front of deque
                
 Than for further indexes we update deque by pushing index '4' corresponding to value dp[4] 
 
+
+*/
+
+
+/*
+
+dp[i] = max score possible if start moving from index i and reaches to index j
+
+dp[i]= nums[i] + max(dp[i+1],dp[i+2],.....dp[i+k])
+
+we use deque to keep track of max among next these next k values
+
+ans= dp[0]
 
 */
 
@@ -54,15 +67,13 @@ public:
         
          vector<int>dp(n);
 
-         dp[0]=nums[0];
+         dp[n-1]=nums[n-1];
 
          deque<int>dq;
         
-         dq.push_back(0);
+         dq.push_back(n-1);
         
-        
-         for(int i=1;i<n;i++){
-
+         for(int i=n-2;i>=0;i--){
              
           dp[i]=nums[i];
            
@@ -71,7 +82,7 @@ public:
 
           if(dq.size()>0) {
               int j=dq.front();
-              if(i-j>k)
+              if(j-i>k)
                   dq.pop_front();
           }
               
@@ -93,11 +104,12 @@ public:
          }
         
         
-        return dp[n-1];
+        return dp[0];
         
         
     }
-
+        
+    
 };
 
     
