@@ -3,28 +3,25 @@
         In one move, at most k steps forward
         
         
-        Score= sum of all nums[j] visited 
+        Score of any path = sum of all values visited in the path
         
-        Minimize the Score
+        Needs to find Maximum score possible
 
         As we have multiple choices for next jump, so we can think about dp
         
         dp[i] = max score if moving from index i to last index
         
-        we have k choices for next move
+        
+        we have k choices for next move (for each index i)
 
+
+        Ans=dp[0]
         
         T.C= O(n*k)
         
         It gives TLEEEEEEEEE
         
         
-        
-*/
-
-
-/*
-
 Top down approach with optimization using deque: 
 
 dp[i] = max score if we ends at index i and starts moving from index 0
