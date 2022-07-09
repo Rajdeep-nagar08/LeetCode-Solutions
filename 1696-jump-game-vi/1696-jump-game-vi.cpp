@@ -22,7 +22,7 @@
         It gives TLEEEEEEEEE
         
         
-Top down approach with optimization using deque: 
+Approach 1:  (optimization using deque)
 
 dp[i] = max score if we ends at index i and starts moving from index 0
 
@@ -49,7 +49,11 @@ Than for further indexes we update deque by pushing index '4' corresponding to v
 
 /*
 
-dp[i] = max score possible if start moving from index i and reaches to index j
+Approach 2: (optimization using deque)
+
+dp[i] = max score possible if start moving from index i and reaches to index 
+last index n-1
+
 
 dp[i]= nums[i] + max(dp[i+1],dp[i+2],.....dp[i+k])
 
