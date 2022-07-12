@@ -177,7 +177,7 @@ int find(int j,int mask,int maskNeeded,vector<lln>&temp,lln &need,vector<int>&mt
     if((mask & (1<<i))!=0 || (temp[j]+mt[i]>need))  
                 continue;
            
-            if(temp[j]+mt[i]<=need){
+           // if(temp[j]+mt[i]<=need){
                 
                 temp[j]+=mt[i];
                                 
@@ -185,7 +185,7 @@ int find(int j,int mask,int maskNeeded,vector<lln>&temp,lln &need,vector<int>&mt
              
                 temp[j]-=mt[i];
                 
-            }
+           // }
         
        }
     
