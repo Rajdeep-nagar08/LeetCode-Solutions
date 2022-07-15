@@ -1,3 +1,7 @@
+     // For each column, finding the number of consecutive ones ending at each position.
+
+    // sorting each row in decreasing order , grid[i][j]= max height of ones in column j that ends at [i,j]
+
 class Solution {
 public:
     int largestSubmatrix(vector<vector<int>>& grid) {
@@ -39,6 +43,7 @@ public:
                 v[j]=grid[i][j];
             }
             
+            // sorting each row
             sort(v.rbegin(),v.rend());
             
             int area=0;
