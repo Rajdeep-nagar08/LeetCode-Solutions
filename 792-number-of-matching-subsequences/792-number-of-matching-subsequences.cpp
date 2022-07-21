@@ -1,24 +1,53 @@
 class Solution {
 public:
     int numMatchingSubseq(string s, vector<string>& words) {
-        int count=0,k=s.size();
-      //we will be form map to count occurences of particular word to avoid re calculation and this will reduce time
-      unordered_map<string,int>mymap;
-      for(int i=0;i<words.size();i++)
-        mymap[words[i]]++;
-      for(auto x:mymap)
-      {
-        int start1=0,start2=0;
-        string p=x.first;
-        int m=p.size();
-        while(start1<k&&start2<m)
-        {
-          if(p[start2]==s[start1])
-            start1++,start2++;
-          else
-            start1++;
-        }if(start2==m)
-          count+=x.second;//if we reach the length of string p then this word in in our string s. so we increase our count by number of times it occured in words instead of increamenting by 1
-      }return count;
+       
+        int n=s.size();
+        
+        vector<vector<int>>v(26);
+        
+        for(int i=0;i<n;i++){
+            int no=s[i]-'a';
+            
+            v[no].push_back(i);
+        }
+      
+        int count=0;
+        
+        
+        for(string str:words){
+            
+            bool f=true;
+            
+            int start=0;
+
+            
+            for(char ch:str){
+                
+                int no=ch-'a';
+                
+       int idx=lower_bound(v[no].begin(),v[no].end(),start)-v[no].begin();
+                
+           if(idx>=v[no].size() || idx<0)
+           {
+               f=false;
+               break;
+           }
+                
+             start=v[no][idx]+1;
+                
+                
+            }
+            
+            if(f==true)
+               count++;
+            
+        }
+       
+        
+        return count;
+        
     }
+    
 };
+    
