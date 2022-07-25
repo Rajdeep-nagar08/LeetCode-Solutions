@@ -5,7 +5,8 @@ public:
         vector<int>ans;
         
         for(int i=left;i<=right;i++){
-            if(check(i))
+            
+            if((i%10 !=0) && check(i))
                 ans.push_back(i);
         }
         
