@@ -1,3 +1,32 @@
+/*
+
+let there is a component = [1,1,1,1,1]
+
+Using DFS , its size=5, and its our first component so we repace ecah '1'
+of this component by {5,1}
+
+Component = [{5,1},{5,1},{5,1},{5,1},{5,1}]
+
+We do same operations for each component
+
+e.g For another component [1,1,1] , size = 3 and its 2nd component we founds yet
+
+So we repalce its each value '1' by {3,2}
+
+[1,1,1] => [{3,2},{3,2},{3,2}]
+
+
+-------------------------------------------
+
+
+NOW for each cell '0'
+
+We check it from all four directions whether there is any component that can be connected to it
+
+
+*/
+
+
 int dx[4]={1,-1,0,0};
 
 int dy[4]={0,0,1,-1};
@@ -60,7 +89,6 @@ public:
                 int cnt=grid1[x1][y1].first;
                 int val=grid1[x1][y1].second;
                 
-               // cout<<val<<endl;
                 
                         if(a==0){
                             a=cnt;
@@ -89,7 +117,6 @@ public:
                     
                 }
                     
-           //  cout<<i<<" "<<j<<" "<<a<<" "<<b<<" "<<" "<<c<<" "<<d<<endl;
               mx=max(mx,a+b+c+d+1);
                     
                 }
