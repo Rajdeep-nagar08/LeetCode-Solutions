@@ -2,22 +2,22 @@
 
 /*
 
-at each point, we have 3 choices to move
+at each point [i,j] sum=point[i][j], we have 3 choices to move
    1. Move downward 
-      sum+= point[i][j]+points[i+1][j]
    2. Move left (If previous move was not towards right)
-      sum+=points[i][j] - 1 ,    j-1>=0
    3. Move right (If previous move was not towards left)
-      sum+=points[i][j] - 1 ,    j+1<m
       
-      Doing '-1' becouse of column difference
       
-
 dp[i][j][move] = max sum of points we can get if we start moving from [i,j]
                  ans our previous move was in
                  direction => move [0-----> down]
                                    [1-----> left]
                                    [2-----> right]
+                                   
+
+dp[i][j][move] = points[i][j] + max(dp[i+1][j] , dp[i][j-1]-1 , dp[i][j+1]-1)
+
+
                                 
 Ans= max(dp[0][j][0]) for all j=0 to m-1
 
