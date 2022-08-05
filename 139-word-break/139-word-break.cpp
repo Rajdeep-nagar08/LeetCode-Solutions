@@ -52,7 +52,6 @@ public:
             
             
             if(mp[s1]>0){
-                cout<<s1<<" ";
                 ans|=find(j+1,str);
             }
             
