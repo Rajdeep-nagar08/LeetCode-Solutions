@@ -6,7 +6,8 @@ either we take it into the sum or not take it
 
 
 dp[target]= no of combinations we can form to make a sum==target
-
+             , we have choices in range [0....n-1]
+             
 */
 
 int dp[1001];
