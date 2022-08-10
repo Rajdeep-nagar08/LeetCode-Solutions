@@ -17,6 +17,14 @@ doing this let we take some steps, those steps can be our potention
 FOR ALL PRMUTATIONS, WE KEEP TRACK OF MIN STEPS TO VISIT ALL KEYS
 
 
+TIME COMPLX. O(6! * [6*n*m])
+  
+  O(6!*6*n*m)
+  
+  AS we have max to max 6 keys, so no of permutations = 6!
+  
+  FOR EACH permutation we have 6 keys, and for each key we run BFS towards next key  
+
 */
 
 
