@@ -1,3 +1,25 @@
+/*
+
+BRUTE FORCE APPROACH, BUT ACCEPTED :-
+
+WE try all permutations of keys
+
+let we have three keys => 1,2,3
+
+all permutations :-  1 2 3, 1 3 2, 2 1 3, 2 3 1, 3 1 2, 3 2 1
+
+We search keys in the folloeing ways
+
+start => key 1 (BY BFS) => key 2(BY BFS) => key 3(BY BFS)
+
+doing this let we take some steps, those steps can be our potention
+
+FOR ALL PRMUTATIONS, WE KEEP TRACK OF MIN STEPS TO VISIT ALL KEYS
+
+
+*/
+
+
 int dx[4]={1,-1,0,0};
 
 int dy[4]={0,0,1,-1};
