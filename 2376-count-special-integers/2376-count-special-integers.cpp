@@ -41,10 +41,8 @@ public:
          memset(dp,-1,sizeof(dp));
         
    int i=0,tight=1;
-        
-   set<int>st;
     
-   return find(i,tight,0,num,st,0)-1;
+   return find(i,tight,0,num,0)-1;
    
         // doing '-1' to ignore no =0
         
@@ -53,7 +51,7 @@ public:
     }
     
     
- int find(int i,int tight,int nonZero,string &num,set<int>&st,int mask){
+ int find(int i,int tight,int nonZero,string &num, int mask){
 
   if(i==num.size()){
    return 1;
@@ -82,7 +80,7 @@ public:
            
            mask=mask|(1<<d);
       
-  ans=ans+find(i+1,tight && (d==ub),nonZero,num,st,mask);
+  ans=ans+find(i+1,tight && (d==ub),nonZero,num,mask);
                    
            if(d!=0)
                nonZero--;
