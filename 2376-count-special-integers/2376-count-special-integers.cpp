@@ -19,7 +19,9 @@ For 5 digit no:
 
 -----
 
-Possible no. = 00012 , 00013   [they are number 12,13 but while forming them we taken 0's multiple times, so we needs to take care that we can take multiple zeroes before any non zero digit
+Possible no. = 00012 , 00013  
+
+[they are number 12,13 but while forming them we taken 0's multiple times, so we needs to take care that we can take multiple zeroes before any non zero digit
 
 ]
 
@@ -41,6 +43,9 @@ public:
    set<int>st;
     
    return find(i,tight,0,num,st,0)-1;
+   
+        // doing '-1' to ignore no =0
+        
         
         
     }
@@ -67,13 +72,7 @@ public:
   int ans=0;
 
   for(int d=0;d<=ub;d++){
- /*
-      // ignore any no of type 00000000,,,,00 (all zeroes)
-      
-  if(i==num.size()-1 && (nonZero==0) && (d==0))
-      continue;
-      */
-           
+ 
        if(nonZero==0 || ((mask & (1<<d))==0)){
            
            if(d!=0)
