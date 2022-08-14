@@ -1,14 +1,16 @@
 
 /*
 
+Given a positive integer n, return the number of special integers that belong to the interval [1, n].
+
+
 dp[i][tight][nonZero][mask]= count of all numbers till n, such that all
 
-numbers in position range [i...n-1] should not belongs to mask,
+digits in range [i...n-1] should not belongs to mask,
 
 and till now we have included no. of nonzero digits = nonzero
 
-where mask stores all the numbers that have taken in range [0....i-1]
-
+where mask stores all the numbers that have taken in range [0....i-1],
 
 Using mask to make sure that all digits should be included ones
 
