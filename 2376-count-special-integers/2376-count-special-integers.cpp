@@ -10,6 +10,19 @@ and till now we have included no. of nonzero digits = nonzero
 where mask stores all the numbers that have taken in range [0....i-1]
 
 
+Using mask to make sure that all digits should be included ones
+
+
+Note we are taking count of nonZero numbers becouse-:
+
+For 5 digit no:
+
+-----
+
+Possible no. = 00012 , 00013   [they are number 12,13 but while forming them we taken 0's multiple times, so we needs to take care that we can take multiple zeroes before any non zero digit
+
+]
+
 */
 
 
@@ -27,7 +40,7 @@ public:
         
    set<int>st;
     
-   return find(i,tight,0,num,st,0);
+   return find(i,tight,0,num,st,0)-1;
         
         
     }
@@ -47,37 +60,29 @@ public:
   else
   ub=9;
 
-     
-     
+       
   if(dp[i][tight][nonZero][mask]!=-1)
   return dp[i][tight][nonZero][mask];
   
-     
-
   int ans=0;
 
   for(int d=0;d<=ub;d++){
-   
+ /*
+      // ignore any no of type 00000000,,,,00 (all zeroes)
+      
   if(i==num.size()-1 && (nonZero==0) && (d==0))
       continue;
-     
-
-// if(nonZero==0 || (st.count(d)!=1)){
-      
+      */
+           
        if(nonZero==0 || ((mask & (1<<d))==0)){
-
-     
-    //  st.insert(d);
-   
+           
            if(d!=0)
                nonZero++;
            
            mask=mask|(1<<d);
       
   ans=ans+find(i+1,tight && (d==ub),nonZero,num,st,mask);
-        
-   //  st.erase(d);
-           
+                   
            if(d!=0)
                nonZero--;
            
@@ -87,9 +92,6 @@ public:
        }
 
  }
-
-     
-  //  return ans;
                   
  return dp[i][tight][nonZero][mask]=ans;
 
@@ -97,6 +99,3 @@ public:
 
     
 };
-
-
-// (mask|(1<<d))
