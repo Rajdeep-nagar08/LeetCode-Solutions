@@ -82,12 +82,7 @@ public:
            
 
             ans=max(ans,i-j+1);
-            
-        //    cout<<mn<<" "<<mx<<endl;
-            
-       //     cout<<j<<" "<<i<<" "<<ans<<endl;
-
-            
+   
             i++;
             
             if(i<n)
