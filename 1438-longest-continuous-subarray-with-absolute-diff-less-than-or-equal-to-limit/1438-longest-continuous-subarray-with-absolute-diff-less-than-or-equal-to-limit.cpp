@@ -2,7 +2,13 @@
 
 max absolute diff of subarray = max elememnt of subarray- min element of subarray < = limit
 
-return such subarray of longest size
+Using sliding window technique
+
+as we can have multiple occurenece of same element, we use multiset to store elements of a window {no,index}
+
+min element of window = top element of multiset
+max element = last element of multiset
+
 
 */
 
