@@ -11,33 +11,38 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         
-       int no1=p->val;
         
-        int no2=q->val;
+        return lca(root,p,q);
         
-        
-        return find(root,no1,no2);
     }
     
-    
-    TreeNode* find(TreeNode* root,int no1,int no2){
+    TreeNode* lca(TreeNode* root,TreeNode* p,TreeNode* q){
+        
         if(!root)
+            return NULL;
+        
+        if(root==p || root==q)
             return root;
         
-        if(root->val==no1 || root->val==no2)
+        TreeNode* leftpass= lca(root->left,p,q);
+        
+        TreeNode* rightpass=lca(root->right,p,q);
+        
+        
+        if(leftpass!=NULL && rightpass!=NULL){
             return root;
+        }
         
-        TreeNode* l=find(root->left,no1,no2);
+        if(leftpass==NULL && rightpass!=NULL)
+            
+             return rightpass;
         
-        TreeNode* r=find(root->right,no1,no2);
+         
+     //   if(leftPass!=NULL && rightpass==NULL)
+            
+             return leftpass;
         
         
-        if(l && r)
-            return root;
         
-        if(l)
-            return l;
-        
-        return r;
     }
 };
