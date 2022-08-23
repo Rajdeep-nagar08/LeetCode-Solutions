@@ -17,9 +17,7 @@ public:
             return true;
         
         ListNode* slow=head,*fast=head;
-        
-        int o=1;
-        
+                
         while(true){
             slow=slow->next;
             
@@ -32,21 +30,10 @@ public:
             fast=fast->next;
             
             if(fast==nullptr)
-            {
-                o=0;  // even length
                 break;
-            }
           
         }
-        
-        /*
-        if(o){
-            
-            slow=slow->next;
-            
-        }
-        */
-        
+       
         ListNode* temp1=slow;
         ListNode* temp2=slow->next;
         temp1->next=nullptr;
