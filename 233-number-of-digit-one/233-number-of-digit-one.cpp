@@ -112,6 +112,4 @@ int find(int i,int tight,int countOnes,string nums){
   return dp[i][tight][countOnes]=ans;
  }
 
-
-
 };
