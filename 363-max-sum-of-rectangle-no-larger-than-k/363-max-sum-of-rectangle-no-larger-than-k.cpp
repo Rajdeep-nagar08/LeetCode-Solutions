@@ -23,6 +23,15 @@ So brute Force= O(n*m*n*m)*O(logk)
 
 // OPTIMISED APPROACH: 
 
+
+[[..x>=sum-k....] ....sum.......]
+
+[...............[..sum-x<=k....]]
+
+here sum= sum[r1]+sum[r2]+sum[r3]...   [for col>=c1]
+
+
+
 */
 
 class Solution {
@@ -53,9 +62,14 @@ public:
           int Sum=0,mx=INT_MIN;
           
           set<int>st={0};
+            
           for(int x:a){
+              
             Sum+=x;
+              
+              
             auto it= st.lower_bound(Sum-k);
+              
             if(it!=st.end())
               mx=max(mx,Sum-*it);
               
