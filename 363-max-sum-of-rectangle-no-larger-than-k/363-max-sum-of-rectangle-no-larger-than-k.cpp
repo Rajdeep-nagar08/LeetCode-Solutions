@@ -32,14 +32,20 @@ public:
       int ans=INT_MIN;
       int r=mat.size();
       int c=mat[0].size();
+        
+        
   /* as no of rows are larger than no of cols, so keep adding cols instead of adding rows
   */
       
       for(int i=0;i<c;i++){
         vector<int>a(r,0);
+          
         for(int j=i;j<c;j++){
+            
          for(int row=0;row<r;row++){
+             
             a[row]+=mat[row][j];
+             
           }
           
           // now find max cont. sum in this arry <=k , using binary search
@@ -52,6 +58,12 @@ public:
             auto it= st.lower_bound(Sum-k);
             if(it!=st.end())
               mx=max(mx,Sum-*it);
+              
+              // it >= sum-k
+              
+              // sum-it<=sum-(sum-k)
+              
+              // sum-it <= k
             
             st.insert(Sum);
           }
