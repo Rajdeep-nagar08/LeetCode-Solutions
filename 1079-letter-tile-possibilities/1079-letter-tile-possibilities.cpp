@@ -1,3 +1,13 @@
+
+/*
+
+for each permutation of given string
+
+we are counting no. of combinations :
+
+
+*/
+
 class Solution {
 public:
     int numTilePossibilities(string str) {
