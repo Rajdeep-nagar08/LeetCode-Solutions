@@ -45,6 +45,8 @@ public:
                 return true;
         }
         
+        vis[s]=false;
+        
         return false;
     }
     
