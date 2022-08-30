@@ -41,7 +41,10 @@ public:
                         return true;
                 }
             }
+            else
+                return true;
         }
+        
         return false;
     }
     
@@ -68,7 +71,7 @@ public:
         {
             if (ans[i] == 1)
                 continue;
-            else if (!cycle(adj, i, vis2, recvis))
+            else if (dfs(adj, vis1, i, ans) and !cycle(adj, i, vis2, recvis))
                 ans1[i]++;
         }
        
