@@ -60,6 +60,7 @@ public:
             int mx1=kadans(v);  // O(n)
             
             
+                /*
              vector<int>v1;
                 
                 for(char ch:s){
@@ -75,8 +76,10 @@ public:
         
         int mx2=kadans(v1);
         
+        */
         
-        mx=max({mx,mx1,mx2});
+        
+        mx=max({mx,mx1});
         
        // cout<<ch1<<" "<<ch2<<" "<<mx1<<" "<<mx2<<endl;
 
