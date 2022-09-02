@@ -8,11 +8,32 @@ s = "aababbb"
 
 largest varience is 3, for substring = "babbb"
 
-among all charcters in a substring, we needs to choose any two chars
+if our string have only two chars like "aababbb"
 
-as we have choices, we can think about dp
+choosig 'a' and 'b' 
+
+repplace a=> 1, b=> -1
+
+1 1 -1 1 -1 -1 -1
+
+now ans corresponds to this string is => max contigous subarray sum such that it should containe atleat single -1
+
+(this can be found out as -:
+
+    on each -1
+    
+    temp => maxSumTowrds its left + (-1) + maxSum towards its right
+    
+    this can be done using pref and suff sum sum and max array formation
+)
 
 
+
+so for any general string
+
+we have atmost 26 different chars in it
+
+so each time we choose two chors among 26 and replace one by +1 and other by -1
 
 
 */
@@ -58,25 +79,7 @@ public:
             ///  call kadans
             
             int mx1=kadans(v);  // O(n)
-            
-            
-                /*
-             vector<int>v1;
-                
-                for(char ch:s){
-                    if(ch==ch1)
-                        v1.push_back(-1);
-                else if(ch==ch2)
-                    v1.push_back(1);
-                
-            }
-            
         
-        // call kadans
-        
-        int mx2=kadans(v1);
-        
-        */
         
         
         mx=max({mx,mx1});
