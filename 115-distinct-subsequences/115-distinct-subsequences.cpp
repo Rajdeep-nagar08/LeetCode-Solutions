@@ -1,37 +1,61 @@
+/*
+
+we needs to find subseq. of s that are equal to t
+
+so for ith char of s we have choices as
+
+  => if its not equal to jth char of t, not include it
+  
+  => if its equal to jth char of t, then we can either include it or not include it
+  
+ dp[i][j] = no of distinct sub. of s[i....n-1] that are equal to t[j...m-1]
+ 
+
+*/
+
 #define un unsigned int
+
+un dp[1001][1001];
+
 class Solution {
 public:
-   
-int numDistinct(string s, string t) 
-    {
+    int n,m;
     
-        int n=s.size();
-        int m=t.size();
-    
-    
-         vector<vector<un>> dp(n+1,vector<un>(m+1,0));
-    
-    for(int i=0;i<n+1;i++){
-        dp[i][0]=1; //subsequence mil gya h 
-    }
-    for(int j=1;j<m+1;j++){
-        dp[0][j]=0; // nhi mila h 
+    int numDistinct(string s, string t) {
+      
+        n=s.size();
+        
+        m=t.size();
+        
+        memset(dp,-1,sizeof(dp));
+        
+        return find(0,0,s,t);
     }
     
-    for(int i=1;i<n+1;i++){
-        for(int j=1;j<m+1;j++){
-            
-            if(s[i-1]==t[j-1])
-                dp[i][j] = (dp[i-1][j-1] + dp[i-1][j]);
-            else
-                dp[i][j] = dp[i-1][j];
-         
+    
+    un find(int i,int j,string &s,string &t){
+        
+        if(j>=m)
+            return 1;
+        
+        if(i>=n){
+            return 0;
         }
+        
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        
+        un ch1=0,ch2=0;
+        
+        // skipping
+        ch1+=find(i+1,j,s,t);
+        
+        if(s[i]==t[j]){
+          ch2+=find(i+1,j+1,s,t);  
+        }
+        
+        return dp[i][j]=ch1+ch2;
+        
     }
     
-    
-    return dp[n][m];
-    
-  }
- 
 };
