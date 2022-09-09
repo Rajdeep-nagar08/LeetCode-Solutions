@@ -1,41 +1,114 @@
 class Solution {
 public:
+    
+    unordered_map<int,int>representative;
+
+            unordered_map<int,int>size;
+    
+      int ans=1;
+
     int longestConsecutive(vector<int>& nums) {
-       
+        
         
         int n=nums.size();
         
-        unordered_set<int>st;
+        if(n==0)
+            return 0;
+        
+        
+        representative.clear();
+        
+        size.clear();
         
         for(int x:nums){
-            st.insert(x);
+          representative[x]=x;
+          size[x]=1;
         }
         
+        /*
         
-        int ans=0;
+        +1 aur -1 difference wale numbers ko ekk hi set m rakhte h
+
+         DSU ka use karte hue
+         
+         */
         
-        for(int x:nums){
-            if(st.count(x)!=1)
-                continue;
             
-            st.erase(x);
+        for(int i=0;i<n;i++){
             
-            int next=x+1;
-            int prev=x-1;
-            
-            while(st.count(next)==1){
-                st.erase(next);
-                next++;
+            if(representative.count(nums[i]-1)==1){
+                
+                int r1=find(nums[i]-1);
+                
+                int r2=find(nums[i]);
+                
+                combine(r1,r2);
+                
+           
+                
             }
             
-            while(st.count(prev)==1){
-                st.erase(prev);
-                prev--;
+            if(representative.count(nums[i]+1)==1){
+                
+                int r1=find(nums[i]+1);
+                
+                int r2=find(nums[i]);
+                
+                combine(r1,r2);
+           
             }
             
-            ans=max(ans,next-prev-1);
+     }
+        
+      /*  
+        for(auto it:representative){
+            cout<<it.first<<"=>"<<it.second<<endl;
         }
+        
+        */
+        
         
         return ans;
+        
     }
+    
+  
+    int find(int u)
+{
+    if(u == representative[u])
+        return u;
+    
+    else
+        return representative[u] = find(representative[u]);
+}
+
+void combine (int u, int v)
+{
+    u = find(u);
+    v = find(v);
+    
+    if(u == v)
+        return;
+    
+    else
+    {
+        if(size[u] > size[v])
+        {
+            representative[v] = u;
+            size[u] += size[v];
+            
+            ans=max(ans,size[u]);
+        }
+        
+        else
+        {
+            representative[u] = v;
+            size[v] += size[u];
+            
+            ans=max(ans,size[v]);
+        }
+    
+    }
+}
+    
 };
