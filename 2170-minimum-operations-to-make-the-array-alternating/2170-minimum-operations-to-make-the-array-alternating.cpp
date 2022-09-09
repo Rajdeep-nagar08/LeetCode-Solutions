@@ -88,9 +88,7 @@ public:
         }
             
              total2+=(e-mxe1);
-        
-      //  cout<<total1<<" "<<total2<<endl;
-            
+                    
         return min(total1,total2);
         
     }
