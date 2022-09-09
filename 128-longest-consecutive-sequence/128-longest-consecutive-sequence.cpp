@@ -1,3 +1,13 @@
+/*
+
+keeping all consecutive elements in one set :
+
+to create set I'm using DSU
+
+ans= size of largest set
+
+*/
+
 class Solution {
 public:
     
@@ -60,14 +70,7 @@ public:
             
      }
         
-      /*  
-        for(auto it:representative){
-            cout<<it.first<<"=>"<<it.second<<endl;
-        }
-        
-        */
-        
-        
+     
         return ans;
         
     }
