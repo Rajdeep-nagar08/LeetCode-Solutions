@@ -33,8 +33,8 @@ public:
         
         if(i>=n || k==0){
             
-            if(has)
-                return -2*1e6;
+            if(has)             // should sell this stock to complete the transaction
+                return -2*1e6;   
             
             return 0;
             
