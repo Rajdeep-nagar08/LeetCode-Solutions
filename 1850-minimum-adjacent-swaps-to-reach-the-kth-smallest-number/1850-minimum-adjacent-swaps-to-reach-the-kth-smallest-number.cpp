@@ -1,6 +1,6 @@
 /*
 
-min no of adjacent digit swaps to find kth smallest number
+min no of adjacent digit swaps to find kth smallest number ?
 
 next permutation is always just greater number
 
@@ -18,8 +18,8 @@ public:
        string need=num;
         
         
-        while(k--){
-            next_permutation(need.begin(),need.end());
+        while(k--){   // O(k)
+            next_permutation(need.begin(),need.end());  // O(n)
         }
         
         
