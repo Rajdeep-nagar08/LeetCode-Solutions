@@ -1,3 +1,24 @@
+/*
+
+
+making prefix and suffix sum array of keeping track of continous freq. of chars in given text
+
+e.g
+
+a a a b b a a c c d d d d
+1 2 3 1 2 1 2 1 2 1 2 3 4   (pref)
+
+
+now handle the cases like
+
+if current char is not equal to prev and next but prev char is equal to next then we can swap the current char by any other similar char that is equal to prev and next
+
+similarly handle other cases
+               
+               
+*/
+
+
 class Solution {
 public:
     int maxRepOpt1(string text) {
