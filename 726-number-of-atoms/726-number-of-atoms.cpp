@@ -4,8 +4,7 @@ public:
        
         
         int n=form.size();
-        
-            
+         
         stack<pair<string,int>>st;
         
         int i=0;
@@ -37,9 +36,7 @@ public:
                 while(st.top().first!="("){
                     string str=st.top().first;
                     int cnt=st.top().second;
-                  //  cout<<str<<" "<<cnt<<endl;
                     st.pop();
-                   // mp[str]+=no*cnt;
                     mp1[str]+=cnt*no;
                     
                 }
@@ -74,9 +71,7 @@ public:
                     cnt=cnt*10+(form[i]-'0');
                     i++;
                 }
-                
-              //  mp[str]+=cnt;
-                
+                                
                 if(cnt==0)
                 st.push({str,1});
                 else
