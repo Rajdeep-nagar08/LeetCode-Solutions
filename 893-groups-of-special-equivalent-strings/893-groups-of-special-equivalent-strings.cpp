@@ -11,7 +11,6 @@ public:
         no. of sets of string such that each string is pairwise equivalent to other
         
         
-        
         basically we needs to focus on chars at even and odd positions only
         
         
@@ -26,7 +25,9 @@ public:
         */
         
         
-      unordered_map<string ,unordered_map<string,int>>mp;  // chars at even pos => (char at odd pos , count of such strings)
+      unordered_map<string ,unordered_map<string,int>>mp;  
+        
+        // chars at even pos => (char at odd pos , count of such strings)
         
         
         for(string str:words){
@@ -44,9 +45,7 @@ public:
             sort(even.begin(),even.end());
             
             sort(odd.begin(),odd.end());
-            
-       //     cout<<even<<" "<<odd<<endl;
-            
+                        
             mp[even][odd]++;
             
         }
@@ -55,15 +54,7 @@ public:
         int ans=0;
         
         for(auto it:mp){
-          /*  
-            cout<<it.first<<"->";
-            
-            for(auto it1:it.second){
-                
-                cout<<it1.first<<" "<<it1.second<<endl;
-                
-            }
-            */
+         
           ans+=it.second.size();
             
         }
