@@ -19,6 +19,7 @@ public:
         reverse(s.begin(),s.end());
         mp[s]=i;
       }
+        
       vector<vector<int>>ans;
       
       for(int i=0;i<words.size();i++){
