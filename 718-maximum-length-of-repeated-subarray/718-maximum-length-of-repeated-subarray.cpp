@@ -49,27 +49,27 @@ public:
             return dp[i][j];
         
               
+        int ch1=0;
+        
         if(nums1[i]==nums2[j]){
             
          int ch1=1+find(i+1,j+1,nums1,nums2);
-            
-         find(i+1,j,nums1,nums2);
         
-         find(i,j+1,nums1,nums2);
-                        
-            return dp[i][j]=ch1;
+            dp[i][j]=ch1;
             
         }
         
-        else{
+        else
+            dp[i][j]=0;
+        
             
         find(i+1,j,nums1,nums2);
         
         find(i,j+1,nums1,nums2);
 
-        return dp[i][j]=0;
+        return dp[i][j];
             
-        }
+        
         
     }
 };
