@@ -42,7 +42,11 @@ public:
         int i=0;
         
       while(i<n){
+          
+          
         // no need to change 'L' & 'R'
+          
+          
         if((s[i]=='L')||(s[i]=='R')){
           i++;
           continue;
@@ -54,24 +58,35 @@ public:
           i++;
         
         // i=> 'L' OR 'R' after '.'
+          
+          
          if(start==0 && i==n)
            continue;
         
         //b........e
+          
+          
        char b=start==0?'L':s[start-1];
+          
+          
        char e=i==n?'R':s[i];
       
         // case 1
           if((b=='R') && (e=='R')){
+              
             for(int j=start;j<i;j++)
+                
               s[j]='R';
           }
+          
+          
         // case 2
          else if((b=='L') && (e=='L')){
             for(int j=start;j<i;j++)
               s[j]='L';
           }
         
+          
         // case 3
          else if((b=='R')&&(e=='L')){
            int l=i-start;
@@ -85,5 +100,7 @@ public:
       }
       
       return s;
+        
+        
     }
 };
