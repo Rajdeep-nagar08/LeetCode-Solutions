@@ -1,3 +1,17 @@
+/*
+
+Greedy approach works here as:-
+
+Ans = max({first select all "ab" than select all "ba"}, 
+
+{first select all "ba" than select all "ab"})
+
+
+
+
+*/
+
+
 class Solution {
 public:
     int maximumGain(string s, int x, int y) {
@@ -60,7 +74,6 @@ public:
         
         reverse(str.begin(),str.end());
         
-      //  cout<<str<<endl;
         
         
     }
