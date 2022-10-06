@@ -14,9 +14,7 @@ public:
     }
     
     string get(string key, int timestamp) {
-        
-       // vector<pair<int,string>>v=mp[key];
-                
+                        
         if(mp[key].size()==0)
             return "";
         
