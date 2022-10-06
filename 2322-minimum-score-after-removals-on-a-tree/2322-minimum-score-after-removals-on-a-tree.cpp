@@ -308,3 +308,7 @@ void bfs(int node,vector<int>&d,vector<int>g[]){
 }
     
 };
+
+
+// T.C = O(n*n)
+// S.C = O(n*n)
