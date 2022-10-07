@@ -13,6 +13,18 @@ return maximum no of events that have some common point of time
 
 
 
+Brute force approach:
+
+use prefix sum of diffrenece tech. over vector of size 1e9
+
+at each step , ans= max prefix sum
+
+
+Opttimal approach:-
+
+instead of using vector , we use ordered map
+
+than size of map <=400 always
 */
 
 class MyCalendarThree {
