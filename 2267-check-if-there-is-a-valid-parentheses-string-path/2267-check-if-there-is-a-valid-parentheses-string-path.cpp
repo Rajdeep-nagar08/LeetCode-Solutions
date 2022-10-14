@@ -18,9 +18,11 @@ if [0,0] to [i,j] is balanced than ([i+1,j] or [i,j+1]) to [n-1,m-1] should be b
 
 if [0,0] to [i,j] is not balanced than [0,0] to [n-1,m-1] should be balanced
 
-dp[i][j][prev]= is path from ([i+1,j] or [i,j+1]) to [n-1,m-1] balanced or not, prev= path 
+dp[i][j][open]= is path from ([i+1,j] or [i,j+1]) to [n-1,m-1] balanced or not, open = no. of extra open brackets  
 
 from [0,0] to [i,j] is balanced or not
+
+(note if there no. of openening bracks <0 then not proceed as string cannot be balnced in future )
 
 */
 
@@ -57,9 +59,7 @@ public:
       int find(int i,int j,int open,vector<vector<char>>&grid){
          
           if(i==n-1 && j==m-1){
-              
-              //cout<<str<<endl;
-              
+                          
               if(open==0)
                   return 1;
               
@@ -107,32 +107,5 @@ public:
          
       }
     
-    
-    bool isbalanced(string str){
-        
-        stack<char>st;
-                      
-              for(char ch:str){
-                  if(ch=='(')
-                        st.push('(');
-                     
-                  else{
-                      if(st.size()==0)
-                           return false;
-    
-                      if(st.top()==')')
-                          st.push(')');
-                      else
-                          st.pop();
-                  }
-              }
-              
-        
-              if(st.size()>0)
-                  return false;
-        
-        
-        return true;
-              
-    }
+   
 };
