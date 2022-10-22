@@ -1,46 +1,79 @@
-class Solution {
+
+       class Solution {
 public:
-    string minWindow(string s, string t) {
+    string minWindow(string s, string t)
+    {
         
-        unordered_map<char,int>ms;
-        unordered_map<char,int>mt;
+        unordered_map<char,int>mp1;
         
-        for(char ch:t)
-            mt[ch]++;
+        unordered_map<char,int>mp2;
         
-        int i=0,j=0;
-        
-        int idx=-1;
-        int len=INT_MAX;
-        string ans="";
-        
+        for(auto it: t)
+        {
+
+            mp1[it]++;
+        }
+                
         int count=0;
         
-        while(i<s.length()){
-            ms[s[i]]++;
+        int i=0; // starting
+        
+        int j=0; // ending pointer
+        
+        int answer=INT_MAX;
+        
+        string m="";
+
+        while(j<s.size())
+        {
+            mp2[s[j]]++;
+    
+        // agar match hoga to count++ karenge but number required hona chaiye 
             
-            if(ms[s[i]]<=mt[s[i]])  // increase count whenever matched any char
+            if(mp2[s[j]]<=mp1[s[j]])
+            {
                 count++;
+            }
             
-            if(count==t.length()){  // valid window found , now decrease size of window
+            if(count==t.size()) // valid window mil gya h ab usse chota khojna h 
+            {
                 
-                while((ms[s[j]] > mt[s[j]]) || (mt[s[j]]==0)){
-                    if(ms[s[j]]>mt[s[j]])
-                        ms[s[j]]--;
+                while(mp2[s[i]]>mp1[s[i]] || mp1[s[i]]==0) // kabtk sliding window ko chota karenege jabtk required frequency se jyda mil rhi hogi 
                     
-                     j++;
-                }
-                      
-                    if(i-j+1 < len){
-                        len=i-j+1;
-                        ans=s.substr(j,len);
+                {
+                    if(mp2[s[i]]>mp1[s[i]])
+                    {
+                        mp2[s[i]]--;
                     }
+                    
+                    i++;
+                }
+                
+                if(j-i+1<answer)
+            
+                {
+                answer=j-i+1; // chota string mila to update karenge 
+                m=s.substr(i,answer);
+                
+                
+            
                 }
             
-                i++;
                 
+                
+                
+            }
+            
+            
+      
+           j++; 
+            
+            
         }
-                      
-        return ans;
+        
+        return m;
+        
     }
 };
+        
+   
