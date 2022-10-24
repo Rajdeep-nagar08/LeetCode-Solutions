@@ -57,19 +57,27 @@ public:
         
             dp[i][j]=ch1;
             
-        }
-        
-        else
-            dp[i][j]=0;
-        
-            
-        find(i+1,j,nums1,nums2);
+            find(i+1,j,nums1,nums2);
         
         find(i,j+1,nums1,nums2);
+            
+        }
+        
+        else{
+            
+            dp[i][j]=0;
+            
+            find(i+1,j,nums1,nums2);
+        
+        find(i,j+1,nums1,nums2);
+            
+        }
+        
+            
+        
 
         return dp[i][j];
             
-        
-        
+       
     }
 };
