@@ -25,6 +25,10 @@ we can do this using dfs
 whenever the question asks you to find the objects chosen instead of the final value you get when you choose these objects (like the indices selected in this question) 
 we can do the DP for finding the value (like the maximum sum in this case) and do a DFS for retracing the steps.
 
+concept just similar to as in => printing LCS from finding length of LCS
+
+=> printing Longest common supersequence from finding length of length of longest common supersequence
+
 */
 
 
@@ -59,7 +63,7 @@ public:
          find(0,pref,cnt,k);
         
     
-           dfs(0,pref,cnt,k);
+         dfs(0,pref,cnt,k);
         
         return ans;
     }
