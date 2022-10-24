@@ -17,9 +17,7 @@ public:
     void find(int i,string &str,vector<string>&arr){
         
         if(i>=arr.size()){
-           
-         //   cout<<str<<endl;
-            
+                       
             vector<int>v(26,0);
             
             for(char ch:str){
@@ -38,9 +36,7 @@ public:
         if((int)str.size()+(int)arr[i].size()<=26){
             
         str+=arr[i];
-       
-     //   cout<<str<<endl;
-        
+               
         find(i+1,str,arr);
         
         int sz=arr[i].size();
