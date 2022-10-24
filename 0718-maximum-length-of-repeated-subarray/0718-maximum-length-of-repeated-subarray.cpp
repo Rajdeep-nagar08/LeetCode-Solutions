@@ -59,7 +59,7 @@ public:
             
             find(i+1,j,nums1,nums2);
         
-        find(i,j+1,nums1,nums2);
+           find(i,j+1,nums1,nums2);
             
         }
         
@@ -69,13 +69,10 @@ public:
             
             find(i+1,j,nums1,nums2);
         
-        find(i,j+1,nums1,nums2);
+            find(i,j+1,nums1,nums2);
             
         }
         
-            
-        
-
         return dp[i][j];
             
        
