@@ -9,7 +9,7 @@ otherwise on each position we have two choices , either take it or not take it
 But how to avoid duplicates ?
 
 
-dp[i][j]= no of distincnt subsequences starting with i and ends with j or look likes [i...j]
+dp[i][j]= no of distincnt subsequences starting with (i=0/1) and ends with (j=0/1) or look likes [i...j]
 
 ans= dp[0][0]+dp[0][1]+dp[1][0]+dp[1][1]
 
