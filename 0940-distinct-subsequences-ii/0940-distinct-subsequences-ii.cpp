@@ -46,13 +46,15 @@ public:
 
                     for(char ch2='a';ch2<='z';ch2++){
                  
-                      sum+=dp[ch1-'a'][ch2-'a']+(ch1==ch && ch2==ch);
+                      sum+=dp[ch1-'a'][ch2-'a'];
                                         
                       sum%=mod;
                 }
                 
                     dp[ch1-'a'][ch-'a']=sum%mod;
 
+                    if(ch1==ch)
+                    dp[ch1-'a'][ch-'a']+=1;
             }
                 
     }
