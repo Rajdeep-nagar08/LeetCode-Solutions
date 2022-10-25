@@ -6,9 +6,9 @@ dp[char1][char2] = no of distinct subsequences of type starting with char1 and e
 where char1=['a','z'] and char2=['a','z'];
 
 
-if(s[char1]='a'){
+if(s[i]='a'){
 
-  we can stick this 'a' to any subsequence
+  we can stick this 'a' to any subsequence formed till now
   
   so dp[any char]['a'] increases to
   
