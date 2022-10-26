@@ -10,6 +10,12 @@ is some no. are duplicates inside this range then some no's are also missing fro
 as max-min==n-1
 
 
+ consider nums[i] as smallest one then finding the max-> nums[j] such that
+   nums[j]-nums[i]=n-1, so except this range from nums[i] to nums[j]
+   we need
+   to update other elements of count-> n-(j-i) to make 
+   the present range continous
+
 */
 
 
