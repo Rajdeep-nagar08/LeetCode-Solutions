@@ -49,11 +49,22 @@ public:
         while(i<nums.size()){
                        
             
-            while(j<nums.size() && (nums[j]-nums[i]<=n-1))
+            while(j<nums.size() && (nums[j]-nums[i]<n-1))
                 j++;
+           
+          //  cout<<i<<" "<<j<<" "<<n-(j-i)<<endl;
+            
+            if(j<nums.size() && (nums[j]-nums[i]==n-1))
+              ans=min(ans,n-(j-i+1)),j++;
+            
+             else if(j<nums.size() && (nums[j]-nums[i]>n-1))
+              ans=min(ans,n-(j-i+1)+1);
+            
+            else
+                
+                ans=min(ans,n-(j-i+1)+1);
             
             
-            ans=min(ans,n-(j-i));
             
             i++;
                    
