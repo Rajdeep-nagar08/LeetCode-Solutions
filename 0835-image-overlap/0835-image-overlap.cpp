@@ -7,12 +7,7 @@ public:
         
         NOTE: needs to move all bits at a same time
         
-        
-        each 1 cell moves to 30*30 => 30*30*30 => check on 30*30
-        
-        T.C = 30*30*30*30*30 = > 27*9*10000 = 243*1e5 
-        
-        
+         
         */
      
         
