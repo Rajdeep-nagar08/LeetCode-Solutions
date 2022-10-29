@@ -1,59 +1,68 @@
 class Solution {
 public:
-    int minimumMountainRemovals(vector<int>& arr) {
+    int minimumMountainRemovals(vector<int>& nums) {
         
-        int n=arr.size();
+        int n=nums.size();
+    
+        vector<int>v(nums);
         
-        /*
+        // reverse(n.begin(),v.end());
         
-        [increasing.......(peak)....decreasing]
+        vector<int>lis1=find1(nums);
         
-        Ans:
-        [LIS(length=l1)....(peak).....LDS(length=l2)]=mountain array of length l1+1+l2
+        reverse(v.begin(),v.end());
         
-        minimum removals = n-(l1+l2+1);
+        vector<int>lis2=find1(v);
         
-        Lis[i]=length of longest incresing subsequence ends at index i
-        
-        Lds[i]=length of longest decreasing subsequence ends at index i
-        
-        so for each index i=1,n-1 Calculate LIS on left of i
-        
-        and for each i=n-2,0 Calculated LDS on rigth of i
-        
-        than for each index i
-        ans=max(ans,n-(LIS[i]+LDS[i]+1))    
-        
-        */
-        
-        vector<int>LIS(n,1);
-        
-        vector<int>LDS(n,1);
-        
-        for(int i=1;i<n;i++){
-            for(int j=0;j<i;j++){
-                if(arr[j]<arr[i])
-                   LIS[i]=max(LIS[i],1+LIS[j]);
-                }
-            }
-            
-             for(int i=n-2;i>=0;i--){
-            for(int j=n-1;j>i;j--){
-                if(arr[j]<arr[i])
-                   LDS[i]=max(LDS[i],1+LDS[j]);
-                }
-            }
-        
-        
-        int ans=1;
+        // reverse(lis2.begin(),lis2.end());
+
+        int ans=n;
         
         for(int i=1;i<n-1;i++){
-            int l=LIS[i];
-            int r=LDS[i];
-            if(l>1 && r>1)
-            ans=max(ans,l+r-1);
+           if(lis1[i]>1 && lis2[n-1-i]>1)
+            ans=min(ans,n-(lis1[i]+lis2[n-1-i])+1);
         }
         
-        return n-ans;
+      //  ans=min({ans,lis1[n-1],lis2[0]});
+        
+        for(int x:lis1){
+            cout<<x<<" ";
+        }
+        
+        cout<<endl;
+        
+        
+         for(int x:lis2){
+            cout<<x<<" ";
+        }
+        
+        if(ans==n)
+            return 0;
+        
+        return ans;
+        
     }
+    
+    vector<int> find1(vector<int>&v){
+        
+        vector<int>ans(v.size(),0);
+        
+        
+        for(int i=0;i<v.size();i++){
+        
+             int mx=1;
+            
+             for(int j=0;j<i;j++){
+                 
+                 if(v[j]<v[i])
+                     mx=max(mx,1+ans[j]);
+             }
+            ans[i]=mx;
+        }
+        
+        return ans;
+        
+    }
+    
+ 
 };
