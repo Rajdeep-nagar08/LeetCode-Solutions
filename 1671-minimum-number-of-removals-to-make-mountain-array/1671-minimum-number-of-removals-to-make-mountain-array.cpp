@@ -14,7 +14,8 @@ public:
         minimum removals = n-(l1+l2+1);
         
         Lis[i]=length of longest incresing subsequence ends at index i
-        Lds[i]=length of longerst decreasing subsequence ends at index i
+        
+        Lds[i]=length of longest decreasing subsequence ends at index i
         
         so for each index i=1,n-1 Calculate LIS on left of i
         
@@ -26,6 +27,7 @@ public:
         */
         
         vector<int>LIS(n,1);
+        
         vector<int>LDS(n,1);
         
         for(int i=1;i<n;i++){
