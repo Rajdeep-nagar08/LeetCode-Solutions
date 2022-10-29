@@ -5,35 +5,20 @@ public:
         int n=nums.size();
     
         vector<int>v(nums);
-        
-        // reverse(n.begin(),v.end());
-        
+                
         vector<int>lis1=find1(nums);
         
         reverse(v.begin(),v.end());
         
         vector<int>lis2=find1(v);
         
-        // reverse(lis2.begin(),lis2.end());
-
         int ans=n;
         
+        reverse(lis2.begin(),lis2.end());
+        
         for(int i=1;i<n-1;i++){
-           if(lis1[i]>1 && lis2[n-1-i]>1)
-            ans=min(ans,n-(lis1[i]+lis2[n-1-i])+1);
-        }
-        
-      //  ans=min({ans,lis1[n-1],lis2[0]});
-        
-        for(int x:lis1){
-            cout<<x<<" ";
-        }
-        
-        cout<<endl;
-        
-        
-         for(int x:lis2){
-            cout<<x<<" ";
+           if(lis1[i]>1 && lis2[i]>1)
+            ans=min(ans,n-(lis1[i]+lis2[i])+1);
         }
         
         if(ans==n)
