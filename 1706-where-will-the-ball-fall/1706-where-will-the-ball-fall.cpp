@@ -7,7 +7,6 @@ public:
         
         int m=grid[0].size();
         
-        
         // ans[i] = column in which ball at column i lands down
         
         vector<int>ans(m);
