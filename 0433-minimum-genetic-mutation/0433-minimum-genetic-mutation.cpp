@@ -1,40 +1,67 @@
 class Solution {
 public:
+    
+    
+    unordered_map<string,int>mp;
+    
+    bool flag=false;
+      
+    int ans=INT_MAX;
+    
+    vector<char>v={'A','G','C','T'};
+    
     int minMutation(string start, string end, vector<string>& bank) {
-        vector<char>store={'A','G','C','T'};
-        queue<string>q;
-        q.push(start);
         
-        unordered_set<string>st;
-        for(auto str:bank)
-            st.insert(str);
         
-        if(st.find(end)==st.end())
-            return -1;
+        for(string str:bank){
+            mp[str]++;
+        }
         
-        int count=0;
-        while(!q.empty()){
-            int sz=q.size();
-            while(sz--){
-          string s1=q.front();
-                q.pop();
-                if(s1==end)
-                    return count;
-                st.erase(s1);
-                
-   for(int i=0;i<s1.size();i++){
-       char ch=s1[i];
-      for(int j=0;j<4;j++){
-          s1[i]=store[j];
-          if(st.find(s1)!=st.end())
-              q.push(s1);
-          }
-       s1[i]=ch;
-       }
-                }
-                count++;
+        mp[start]++;
+        
+        int step=0;
+        
+        find(0,start,end,step);
+    
+        if(flag)
+        return ans;
+        
+        return -1;
+    }
+    
+    void find(int k,string &start,string &end,int step){
+        if(k>=8 || (start==end)){
+            if(start==end){
+            flag=true;
+            ans=min(ans,step);
             }
-         return -1;       
+            return;
+        }
+        
+        
+        for(int i=0;i<8;i++){
            
+              for(int j=0;j<4;j++){
+            if(start[i]!=v[j]){
+                
+                char ch=start[i];
+
+                start[i]=v[j];
+                
+                if(mp[start]>0){
+                   // cout<<start<<endl;
+                find(k+1,start,end,step+1);
+                }
+                    
+                start[i]=ch;
+   
+            }
+        }
+        
+            
+        }
+        
+      
+        
     }
 };
