@@ -132,26 +132,11 @@ void insert(struct TrieNode* root, string key)
         pCrawl = pCrawl->children[index];
      
     }
-            pCrawl->wc =1; //not write pCrawl->wc+=1
+            pCrawl->wc =1;
 
 }
  
 
-    /*
-int countprifix(struct TrieNode* root,string key){
-struct TrieNode *curr=root;
-for(int i=0;i<key.length();i++)
-{
-int index=key[i]-'a';
-if(curr->children[index]==NULL || curr->children[index]->wc==0)
-return 0;
-
- curr=curr->children[index];
-}
-return curr->wc;
-}
-
-*/
 
 };
 
