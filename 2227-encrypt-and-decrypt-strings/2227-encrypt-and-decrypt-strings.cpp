@@ -1,3 +1,15 @@
+
+/*
+
+
+For decryption, there can be multiple choices for replacement of a substring of length 2 and we need to consider each of them to find count of possible decryptions.
+
+But for efficient decryption process, we need to eliminate a choice as soon as we know that it wont be found in D.
+
+For this, we can maintain Trie consisting of all strings from D & we stop further exploration as soon as we find that current choice wont lead to a string present in the trie.
+
+
+*/
 class Encrypter {
 public:
      unordered_map<char,string>mp1; // keys[i]=>vals[i]
