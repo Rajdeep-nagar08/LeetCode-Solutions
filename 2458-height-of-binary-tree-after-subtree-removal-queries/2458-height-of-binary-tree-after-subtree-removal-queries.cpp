@@ -1,8 +1,19 @@
+//  for each node, calculate height of subtree under it and store in unordered_map ht
 
-// for each level of a tree, precalculate its largest and second largest depth
+// finding height of each subtree using dfs in bottum up manner
 
-// for each node, calculate its level and depth of subtree under it
+// height of root is maximum
 
+// find level of each node from top (using BFS)
+
+// for particular level, store height of each node of that level in map mp
+
+// now if we are removing node x of level l, than there can be 3 cases -:
+
+   // 1-> there can be other node on this level whose ht is greater than x, than height of tree after removal of x = l+maximum  height of any node of this level other than that of x
+// 2-> all nodes of this level have height less than the height of x, so after removal of x, height of tree= l+maximum height of any node of this level other than that of x
+
+// 3-> this node is the only node on this level, than after its removal, height of tree= l-1
 
 class Solution {
 public:
@@ -76,7 +87,7 @@ public:
             prev=idx-1;
             
             if(idx!=mp[l].size()-1){
-                ans.push_back(l+=mp[l][mp[l].size()-1]);
+                ans.push_back(l+mp[l][mp[l].size()-1]);
             }
             
             else if(prev>=0){
