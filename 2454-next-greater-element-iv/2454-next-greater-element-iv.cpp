@@ -22,7 +22,7 @@ so in the example, as soon as 4 arrives (next greater of 2) we push 2 in a multi
         
         st.push(0);
         
-        multiset<pair<int,int>>mst;
+        set<pair<int,int>>mst;
         
         for(int i=1;i<n;i++){
             
