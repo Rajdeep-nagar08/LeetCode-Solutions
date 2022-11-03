@@ -12,6 +12,7 @@
 class Solution {
 public:
 
+    bool ans=true;
     
      int maxDepth(TreeNode* root) {
           if(root==NULL)
@@ -19,23 +20,16 @@ public:
          
         int leftheight=maxDepth(root->left);
         int rightheight=maxDepth(root->right);
+         if(abs(leftheight-rightheight)>1)
+             ans=false;
         int height=max(leftheight,rightheight)+1;
         return height;
     }
     
     
     bool isBalanced(TreeNode* root) {
-        if(root==NULL)
-            return true;
+        maxDepth(root);
+      return ans;
         
-        if(abs((maxDepth(root->left)-maxDepth(root->right)))>1){
-         return false;
-        }
-        
-        bool l=isBalanced(root->left);
-        
-        bool r=isBalanced(root->right);
-        
-        return l && r;
     }
 };
