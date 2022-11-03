@@ -1,3 +1,20 @@
+/*
+for each row, store all the colmns having zeros and all the columns having ones
+
+for particular row, basically either we flip all zeores or all ones
+
+
+mp[all cols having zeros]++
+
+mp[all colms having ones]++
+
+
+ans= max(mp[])
+
+
+
+*/
+
 class Solution {
 public:
     int maxEqualRowsAfterFlips(vector<vector<int>>& mat) {
