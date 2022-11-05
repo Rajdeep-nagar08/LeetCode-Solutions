@@ -61,6 +61,7 @@ public:
                 
         int i=1;
         
+        
         while(i<n){
             
             int no=nums[i];
