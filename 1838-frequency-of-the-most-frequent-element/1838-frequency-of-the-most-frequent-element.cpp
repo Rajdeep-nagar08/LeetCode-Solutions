@@ -61,14 +61,16 @@ public:
                 
         int i=1;
         
+        int no,need,prev;
+        lln sum,diff;
         
         while(i<n){
             
-            int no=nums[i];
+            no=nums[i];
         
-            int need=mid-1;
+            need=mid-1;
             
-            int prev=i-need;
+            prev=i-need;
             
             if(prev<0)
             {
@@ -76,14 +78,14 @@ public:
                 continue;
             }     
             
-            lln sum;
+            sum;
             
             if(prev==0)
                 sum=pref[i-1];
             else
                 sum=pref[i-1]-pref[prev-1];
             
-            lln diff=1ll*need*no-(sum);
+            diff=1ll*need*no-(sum);
             
             if(diff<=k)
                 return true;
