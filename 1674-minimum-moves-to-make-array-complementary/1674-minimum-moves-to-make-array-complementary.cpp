@@ -69,7 +69,7 @@ public:
             changes[mx+lim+1]+=2, changes[2*lim+1]-=2;
             
      //       for X=mn+mx  we need 0 changes
-            
+    
             changes[mn+mx]--, changes[mn+mx+1]++;
            
            i++,j--;
