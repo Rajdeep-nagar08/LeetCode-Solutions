@@ -1,6 +1,6 @@
 /*
 
-Create two UnionFinds par1, par2 
+Create two dsu's par1, par2 
 
 We should take type 3 edges first, then type 1 and 2.
 
