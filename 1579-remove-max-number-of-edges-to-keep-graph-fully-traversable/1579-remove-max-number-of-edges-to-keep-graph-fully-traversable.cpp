@@ -4,9 +4,9 @@ Create two UnionFinds par1, par2
 
 We should take type 3 edges first, then type 1 and 2.
 
-If two nodes are already connected, we increment the answer ans. Otherwise we connect them.
+If two nodes are already connected, we increment the rmv (no. of edges to be removed). Otherwise we connect them and increase their size (no. of edges in dsu)
 
-In the end, if par1Size == 1 && par2Size == 1 meaning that the graph is all connected for both Alice and Bob, we return ans; otherwise return -1.
+In the end, if dsu1 size==n-1 && dsu2 size == n-1 meaning that the graph is all connected for both Alice and Bob, we return ans; otherwise return -1.
 
 
 */
