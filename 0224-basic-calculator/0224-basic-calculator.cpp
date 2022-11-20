@@ -4,6 +4,7 @@ public:
     int calculate(string s) {
         
         stack<int>st;
+        
         stack<int>sig;
         
         lln temp=0;
