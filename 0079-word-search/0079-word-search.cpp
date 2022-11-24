@@ -33,9 +33,9 @@ public:
 
         str+=board[i][j];
         
-        if(str.size()==word.size()){
-            cout<<str<<endl;
-        }
+        // if(str.size()==word.size()){
+        //     cout<<str<<endl;
+        // }
         
         if(str==word){
             ans=true;
