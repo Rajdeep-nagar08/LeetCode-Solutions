@@ -33,17 +33,12 @@ public:
 
         str+=board[i][j];
         
-        // if(str.size()==word.size()){
-        //     cout<<str<<endl;
-        // }
-        
+     
         if(str==word){
             ans=true;
             return;
         }
-        
-     //   char ch=board[i][j];
-        
+                
         board[i][j]='.';
         
         for(int x=0;x<4;x++){
