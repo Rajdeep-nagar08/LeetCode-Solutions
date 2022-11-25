@@ -114,20 +114,6 @@ unordered_map<int,int> getPrimeFactors(lln no)
     
 }
  
-    
-//lln fact[10001],invfact[10001];
-    
-
-// lln pw(lln b, lln n,lln m){ // b^n  using binarb ebponentiation
-//         if (n == 0) 
-//             return 1;
-//         lln u = pw(b,n/2,m);
-//         u = (1ll*u*u)%m;
-//         if(n%2 == 1)
-//          u = (1ll*u*b)%m;
-//         return u;
-//     }
-
 void fillFact(int n,int m){
     fact[0]=1;
     for(int i=1;i<=n;i++){
@@ -136,26 +122,6 @@ void fillFact(int n,int m){
     
 }
     
-// void findInv(int n,int r,int m){
-   
-//     invfact[n]=pw(fact[n],r-2,m);
-    
-//     for(int i=n-1;i>=0;i--){
-//         invfact[i]=invfact[i+1]*(i+1)%m;
-//     }
-    
-// }
 
-// int nCr(int n,int r,int m){
-//     if(r>n || n<0 || r<0) 
-//         return 0;
-    
-//     invfact.resize(n,0);
-    
-//     findInv(n,r,m);
-    
-//     return fact[n]*invfact[r]%m*invfact[n-r]%m;
-// }
-    
     
 };
