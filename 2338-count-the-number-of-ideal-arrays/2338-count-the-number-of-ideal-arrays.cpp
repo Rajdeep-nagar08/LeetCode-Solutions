@@ -20,14 +20,27 @@ public:
         
         no of ways to fill r boxes such that final box has no=maxValue
         
+        k1, k1*k2, k1*k2*k3, ,,,,,, k1*k2*k3*k4**kr
+        
         final box has value = k1*k2*k3*k4*...kr (these all are the factors of maxValue) , 
         
-        clearly no. of ways to fill r places using all the n factors of maxValue =
+        clearly no. of ways to fill r places using factors of maxValue :
         
-        (n+r-1)C(r-1)
+        let in factors of maxValue , 
+        no of 2's = x , so no. of ways to place these 2's on r places = 
+        (x+r-1)C(r-1)
         
-        = (n+r-1)! / (r-1)! * n!
+        no of 7's =y, so no. of ways to place these 7's on r places = 
+        (y+r-1)C(r-1)
+        
+        so total ways to fill r boxes such as k1, k1*k2, k1*k2*k3, ,,,,,, k1*k2*k3*k4**kr 
+        = (x+r-1)C(r-1) *  (y+r-1)C(r-1)
+        
 
+   we do the same process for final value=1 to final value <=maxValue
+   
+   and ans will be summation of all 
+   
         */
         
         lln ans=0;
