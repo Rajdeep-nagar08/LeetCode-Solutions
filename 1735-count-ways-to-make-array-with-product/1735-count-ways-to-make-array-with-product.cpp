@@ -1,3 +1,47 @@
+/*
+
+suppose no is 180
+
+and there are 4 boxes whwre we needs to place its factors so that their product = 180
+
+its factor = {2,2} {3,3} {5}
+
+Now no. of ways to place 2 2's on 4 places =
+
+no of solutions of equation a+b+c+d=2
+
+baggers method :
+
+no of ways to give n similar things to r baggers = (n+r-1) C (r-1) =
+
+(n+r-1)! / (r-1)! * n!
+
+so no. of ways to place 2 2's on 4 places = (2+4-1)!/(4-1)!*2! =
+
+5!/3!*2! = 5*4/2 = 10
+
+
+
+similarly no ways to place 2 3's on 4 places = 10
+
+similalry no. of ways to place 1 (5) on 4 places = (1+4-1)!/(4-1)!*1
+= 4!/3! = 4
+
+So total no. of ways to place {2,2} {3,3} {5} on 4 places = 10*10*4=400
+
+[Note suppose all no's placed at 1st place then our boxes will be as
+
+[2,2,3,3,5] [] [] []
+
+considering 1 at empty boxes 
+
+product = 180
+
+]
+
+*/
+
+
 int mod=1e9+7;
 
 #define lln long long int
