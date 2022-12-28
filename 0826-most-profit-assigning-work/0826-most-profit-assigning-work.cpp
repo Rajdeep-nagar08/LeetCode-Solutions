@@ -14,25 +14,38 @@ public:
             v[i].second=max(v[i].second,v[i-1].second);
         }
         
-        int sum=0;
-        
-        for(int i=0;i<w.size();i++){
+         vector<int>ans(w.size(),0);
+                
+        for(int i=0;i<w.size();i++)
+        {
+            int l=0;
+            int high=v.size()-1;
+            int mid=l+(high-l)/2;
             
-            pair<int,int>p={w[i],INT_MAX};
-            
-        int j=upper_bound(v.begin(),v.end(),p)-v.begin();
-            
-            j--;
-            
-           if(j>=0){
-               
-               sum+=v[j].second;
-               
-           } 
-            
+            while(l<=high)
+            {
+                if(w[i]>=v[mid].first)
+                {
+                    
+                    ans[i]=v[mid].second;
+                    l=mid+1;
+                }
+                else
+                {
+                    high=mid-1;
+                }
+                
+                mid=l + (high-l)/2;
+            }
         }
         
-        return sum;
+        int final=0;
         
+        for(int i=0;i<ans.size();i++)
+        {
+            final+=ans[i];
+        }
+        
+        return final;
     }
 };
