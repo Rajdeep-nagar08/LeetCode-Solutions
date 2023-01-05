@@ -15,11 +15,11 @@ public:
             int mid=(l+(h-l)/2);
            
 
-            while(mid%div1==0 && mid%div2==0)
-                mid++;
+//             while(mid%div1==0 && mid%div2==0)
+//                 mid++;
             
-            if(mid>h)
-                break;
+//             if(mid>h)
+//                 break;
             
          //  cout<<l<<" "<<h<<" "<<mid;
 
