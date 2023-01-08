@@ -1,56 +1,149 @@
+#define lln long long int
+
 class Solution {
 public:
-     vector<vector<int>>adj;
-	int par[100001];
-	int child[100001];
-	long long representatives[100001];
-    
     long long minimumFuelCost(vector<vector<int>>& roads, int seats) {
-               
-        int n = roads.size();
-		adj.resize(n+1,vector<int>());
-		// build the graph
-		for(auto&e:roads){
-			adj[e[0]].push_back(e[1]);
-			adj[e[1]].push_back(e[0]);
-		}
-		//Run a dfs to find parent node and children count
-		dfs(0,0);
+        
+        int n=roads.size();
+        
+        vector<int>g[n+1];
+        
+        vector<int>deg(n+1,0);
+        
+        for(auto it:roads){
+            
+            g[it[0]].push_back(it[1]);
+                        
+            deg[it[0]]++;
+            
+            deg[it[1]]++;
+            
+            g[it[1]].push_back(it[0]);
+            
+        }
+     
+        
+    vector<int>dist=find(g,n+1);
 
-		queue<int>q;
-		//push all the leaves into queue.
-		for(int i=0;i<=n;i++)
-			if(child[i]==0)q.push(i);
+    unordered_map<int,int>mp;
 
-		long long ans = 0;
+        for(int i=0;i<=n;i++){
+            mp[i]++;
+        }
+        
+       lln ans=0;
+        
+        queue<int>q;
+                
+     //   vector<bool>vis(n+1,false);
+        
+        for(int i=0;i<=n;i++){
+            
+            if((deg[i]==1) && (i!=0)){
+                
+                q.push(i);
+                
+                deg[i]--;
+                
+        }}
+        
+        
+        while(!q.empty()){
+            
+            int node=q.front();
+                        
+            q.pop();
+            
+            for(int i:g[node]){
+                                
+                if(deg[i]==0)
+                    continue;
 
-		while(q.size()){
-			auto u = q.front();
-			q.pop();
-			if(u==0)break;
-			long long cars_needed = (representatives[u]+seats-1)/seats;
-			ans+= cars_needed;
-			//push all the representatives of u to parent u.
-			representatives[par[u]]+=representatives[u];
-			// remove node u from the graph.
-			child[par[u]]--;
-			//if current node has no child left it is a new leaf.
-			if(child[par[u]]==0)q.push(par[u]);
-		}
-		return ans;
- 
+                if(mp[node]>seats){
+                    ans+=1ll*(mp[node]/seats)*dist[node];
+                    mp[node]=mp[node]%seats;
+                    if(mp[node]>0){
+                        ans++;
+                    mp[i]+=mp[node];
+                    }
+                }
+                
+                else if(mp[node]==seats){
+                    ans+=dist[node];
+                }
+                else{
+                    mp[i]+=mp[node];
+                    ans++;
+                }
+                
+                
+                deg[i]--;
+                
+              //  cout<<node<<" "<<i<<" "<<ans<<endl;
+
+                                
+                if(deg[i]==1 && (i!=0)){
+                    
+                   // vis[i]=true;
+    
+                 //   cout<<i<<" "<<send*seats<<" "<<rem<<" "<<ans<<endl;
+                    deg[i]--;
+                    
+                    q.push(i);
+                    
+                }
+            }
+            
+        }
+    
+        return ans;    
     }
     
-   
-	void dfs(int u,int p){
-		child[u] = 0;
-		representatives[u] = 1;
-		for(int v:adj[u]){
-			if(v!=p){
-				par[v] = u;
-				child[u]++;
-				dfs(v,u);
-			}
-		}
-	}
+    
+    vector<int> find(vector<int>g[],int n){
+                
+        vector<int>dist(n,0);
+        
+        vector<int>vis(n,false);
+        
+        dist[0]=0;
+        
+        vis[0]=true;
+        
+        queue<int>q;
+        
+        q.push(0);
+        
+        int d=0;
+        
+        while(!q.empty()){
+            
+            int sz=q.size();
+            
+            while(sz--){
+                
+                int node=q.front();
+                
+                q.pop();
+                
+                dist[node]=d;
+                
+                for(int y:g[node]){
+                    
+                    if(vis[y])
+                        continue;
+                    
+                    vis[y]=true;
+                    
+                    q.push(y);
+                }
+                
+            }
+            
+            d++;
+            
+        }
+        
+        return dist;
+    }
 };
