@@ -1,52 +1,47 @@
-// using bottum up approach , generate a string corresponding to the respective subtree
-
-
 class Solution {
 public:
     
-vector<int>ans;
+    vector<int>ans;
     
-    vector<int> countSubTrees(int n, vector<vector<int>>& edg, string labels) {
+    
+    vector<int> countSubTrees(int n, vector<vector<int>>& edg, string lab) {
         
-      
+ans.resize(n,0);
+        
         vector<int>g[n];
         
         for(auto it:edg){
             g[it[0]].push_back(it[1]);
             g[it[1]].push_back(it[0]);
         }
+       
+             
+       dfs(0,-1,g,lab); 
         
-        
-       vector<bool>vis(n,false);
-        
-        ans.resize(n,0);
-        
-        find(0,g,labels,vis);
-        
+
         return ans;
         
     }
     
-       vector<int> find(int node,vector<int>g[],string &lab,vector<bool>&vis){
-           
-           vis[node]=true;
-           
-           vector<int>v(26,0);
-           
-           for(int& x:g[node]){
-               if(vis[x]==false){
-              vector<int>v1=find(x,g,lab,vis); 
-               
-               for(int i=0;i<26;i++){
-                   v[i]+=v1[i];
-               }
+    
+    unordered_map<char,int> dfs(int node,int par,vector<int>g[],string &lab){
+      
+   unordered_map<char,int>mp;        
+
+        for(int x:g[node]){
+            if(x!=par){
+              unordered_map<char,int>mp1=dfs(x,node,g,lab);  
+              for(auto it:mp1){
+                  mp[it.first]+=it.second;
               }
-           }
-           
-           v[lab[node]-'a']++;
-           
-           ans[node]=v[lab[node]-'a'];
-           
-           return v;
-       }
+            }
+        }
+        
+ mp[lab[node]]++;
+        
+        ans[node]=mp[lab[node]];
+        
+        return mp;
+        
+    }
 };
