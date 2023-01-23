@@ -22,7 +22,6 @@ public:
             
         }
      
-        
     vector<int>dist=find(g,n+1);
 
     unordered_map<int,int>mp;
@@ -34,9 +33,7 @@ public:
        lln ans=0;
         
         queue<int>q;
-                
-     //   vector<bool>vis(n+1,false);
-        
+                        
         for(int i=0;i<=n;i++){
             
             if((deg[i]==1) && (i!=0)){
@@ -59,34 +56,18 @@ public:
                 if(deg[i]==0)
                     continue;
 
-                if(mp[node]>seats){
                     ans+=1ll*(mp[node]/seats)*dist[node];
                     mp[node]=mp[node]%seats;
                     if(mp[node]>0){
                         ans++;
                     mp[i]+=mp[node];
                     }
-                }
-                
-                else if(mp[node]==seats){
-                    ans+=dist[node];
-                }
-                else{
-                    mp[i]+=mp[node];
-                    ans++;
-                }
                 
                 
                 deg[i]--;
-                
-              //  cout<<node<<" "<<i<<" "<<ans<<endl;
-
                                 
                 if(deg[i]==1 && (i!=0)){
-                    
-                   // vis[i]=true;
-    
-                 //   cout<<i<<" "<<send*seats<<" "<<rem<<" "<<ans<<endl;
+
                     deg[i]--;
                     
                     q.push(i);
