@@ -1,46 +1,151 @@
 class Solution {
 public:
-    set<string> dict;
-    bool check(string &word,int c)
-    {
-        if(word.size()==0)
-        {
-            // cout<<c<<endl;
-            if(c>=2)
-            return true;
-            
-            return false;
-        }
 
-        for(int i=1;i<=word.size();i++)
-        {
-            string left=word.substr(0,i);
-            string right=word.substr(i);
-            if(dict.find(left)!=dict.end())
-            {
-                ++c;
-                if(check(right,c))
-                {
-                    return true;
-                }
-                --c;
-            }
-        }
-        return false;
+struct TrieNode {
+
+int wc;
+
+struct TrieNode* children[26];
+
+ };
+
+struct TrieNode* getNode()
+{
+
+    struct TrieNode* pNode = new TrieNode;
+ 
+   
+ for (int i = 0; i < 26; i++){
+        pNode->children[i] = NULL;
     }
+
+ 
+        pNode->wc= 0;
+
+    return pNode;
+    
+}
+
+    
+    struct TrieNode *root = getNode();
+
+    int n;
+    
     vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {
-        vector<string> ans;
-        for(auto &word:words)
-        {
-            dict.insert(word);
+            
+       n=words.size();
+    
+        int mnlen=0;
+        
+       for(string str:words){
+           mnlen=min(mnlen,(int)str.size());
+           insert(root,str);
+       }
+        
+        vector<string>ans;
+        
+        for(string keys:words){
+            
+            if(keys.length()<2*mnlen)
+                continue;
+            
+            int count=0;
+            
+            string s1;
+            
+            if(find(0,keys,s1,count))
+                ans.push_back(keys);
+             
+           // cout<<endl;
         }
-        for(auto &word:words)
-        {
-            if(check(word,0))
-            {
-                ans.push_back(word);
-            }
-        }
+       
         return ans;
     }
+
+  
+void insert(struct TrieNode* root, string key)
+{
+
+    struct TrieNode* pCrawl = root;
+ 
+
+    for (int i = 0; i < key.length(); i++) {
+
+        int index = key[i] - 'a';
+
+        if (!pCrawl->children[index])
+        
+       pCrawl->children[index] = getNode();
+ 
+        pCrawl = pCrawl->children[index];
+     
+    }
+    
+      pCrawl->wc +=1;
+}
+ 
+    
+    bool find(int i,string &s,string s1,int count){
+        
+        
+     //   cout<<"f"<<endl;
+        
+        if(i>=s.size()){
+    
+            if(search(root,s1)==true){
+                
+            if(count>=1)
+                return true;
+                
+                else
+                    return false;
+            }
+            
+            return false;
+            
+        }
+        
+        s1+=s[i];
+        
+        bool f1=find(i+1,s,s1,count);
+
+        bool f2=false;
+        
+      //  cout<<s1<<" "<<search(root,s1)<<endl;
+        
+        if(search(root,s1)){
+            
+            f2=find(i+1,s,"",count+1);
+    
+        }
+        
+        
+        return f1||f2;
+    }
+    
+
+bool search(struct TrieNode* root, string key)
+{
+    struct TrieNode* pCrawl = root;
+
+    for (int i = 0; i < key.length(); i++) {
+
+        int index = key[i] - 'a';
+
+        if (!pCrawl->children[index])
+
+            return false;
+ 
+
+        pCrawl = pCrawl->children[index];
+
+    }
+
+    if(pCrawl->wc>=1)
+        return true;
+    
+    return false;
+}
+
+    
 };
