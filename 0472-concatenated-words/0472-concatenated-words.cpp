@@ -86,10 +86,7 @@ void insert(struct TrieNode* root, string key)
  
     
     bool find(int i,string &s,string s1,int count){
-        
-        
-     //   cout<<"f"<<endl;
-        
+                
         if(i>=s.size()){
     
             if(search(root,s1)==true){
@@ -110,9 +107,7 @@ void insert(struct TrieNode* root, string key)
         bool f1=find(i+1,s,s1,count);
 
         bool f2=false;
-        
-      //  cout<<s1<<" "<<search(root,s1)<<endl;
-        
+            
         if(search(root,s1)){
             
             f2=find(i+1,s,"",count+1);
