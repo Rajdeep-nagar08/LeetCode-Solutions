@@ -21,9 +21,15 @@ public:
             g[it[1]].push_back(it[0]);
         }
         
-        vector<int>nodes(n,0);
-        vector<int>ans1(n,0);
-        vector<int>ans2(n,0);
+        vector<int>nodes(n,0);  // nodes[x]= no of nodes under x
+        vector<int>ans1(n,0);  // ans1[x]= sum of distances of all nodes under x from x, clearly for x---->y, ans1[x]=nodes[y]+ans1[y]
+        
+        vector<int>ans2(n,0);  // ans2[x]=sum of diastances of all nodes from x = ans1[x]+(sum of distances of all nodes that are not under x from x + (n-nodes[x])) = ans1[x]+(partial ans for x + (n-nodes[x]))
+        
+        // note : partial ans for root node=0
+        
+    //Now for x----->y , partial ans for y=sum of distances of all nodes that are not under y from node y= ans2[x]-(ans1[x]+nodes[y])
+        
         
         dfs1(0,-1,g,nodes);
         dfs2(0,-1,g,nodes,ans1);
@@ -70,7 +76,4 @@ public:
             }
         }
     } 
-    
-    
-   
 };
