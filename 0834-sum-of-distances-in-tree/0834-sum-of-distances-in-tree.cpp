@@ -8,10 +8,6 @@ public:
         =
         distance of x from nodes under x + disance of x from nodes not under x
         
-        =
-        
-        Sigma(1+dist[childrens of x]) + 
-        
         */
         
         vector<int>g[n];
