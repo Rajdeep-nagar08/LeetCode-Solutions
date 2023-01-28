@@ -1,3 +1,19 @@
+/*
+  
+        
+        cost of node x= max path sum-min path sum (by keeping x as root)
+        
+        NOTE: min path sum always= price[x]
+        
+
+variation of maximum path sum
+
+But while finding path sum from leaf to leaf, we should include onbly one leaf
+
+
+
+*/
+
 
 #define lln long long int
 
