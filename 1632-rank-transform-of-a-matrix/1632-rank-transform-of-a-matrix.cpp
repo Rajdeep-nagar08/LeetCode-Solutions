@@ -1,4 +1,16 @@
 
+/*
+smallest no. in a grid should be given value 1
+
+value of all similar no's in its row and column should have same value
+Fix this using dfs
+
+value of any no. mat[i][j]= max(max value given in row i, max value given in column j) + 1
+
+
+*/
+
+
 class Solution {
 
     public:
