@@ -8,8 +8,13 @@
 
 variation of maximum path sum
 
-But while finding path sum from leaf to leaf, we should include onbly one leaf
+But while finding path sum from leaf to leaf, we should include only one leaf
 
+while returning maximum sum of a particular path under the node
+
+we needs to return two type of sum, one is maximum sum while including the 
+
+leaf node and other is maximum sum without the contribution of any leaf node 
 
 
 */
@@ -44,6 +49,8 @@ public:
     
     pair<lln,lln> find(int node,int par,vector<int>g[],lln &sum,vector<int>&price){
     
+  // code of maximum path sum
+        
  // if(!root) return 0;
         
 //  int l=max(find(root->left,sum),0);
@@ -54,26 +61,32 @@ public:
    
 // return max(l,r)+root->val;
         
-       lln withleaf=price[node];
+       lln maxwithleaf=price[node];
         
-      lln withoutleaf=0;
+      lln maxwithoutleaf=0;
                 
         for(int x:g[node]){
             if(x!=par){
                 
                 pair<lln,lln>v1=find(x,node,g,sum,price);
                 
-                sum=max({sum,withleaf+v1.second,withoutleaf+v1.first});
-                                
-                withleaf=max(withleaf,v1.first+price[node]);
+                lln withleafcurrPath=v1.first;
                 
-                withoutleaf=max(withoutleaf,v1.second+price[node]);
+                lln withoutleafcurrPath=v1.second;
+                
+                sum=max(sum,maxwithleaf+withoutleafcurrPath);
+                
+                sum=max(sum,maxwithoutleaf+withleafcurrPath);
+                                
+                maxwithleaf=max(maxwithleaf,withleafcurrPath+price[node]);
+                
+          maxwithoutleaf=max(maxwithoutleaf,withoutleafcurrPath+price[node]);
                 
             }
             
         }
                 
-        return {withleaf,withoutleaf}; 
+        return {maxwithleaf,maxwithoutleaf}; 
             
     }
 };
