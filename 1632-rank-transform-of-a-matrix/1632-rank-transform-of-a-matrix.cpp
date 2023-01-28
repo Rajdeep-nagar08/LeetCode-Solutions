@@ -119,7 +119,7 @@ class Solution {
                     cnc[j][no]--;
                    mp[x][j]={X,Y};
                    val=max(val,max(rowMax[x],colMax[j])+1);
-                   if(cnc[j][no]>0)
+                   if(cnc[j][no]>0 && (col[j]==false))
                    dfs(no,x,j,X,Y,val,mat,row,col);
                    
                } 
@@ -136,7 +136,7 @@ class Solution {
                   rnc[i][no]--;
                   mp[i][y]={X,Y};
                   val=max(val,max(rowMax[i],colMax[y])+1);
-                  if(rnc[i][no]>0)
+                  if(rnc[i][no]>0 && (row[i]==false))
                  dfs(no,i,y,X,Y,val,mat,row,col); 
             
              }    
