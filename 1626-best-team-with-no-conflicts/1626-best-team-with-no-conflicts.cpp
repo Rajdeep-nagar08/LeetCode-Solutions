@@ -43,7 +43,7 @@ public:
           
           // ag[i] >= ag[j]
           
-          if(!anyPrev){
+         if(!anyPrev){
               // choose
               mx=max(mx,v[i][1]+find(i+1,i,true,v));
               
