@@ -25,24 +25,17 @@ public:
                 s[0]=ch;
                 if(ch!=str[0] && (mp1.count(s)!=1)){
                     mp[str[0]][ch]++;
-                   // cout<<str[0]<<endl;
                 }
             }
         }
-        
-        
-     //  cout<<mp['d']['t']<<endl;
-        
-      //  cout<<mp.size()<<endl;
+
         
         lln ans=0;
         
         for(auto it:mp){
             
             char ch=it.first;  // start char
-            
-          //  cout<<ch<<endl;
-            
+                        
             for(auto it1:it.second){  // can be replaced by it1.first
                
                 char ch1=it1.first;
@@ -52,13 +45,11 @@ public:
                 if(mp.count(ch1)){
                 int no2=mp[ch1][ch];
                 
-              //  cout<<ch1<<endl;
                 
                 ans+=no1*no2;
                 }
             }
             
-           // cout<<endl;
         }
         
         return ans;
