@@ -1,37 +1,66 @@
+#define lln long long int
+
 
 class Solution {
 public:
-    long long distinctNames(vector<string>& s) {
-        int n = s.size();
-        unordered_map<string,bool> mp;
-        for(auto x:s)
-        {
-            mp[x]=true;
+    
+    int n;
+    
+    long long distinctNames(vector<string>& ideas) {
+    
+        n=ideas.size();
+        
+        unordered_map<string,int>mp1;
+        
+        for(string str:ideas){
+            mp1[str]++;
         }
-        vector<vector<long long >> dict(26,vector<long long> (26,0));
-        for(int i=0;i<n;i++)
-        {
-            string str=s[i].substr(1);
-            int in=s[i][0]-'a';
-            cout<<in<<endl;
-            for(int j=0;j<26;j++){
-                char ch=j+'a';
-                string res=ch+str;
-                if(mp.count(res)==0){
-                    dict[in][j]+=1;
+        
+        unordered_map<char,unordered_map<char,int>>mp;
+        
+        for(string str:ideas){
+            
+            for(char ch='a';ch<='z';ch++){
+                string s=str;
+                s[0]=ch;
+                if(ch!=str[0] && (mp1.count(s)!=1)){
+                    mp[str[0]][ch]++;
+                   // cout<<str[0]<<endl;
                 }
             }
         }
-        long long cnt=0;
-        for(int i=0;i<26;i++)
-        {
-            for(int j=0;j<26;j++){
-                if(dict[i][j]>0 and i!=j)
-                {
-                    cnt+=dict[i][j]*dict[j][i];
+        
+        
+     //  cout<<mp['d']['t']<<endl;
+        
+      //  cout<<mp.size()<<endl;
+        
+        lln ans=0;
+        
+        for(auto it:mp){
+            
+            char ch=it.first;  // start char
+            
+          //  cout<<ch<<endl;
+            
+            for(auto it1:it.second){  // can be replaced by it1.first
+               
+                char ch1=it1.first;
+                
+                int no1=it1.second;
+                
+                if(mp.count(ch1)){
+                int no2=mp[ch1][ch];
+                
+              //  cout<<ch1<<endl;
+                
+                ans+=no1*no2;
                 }
             }
+            
+           // cout<<endl;
         }
-        return cnt;
+        
+        return ans;
     }
 };
