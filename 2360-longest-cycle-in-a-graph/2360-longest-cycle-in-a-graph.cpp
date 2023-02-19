@@ -24,7 +24,7 @@ public:
          vector<int>depth(n,0);
 
         
-                        vector<int>path(n,0);
+         vector<int>path(n,0);
 
 
         for(int i=0;i<n;i++){
@@ -65,15 +65,12 @@ public:
               if(vis[x]==false){
                   
                   if(dfs1(x,vis,path,g,c,d,depth)){
-                     
-                 //       c=max(c,depth[node]-depth[x]+1);
-                      
+                                           
                      path[x]=0;
 
                       return true;
                   }
               }
-              
               
               else if(path[x]){
                    
