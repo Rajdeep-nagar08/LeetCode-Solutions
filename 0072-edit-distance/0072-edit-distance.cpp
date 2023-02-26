@@ -57,12 +57,12 @@ public:
       if(s1[i]==s2[j])
         return dp[i][j]= find(i+1,j+1,s1,s2);
       
-     // else{
+      else{
         int op1= 1+ find(i,j+1,s1,s2);
         int op2=1+find(i+1,j+1,s1,s2);
         int op3=1+find(i+1,j,s1,s2);
           return dp[i][j]= min(op1,min(op2,op3));
-    //  }
+     }
       
       return dp[i][j];
     }
