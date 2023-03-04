@@ -2,7 +2,11 @@ class Solution {
 public:
     long long countSubarrays(vector<int>& nums, int minK, int maxK) {
         long res = 0;
+        
+        
         bool minFound = false,maxFound = false;
+        
+        
         int start = 0,minStart = 0,maxStart = 0;
         
         for(int i=0;i<nums.size();i++){
@@ -18,6 +22,7 @@ public:
                 minStart = i;
             }
             if(num == maxK){
+                
                 maxFound = true;
                 maxStart = i;
             }
