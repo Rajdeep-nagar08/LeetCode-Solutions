@@ -1,136 +1,231 @@
+class DisjointSet
+{
+    public:
+    vector<int>rank,parent,size;
+
+    DisjointSet(int n)
+    {
+        rank.resize(n,0);
+        parent.resize(n,0);
+        size.resize(n,1);
+
+        for(int i=0;i<n;i++)
+        {
+            parent[i]=i;
+           
+        }
+
+    }
+
+    int findParent(int node)
+    {
+        if(node==parent[node])
+        {
+            return node;
+        }
+
+        return parent[node]=findParent(parent[node]);
+
+    }
+
+    void UnionByRank(int u,int v)
+    {
+        int ulp_u=findParent(u);
+        
+        int ulp_v=findParent(v);
+
+        if(ulp_u==ulp_v)
+        {
+            return;
+        }
+
+        if(rank[ulp_u]<rank[ulp_v])
+        {
+            parent[ulp_u]=ulp_v;
+        }
+
+        else if(rank[ulp_u]>rank[ulp_v])
+        {
+            parent[ulp_v]=ulp_u;
+        }
+
+        else
+        {
+            parent[ulp_v]=ulp_u;
+            rank[ulp_v]++;
+
+        }
+
+    }
+
+    void UnionBySize(int u,int v)
+    {
+        int ulp_u=findParent(u);
+        
+        int ulp_v=findParent(v);
+        
+        // cout<<ulp_u<<" "<<ulp_v<<endl;
+
+        if(ulp_u==ulp_v)
+        {
+            return;
+            
+        }
+        if(size[ulp_u]<size[ulp_v])
+        {
+            parent[ulp_u]=ulp_v;
+            size[ulp_v]+=size[ulp_u];
+        }
+
+        else 
+        {
+            parent[ulp_v]=ulp_u;
+            size[ulp_u]+=size[ulp_v];
+        }
+
+    }
+};
+
+
+  int dx[]={-1,1,0,0};
+                
+                int dy[]={0,0,1,-1};
+    
+
 class Solution {
 public:
     
-    /*
-         1 1 0 1     5 5 0 2
-         1 1 0 1  => 5 5 0 2
-         1 0 0 0     5 0 0 0
-         0 1 1 1     0 3 3 3
+      
+              
     
-    */
-    
-    /*
-       [[0,0,0,0,0,0,0],
-        [0,1,1,1,1,0,0],
-        [0,1,0,0,1,0,0],
-        [1,0,1,0,1,0,0],
-        [0,1,0,0,1,0,0],
-        [0,1,0,0,1,0,0],
-        [0,1,1,1,1,0,0]]
-    */
-    
-    /*
-       [[1,0,1],
-        [0,0,0],
-        [0,1,1]]
-    */
-    
-    bool isValid(int i, int j, int n, int m) {
-        if(i >= 0 && j >= 0 && i < n && j < m) return true;
+    bool isValid(int i,int j,int n)
+    {
+        if(i>=0 && i<n && j>=0 && j<n)
+        {
+            return true;
+        }
+        
         return false;
     }
     
-    vector<pair<int,int>> dir = {{1,0},{0,1},{-1,0},{0,-1}};
-    
-    int getCount(int i, int j, vector<vector<int>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
+    int largestIsland(vector<vector<int>>& grid)
+    {
         
-        if(isValid(i, j, n, m) == false || grid[i][j] == 0) return 0;
+        int n=grid.size();
         
-        int count = 1;
-        grid[i][j] = 0;
+        int totalCnt=0;
         
-        for(auto &it: dir) {
-            int ni = it.first + i;
-            int nj = it.second + j;
-            
-            count += getCount(ni, nj, grid);
-        }
+        int totalCntofzero=0;
         
-        return count;
-    }
-    
-    void fillCount(int i, int j, int count, vector<vector<int>>& area, 
-                   vector<vector<int>>& grid, vector<vector<int>> &mark, int marker) {
-        int n = grid.size();
-        int m = grid[0].size();
+        DisjointSet ds(n*n);
         
-        if(isValid(i, j, n, m) == false || grid[i][j] == 0) return;
         
-        grid[i][j] = 0;
-        area[i][j] = count;
-        mark[i][j] = marker;
+//            for(int x:ds.size){
+//             cout<<x<<endl;
+//            }
         
-        for(auto &it: dir) {
-            int ni = it.first + i;
-            int nj = it.second + j;
-            
-            fillCount(ni, nj, count, area, grid, mark, marker);
-        }
-    }
-    
-int getVal(int i, int j, vector<vector<int>>& area, vector<vector<int>>& mark) {
-        int n = area.size();
-        int m = area[0].size();
-        int val = 1;
         
-        unordered_set<int> st;
-        
-        for(auto &it: dir) {
-            int ni = i + it.first;
-            int nj = j + it.second;
-            
-            if(isValid(ni, nj, n, m) == false) continue;
-            int marker = mark[ni][nj];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(grid[i][j]==0)
+                {
+                    totalCntofzero++;
+                    continue;
+                }
+                
+                totalCnt++;
+                
+                int dx[]={-1,1,0,0};
+                int dy[]={0,0,1,-1};
+                
+                int row=i;
+                int col=j;
+                int node=row*n+col;
+                
+                for(int k=0;k<4;k++)
+                {
+                    int nrow=row+dx[k];
+                    
+                    int ncol=col+dy[k];
+                    
 
-            if(st.find(marker) != st.end()) continue;
+                    if(isValid(nrow,ncol,n) && grid[nrow][ncol]==1)
+                    {
+                        int adjnode=nrow*n+ncol;
+                        
+                    // cout<<i<<" "<<j<<" "<<nrow<<" "<<ncol<<endl;
 
-            st.insert(marker);
-            val += area[ni][nj];
-        }
-        return val;
-    }
-    
-    int largestIsland(vector<vector<int>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
-        
-        vector<vector<int>> copy = grid;
-        vector<vector<int>> area(n, vector<int>(m, 0));
-        vector<vector<int>> mark(n, vector<int>(m, 0));
-        
-        int marker = 1;
-        int mxCount = 0;
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                if(grid[i][j] == 0) continue;
-                
-                int count = getCount(i, j, grid);
-                
-                mxCount = max(mxCount, count);
-                
-                fillCount(i, j, count, area, copy, mark, marker);
-                marker++;
+                        ds.UnionBySize(node,adjnode);
+                        
+                        
+                    }
+                }
             }
         }
         
-        // for(auto&v: area) {
-        //     for(auto &it: v) cout << it << " ";
-        //     cout << endl;
-        // }
+        if(totalCnt==n*n)
+        {
+            return totalCnt;
+        }
         
-        int ans = mxCount;
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                if(area[i][j] != 0) continue;
+        if(totalCntofzero==n*n)
+        {
+            return 1;
+        }
+        
+        int maxi=0;
+        
+        
+        for(int row=0;row<n;row++)
+        {
+            for(int col=0;col<n;col++)
+            {
+                if(grid[row][col]==1)
+                {
+                    continue;
+                }
                 
-                int val = getVal(i, j, area, mark);
-                if(val == 5) cout << i << " " << j << endl;
-                ans = max(ans, val);
+              int node=row*n+col;
+             
+                 set<int>st;
+                
+                for(int i=0;i<4;i++)
+                {
+                    int nrow=row+dx[i];
+                    
+                    int ncol=col+dy[i];
+                    
+                    
+                    
+                    if(isValid(nrow,ncol,n) && grid[nrow][ncol]==1)
+                    {
+                        int adjnode=nrow*n+ncol;
+                        
+                        st.insert(ds.findParent(adjnode));
+                    }
+                }
+                
+                int maxCount=0;
+                
+                for(auto it:st)
+                {
+                    maxCount+=ds.size[it];
+                }
+                
+                // cout<<maxCount<<endl;
+                
+                maxi=max(maxi,maxCount+1);
             }
         }
         
-        return ans;
+        for(int i=0;i<n*n;i++)
+        {
+            maxi=max(maxi,ds.size[i]);
+        }
+        
+        return maxi;
+        
     }
 };
