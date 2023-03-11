@@ -1,3 +1,19 @@
+/*
+
+ sort all friends by incoming time
+        
+        clearly let current time = t1 (incoming time of ith friend)
+        
+        remove all friends from pq1 (min heap of {out time, seat occupied}) 
+        
+        whose outgoing time <= t1 as well as push there seat back to pq2 (min heap)
+        
+        give smallest empty seat to current friend
+        
+        */
+
+
+
 class Solution {
 public:
     int smallestChair(vector<vector<int>>& times, int tar) {
@@ -11,18 +27,18 @@ public:
         
         
         sort(times.begin(),times.end());
-        
-        // for(auto it:times){
-        //     cout<<"("<<it[0]<<" "<<it[1]<<")";
-        // }
-        
-        
+      
 priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq1;
+        
+        // min heap {outtime, seatno}
+        
         
         priority_queue<int,vector<int>,greater<int>>pq2;
         
+        // min heap {empty seat}
         
-        for(int t=0;t<=1e6;t++){
+    
+        for(int t=0;t<=n;t++){
             pq2.push(t);
         }
         
