@@ -69,8 +69,10 @@ public:
                 
                 f3=f3 & find(j+1,str);
                 
-                if(f3)
+                if(f3){
                 f2=true;
+                break;
+                }
                 
             }
             
