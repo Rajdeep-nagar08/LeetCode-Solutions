@@ -67,7 +67,7 @@ public:
 
                 bool f3=true;
                 
-                f3&=find(j+1,str);
+                f3=f3 & find(j+1,str);
                 
                 if(f3)
                 f2=true;
