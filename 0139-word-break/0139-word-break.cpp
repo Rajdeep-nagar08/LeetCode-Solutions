@@ -35,6 +35,8 @@ public:
           
     }
     
+    
+    
     bool find(int i,string &str){
         
       /// base case
@@ -67,7 +69,8 @@ public:
                 
                 f3&=find(j+1,str);
                 
-                f2|=f3;
+                if(f3)
+                f2=true;
                 
             }
             
