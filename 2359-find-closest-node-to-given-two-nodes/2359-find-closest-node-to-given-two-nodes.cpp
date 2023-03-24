@@ -12,43 +12,17 @@ public:
         
         
         vector<int>v4(n,0);
-        
-        
-         bool flag=false;
-        
-        int c=0;
-        
-         
-        for(int i=0;i<2;i++){
-            flag=true;
-            
-            c++;
-            
-        }
-
+                
         
         for(int i=0;i<n;i++){
             if(myEdges[i]>=0)
-                
-                
-                
             g[i].push_back(myEdges[i]);
         }
         
+    
         
-       
-        for(int i=0;i<2;i++){
-            flag=true;
-            
-            c++;
-            
-        }
+       vector<int>myVis(n,false);
 
-        
-                vector<int>myVis(n,false);
-
-
-        
         queue<int>q2;
         
         q2.push(node1);
@@ -62,14 +36,6 @@ public:
         
         while(!q2.empty()){
             int sz=q2.size();
-            
-            
-             for(int i=0;i<2;i++){
-            flag=true;
-            
-            c++;
-            
-        }
             
             while(sz--){
                 
@@ -90,10 +56,11 @@ public:
         }
         
         
-                vector<pair<int,int>>ans;
+                
+        vector<pair<int,int>>ans;
         
         
-                vector<int>myVis1(n,false);
+        vector<int>myVis1(n,false);
 
 
         
@@ -103,20 +70,10 @@ public:
         
         q1.push(node2);
         
-        
         myVis1[node2]=true;
-        
         
         while(!q1.empty()){
             int sz=q1.size();
-            
-            
-             for(int i=0;i<2;i++){
-            flag=true;
-            
-            c++;
-            
-        }
             
             while(sz--){
                 
@@ -143,25 +100,13 @@ public:
     
         
         for(auto it:myMap2){
-            
-            
-            
-            
-            c++;
-            
-            flag=true;
-            
-            
+        
             
             if(myMap.count(it.first)==1){
                 
                 
                 int d=max(it.second,myMap[it.first]);
-                
-                flag=false;
-                
-                c--;
-                
+                                
                 ans.push_back({d,it.first});
             }
         }
@@ -169,21 +114,10 @@ public:
         sort(ans.begin(),ans.end());
         
         
-             for(int i=0;i<2;i++){
-            flag=true;
-            
-            c++;
-            
-        }
-            
-
-        
         if(ans.size()==0)
             return -1;
         
         return ans[0].second;
-        
-        
-        
+    
     }
 };
