@@ -40,18 +40,6 @@ public:
         memset(dp,-1,sizeof(dp));
         
         formPref(pizza);
-        
-        
-        /*
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                cout<<pref[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-        
-        */
-            
             
         return find(0,0,k-1,pizza)%mod;
         
