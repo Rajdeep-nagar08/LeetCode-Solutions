@@ -8,9 +8,7 @@ public:
         
     
         unordered_map<string,int>mp;  
-        
-        // is it possible to make this string 
-        
+                
          queue<string>q;
         
         for(string s1:s){
