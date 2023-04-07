@@ -32,13 +32,7 @@ public:
         }
         
         v.push_back(n-1);  // last non prime
-        
-       
-//         for(int x:v){
-//             cout<<x<<" ";
-//         }
-        
-//         cout<<endl;
+
         
         return find(0,k,minl)%mod;
         
@@ -48,9 +42,7 @@ public:
         
         if(i>=v.size()-1)
         {
-            
-            // cout<<k<<endl;
-            
+                        
             if(k==0)
                 return 1;
             
