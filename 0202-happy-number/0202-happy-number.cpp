@@ -9,7 +9,7 @@ public:
         
         int t=0;
         
-        while(t<=50){
+        while(t<=10){
             int sum=0;
             for(char ch:str){
                 sum+=(ch-'0')*(ch-'0');
