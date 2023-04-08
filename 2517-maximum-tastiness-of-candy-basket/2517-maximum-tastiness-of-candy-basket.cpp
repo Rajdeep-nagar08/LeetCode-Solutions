@@ -30,6 +30,12 @@ public:
     }
     
     
+    // checking if we can slect atleast k numbers from the array so that 
+    
+    // minimum absolute difference is greater than or equal to mid
+    
+    // If its possible then we can increase our mid to get maximum tastiness
+    
     bool isValid(int mid,vector<int>&v,int k){
         
         
