@@ -54,7 +54,7 @@ public:
           
           
           if(group[i]+sz<=n)
-      count+= find(i+1,group[i]+sz,min(prevP+prof[i],101),n,minP,group,prof);
+      count+= find(i+1,group[i]+sz,min(prevP+prof[i],minP),n,minP,group,prof);
           
           
           return dp[i][sz][prevP]=count%mod;
