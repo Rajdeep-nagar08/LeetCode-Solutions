@@ -1,9 +1,4 @@
-class Solution {
-public:
-    
-    int closestToTarget(vector<int>& arr, int target) {
-        
-       /*
+ /*
        
        first we needs to find the range in which '&' of all its values
        is closest to target
@@ -22,19 +17,13 @@ public:
        */
         
     
-        int n=arr.size();
-        
-                int x=arr[0];
-       
-        /*
-        for(int i=0;i<n;i++){
-            x=x&arr[i];
-            cout<<x<<" ";
-        }
-        
-        cout<<endl;
-        
-        */
+
+class Solution {
+public:
+    
+    int closestToTarget(vector<int>& arr, int target) {
+    
+        int n=arr.size();      
             
         int *st=constructST(arr,n);
     
@@ -62,12 +51,8 @@ if And of range [i...mid]  < target , than move mid towards left so that total A
             while(l<=h){
                 
                 int mid=(l+h)/2;
-                
-                
+    
           val=getAnd(st,0,0,n-1,i,mid);
-                
-     //    cout<<i<<" "<<mid<<" "<<val<<endl;
-
 
                  if(val>target)
                     l=mid+1;    
@@ -87,8 +72,6 @@ if And of range [i...mid]  < target , than move mid towards left so that total A
         
     }
     
-    
-
 int getAnd(int *st,int si,int sl,int sr,int l,int r)
     
 {
@@ -123,8 +106,6 @@ st[si]=(constructSTUL(st,2*si+1,arr,l,mid)
 return st[si];
     
 }
-
-
 
 int *constructST(vector<int>&arr,int n){
 
