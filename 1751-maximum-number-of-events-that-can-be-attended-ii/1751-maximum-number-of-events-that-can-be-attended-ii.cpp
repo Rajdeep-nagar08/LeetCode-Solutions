@@ -15,27 +15,16 @@ select atmost k events
 
 int n;
 
-
-int k1;
-
 class Solution {
 public:
     int maxValue(vector<vector<int>>& events, int k) {
-     
-        k1=k;
-        
-        
+    
         n=events.size();
       
         
           vector<vector<int>>dp(n+1,vector<int>(k+1,-1));
         
-        sort(events.begin(),events.end(),[](vector<int>&v1,vector<int>&v2){
-           if(v1[0]<v2[0])
-               return true;
-            
-            return false;
-        });
+        sort(events.begin(),events.end());
         
 //         for(int i=0;i<n;i++){
 //             cout<<events[i][0]<<" "<<events[i][1]<<" "<<events[i][2]<<endl;
