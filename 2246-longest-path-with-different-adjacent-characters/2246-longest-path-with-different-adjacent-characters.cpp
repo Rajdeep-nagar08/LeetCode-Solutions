@@ -1,52 +1,64 @@
 class Solution {
 public:
+    int n;
     
-    int mx=-1;
     
-    int longestPath(vector<int>& parent, string s) {
+    int ans=-1;
+    
+    
+    int longestPath(vector<int>& par, string s) {
         
-      int n=s.length();
         
-      vector<int>g[n];
-            
-      for(int i=1;i<n;i++){
-          g[i].push_back(parent[i]);
-          g[parent[i]].push_back(i); 
-      }
         
-        dfs(0,-1,g,s);
+        n=par.size();
         
-        return mx;
         
+        vector<int>g[n];
+        
+        for(int i=0;i<n;i++){
+            if(par[i]!=-1){
+                g[par[i]].push_back(i);
+            }
+        }
+        
+        
+         dfs(0,-1,g,s);
+        
+        return ans;
     }
     
-    
-int dfs(int node,int par,vector<int>g[],string &s){
-   
-    int l1=1,l2=1;
-
-        for(int x:g[node]){
+    int dfs(int node,int par,vector<int>g[],string &s){
+        
+        int maxLen1=1, maxLen2=1;
+        
+        for(int y:g[node]){
             
-            if(x!=par){
+            if(y!=par){
                 
-                int l=dfs(x,node,g,s);
+                int validLen=dfs(y,node,g,s);
                 
-                if(s[x]!=s[node]){
-                    l++;
-                    if(l1<l){
-                        l2=l1;
-                        l1=l;
+                if(s[node]!=s[y]){   // returning from root
+                    
+                    validLen++;
+                    
+                    if(maxLen1<validLen){
+                        maxLen2=maxLen1;
+
+                        maxLen1=validLen;
                     }
-                    else if(l2<l){
-                        l2=l;
+                    else{
+                        maxLen2=max(maxLen2,validLen);
                     }
+                    
                 }
             }
-    }    
-         
-    mx=max({mx,l1+l2-1});
-    
-        return l1;
+        }
+        
+        
+        ans=max(ans,maxLen1+maxLen2-1);
+
+        return maxLen1;
+        
         
     }
 };
