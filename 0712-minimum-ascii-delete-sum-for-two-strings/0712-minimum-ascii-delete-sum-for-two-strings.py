@@ -1,11 +1,16 @@
-dp = [[-1 for _ in range(1001)] for _ in range(1001)]
+# dp = [[-1 for _ in range(1001)] for _ in range(1001)]
+
+dp={}
 
 class Solution:
     def minimumDeleteSum(self, s1: str, s2: str) -> int:
         
         
         global dp
-        dp = [[-1 for _ in range(1001)] for _ in range(1001)]
+        
+        dp={}
+        
+        # dp = [[-1 for _ in range(1001)] for _ in range(1001)]
         return self._check(0, 0, s1, s2)
 
     
@@ -23,18 +28,37 @@ class Solution:
                 count += ord(s1[k])
             return count
         
-        if dp[i][j] != -1:
-            return dp[i][j]
+        
+        if (i, j) in dp:
+            return dp[(i, j)]
+        
+        
+        
+        
+        
+        
+#         if dp[i][j] != -1:
+#             return dp[i][j]
+
+
+        
+    
+    
+        
 
         if s1[i] == s2[j]:
-            dp[i][j] = self._check(i + 1, j + 1, s1, s2)
+            dp[(i, j)] = self._check(i + 1, j + 1, s1, s2)
         else:
-            dp[i][j] = min(
+            dp[(i, j)] = min(
                 ord(s1[i]) + self._check(i + 1, j, s1, s2),
                 ord(s2[j]) + self._check(i, j + 1, s1, s2)
             )
 
-        return dp[i][j]
+        return dp[(i, j)]
+
+
+
+
 
 
 
