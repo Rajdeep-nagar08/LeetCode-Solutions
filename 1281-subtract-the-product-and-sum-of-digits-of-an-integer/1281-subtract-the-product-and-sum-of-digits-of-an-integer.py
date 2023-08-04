@@ -1,4 +1,4 @@
-import numpy as np
+
 
 class Solution:
     def subtractProductAndSum(self, n: int) -> int:
@@ -6,6 +6,6 @@ class Solution:
         
         lst=[int(x) for x in str(n)]
         
-        return np.prod(lst)-np.sum(lst)
+        return prod(lst)-sum(lst)
             
             
