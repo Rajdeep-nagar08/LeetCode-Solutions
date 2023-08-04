@@ -1,17 +1,11 @@
+import numpy as np
+
 class Solution:
     def subtractProductAndSum(self, n: int) -> int:
         
-        ch=str(n)
-    
-        prod=1
         
-        sm=0
+        lst=[int(x) for x in str(n)]
         
-        for c in ch:
-            prod=prod*int(c)
-            sm+=int(c)
-            
-        
-        return prod-sm
+        return np.prod(lst)-np.sum(lst)
             
             
