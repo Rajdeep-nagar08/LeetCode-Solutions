@@ -1,4 +1,4 @@
-dp=[]
+
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
@@ -7,9 +7,9 @@ class Solution:
         
         m=len(wordDict)
         
-        global dp
         
-        dp=[-1 for _ in range(n+1)]
+        
+        self.dp=[-1 for _ in range(n+1)]
 
         
         mp=defaultdict(int)
@@ -28,8 +28,8 @@ class Solution:
         if i>=n:
             return True;
         
-        if dp[i]!=-1:
-            return dp[i]
+        if self.dp[i]!=-1:
+            return self.dp[i]
         
         f1=False
         f2=False
@@ -46,10 +46,10 @@ class Solution:
         
         
         if f1==True:
-            dp[i]=f2
-            return dp[i]
+            self.dp[i]=f2
+            return self.dp[i]
         
-        dp[i]=False
-        return dp[i]
+        self.dp[i]=False
+        return self.dp[i]
     
     
