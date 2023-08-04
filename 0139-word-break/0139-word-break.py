@@ -1,12 +1,13 @@
-
+dp=[]
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
     
-        
         n=len(s)
         
         m=len(wordDict)
+        
+        global dp
         
         dp=[-1 for _ in range(n+1)]
 
@@ -18,11 +19,11 @@ class Solution:
             
             
             
-        return self.find(0,n,s,mp,dp)
+        return self.find(0,n,s,mp)
     
     
     
-    def find(self,i,n,s,mp,dp):
+    def find(self,i,n,s,mp):
         
         if i>=n:
             return True;
@@ -37,7 +38,7 @@ class Solution:
             if mp[s[i:j+1]]>0:
                 f1=True
                 f3=True
-                f3=f3 & self.find(j+1,n,s,mp,dp)
+                f3=f3 & self.find(j+1,n,s,mp)
                 
                 if f3==True:
                     f2=True
