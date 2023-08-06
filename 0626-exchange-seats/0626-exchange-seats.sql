@@ -7,41 +7,22 @@
 # using CASE as used in SWITCH in C++
 
 
-# select 
-
-# CASE
-
-# when id % 2=1 and id=(select COUNT(id) from Seat) then id
-
-# when id % 2=0 then id=id-1 else id=id+1
-
-
-# end
-
-# as id, student
-
-# from Seat
-
-# order by id;
-
-
-
-
-SELECT
+select 
 
 CASE
 
-WHEN id % 2= 1 AND id = (SELECT COUNT(id) FROM seat) THEN id
+when id % 2=1 and id=(select COUNT(id) from Seat) then id
 
-WHEN id % 2 = 0 THEN id - 1 ELSE id + 1
+when id % 2=0 then id-1 else id+1
 
-END 
+
+end
 
 as id, student
 
-FROM seat
+from Seat
 
-ORDER BY id
-;
+order by id;
+
 
 
