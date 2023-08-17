@@ -15,7 +15,7 @@ ans= dp[0][0]+dp[0][1]+dp[1][0]+dp[1][1]
 
 if s[i]=='0'
 
-then we stick this '0' to all subsequences of type [1....0] and [1...1]
+then we stick this '0' to the end of all subsequences of type [1....0] and [1...1]
 
 so dp[1][0] increases to dp[1][0]+dp[1][1]
 
@@ -28,7 +28,7 @@ so we make dp[0][0]=1
 
 if s[i]=='1'
 
-then we stick this '1' to all subsequences of type [1...0] and [1....1] , also we
+then we stick this '1' to end of all subsequences of type [1...0] and [1....1] , also we
 
 can get one new subsequence that is "1"
 
