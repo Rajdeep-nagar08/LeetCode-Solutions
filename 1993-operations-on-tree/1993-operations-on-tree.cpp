@@ -52,11 +52,15 @@ public:
             return false;
         
         
+        
+        
+    
         queue<int>q;
         
         
          q.push(num);
         
+        // To unlock all descendent of num
         int c=0;
         
         vector<int>v;
@@ -74,11 +78,15 @@ public:
                 q.push(y);
             }
         }
-              
+        
+        
+        // no descendent is locked
         if(c==0)
             return false;
         
         
+        
+        // Checking Is there any ancestor of num that is locked ? if locked then return false
                 
         vector<bool>vis(n,false);
 
