@@ -57,11 +57,6 @@ public:
             
         }
         
-        // for(int i=0;i<n;i++)
-        // {
-        //     cout<<ways[i]<<endl;
-        // }
-        
         return ways[n-1]%mod;
     
         
