@@ -29,13 +29,62 @@ public:
                 
         find(0,0,nums1,nums2);
     
-        for(int i=0;i<=n1;i++){
-            for(int j=0;j<=n2;j++){
-                ans=max(ans,dp[i][j]);
+//         for(int i=0;i<=n1;i++){
+//             for(int j=0;j<=n2;j++){
+//                 ans=max(ans,dp[i][j]);
+//             }
+//         }
+                
+//         vector<int>v;
+        
+//         int i=0,j=0;
+        
+//         while(i<n1 && j<n2){
+//             if(nums1[i]==nums2[j]){
+//                 v.push_back(nums1[i]);
+//                 i++,j++;
+//             }
+            
+//             else if(dp[i+1][j]>dp[i][j+1]){
+//                 i++;
+//             }
+//             else{
+//                 j++;
+//             }
+//         }
+        
+//         for(int x:v){
+//             cout<<x<<" ";
+//         }
+        
+        // return ans;
+        
+        
+        int start1=-1,start2=-1;
+        
+        for(int i = 0; i <= n1; i++) {
+            for(int j = 0; j <= n2; j++) {
+                if (dp[i][j] > ans) {
+                    ans = dp[i][j];
+                    start1 = i;
+                    start2 = j;
+                }
             }
         }
         
+//         cout<<start1<<" "<<start2<<endl;
+        
+//         // Print the longest common subarray
+//         if (start1 != -1 && start2 != -1) {
+//             // cout << "Longest common subarray: ";
+//             for (int k = 0; k < ans; k++) {
+//                 cout << nums1[start1 + k] << " ";
+//             }
+//             // cout << endl;
+//         }
+
         return ans;
+
         
     }
     
