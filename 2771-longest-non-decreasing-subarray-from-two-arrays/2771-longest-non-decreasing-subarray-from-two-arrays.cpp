@@ -4,6 +4,10 @@ int dp[100001][3];
 // dp[i][x] = longest increasing subarray if we need to chosse ith no from either of the array and (i-1)th no. was chosen from xth array 
 
 
+// concept similar to longest common subarray
+
+// ans= max(dp)
+
 int ans=0;
 
 class Solution {
@@ -22,9 +26,9 @@ public:
         
         find(1,1,nums1,nums2);
         
-        
-        
+    
         return ans+1;
+        
     }
     
     int find(int i,int x,vector<int>&nums1,vector<int>&nums2){
