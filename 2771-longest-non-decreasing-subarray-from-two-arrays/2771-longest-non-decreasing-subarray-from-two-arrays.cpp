@@ -1,70 +1,87 @@
 
 
+int dp[100001][3];  
+
+// dp[i][x] = longest increasing subarray if we need to chosse ith no from either of the array and (i-1)th no. was chosen from xth array 
 
 
-    int dp[100001][3];
+// concept similar to longest common subarray
 
+// ans= max(dp)
 
-int finalans=0;
+int ans=0;
 
 class Solution {
 public:
     int maxNonDecreasingLength(vector<int>& nums1, vector<int>& nums2) {
         
-        finalans=0;
+        ans=0;
         
-         int n=nums1.size();
-        
-        memset(dp, -1, sizeof(dp));
-        
-        helper(0, 0, nums1, nums2);
+        int n=nums1.size();
         
         
-        return finalans;
-
+        memset(dp,-1,sizeof(dp));
+        
+        
+        find(1,0,nums1,nums2);
+        
+        find(1,1,nums1,nums2);
+        
+    
+        return ans+1;
         
     }
     
-    
-    int helper(int i, int prev, vector<int> &nums1, vector<int> &nums2){
+    int find(int i,int x,vector<int>&nums1,vector<int>&nums2){
+        if(i>=nums1.size())
+            return 0;
         
-        if(i==nums1.size()) return 0;
+        if(dp[i][x]!=-1)
+            return dp[i][x];
         
-        if(dp[i][prev] != -1) 
-            return dp[i][prev];
         
-        int ans = 0;
+        int ans1=0;
         
-        if(prev==0){
-            helper(i+1, 0, nums1, nums2);
-            int f = 1+helper(i+1, 1, nums1, nums2);
-            int s = 1+helper(i+1, 2, nums1, nums2);
-            ans = max({ans, f, s});
-        }
-        else if(prev==1){
-            helper(i+1, 0, nums1, nums2);
-            int f=0, s=0;
-            if(nums1[i]>=nums1[i-1]) f = 1+helper(i+1, 1, nums1, nums2);
-            if(nums2[i]>=nums1[i-1]) s = 1+helper(i+1, 2, nums1, nums2);
+        int ans2=0;
+        
+        
+        
+        if(x==0){  // (i-1)th no was chosen from nums1
             
-            ans=max({ans, f, s});
-        }
-        else{
-            helper(i+1, 0, nums1, nums2);
-            int f=0, s=0;
-            if(nums1[i]>=nums2[i-1]) f = 1+helper(i+1, 1, nums1, nums2);
-            if(nums2[i]>=nums2[i-1]) s = 1+helper(i+1, 2, nums1, nums2);
+            if(nums1[i]>=nums1[i-1]){
+                ans1=1+find(i+1,0,nums1,nums2);
+            }
+           
             
-            ans=max({ans, f, s});
+            if(nums2[i]>=nums1[i-1]){
+                ans2=1+find(i+1,1,nums1,nums2);
+            }
+           
+            
+        }
+        else{  //  // (i-1)th no was chosen from nums2
+            
+            
+            if(nums1[i]>=nums2[i-1]){
+                ans1=1+find(i+1,0,nums1,nums2);
+            }
+            
+            
+            if(nums2[i]>=nums2[i-1]){
+                ans2=1+find(i+1,1,nums1,nums2);
+            }
+           
+            
         }
         
-        finalans=max(finalans,ans);
+        dp[i][x]=max(ans1,ans2);
         
-        return dp[i][prev]  = ans;
+        find(i+1,0,nums1,nums2);
         
+        find(i+1,1,nums1,nums2);
+       
+        ans=max(ans,dp[i][x]);
         
+        return dp[i][x];
     }
-
-    
-    
 };
