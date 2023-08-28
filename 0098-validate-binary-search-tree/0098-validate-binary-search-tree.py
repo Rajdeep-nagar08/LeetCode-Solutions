@@ -6,38 +6,24 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        mn=-1e18
+        mx=1e18
+        ans=True
         
-        self.prev=-1
-        
-        self.isPrev=False
-        
-        self.ans=True
-        
-        self.check(root)
-        
-        
-        return self.ans
-    
-    
-    def check(self,root):
-        
-        if root==None:
-            return
-        
-        self.check(root.left)
-        
-        
-        if self.isPrev==False:
-            self.isPrev=True
-            self.prev=root.val
-        else:
-            if self.prev>=root.val:
-                self.ans=False
+        def find(root,mn,mx):
+            nonlocal ans
+            if root==None:
                 return
-            else:
-                self.prev=root.val
-                
+            
+            find(root.left,mn,root.val)
+            
+            if root.val<=mn or root.val>=mx:
+                ans=False
+                return
+            
+            find(root.right,root.val,mx)
         
+        find(root,mn,mx)
         
-        self.check(root.right)
+        return ans
         
