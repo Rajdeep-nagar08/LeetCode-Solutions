@@ -33,14 +33,14 @@ public:
         
         memset(dp,-1,sizeof(dp));
         
-        return find(1,n+1,v);
+        return find(1,n,v);
         
     }
     
     int find(int i, int j, vector<int>&v){
       
       
-       if(i>=j)
+       if(i>j)
        return 0;
       
        if(dp[i][j]!=-1)
@@ -49,9 +49,9 @@ public:
        
        int ans=0;
        
-       for(int k=i;k<=j-1;k++){
+       for(int k=i;k<=j;k++){  //if bursting kth ballon in last
          
-         ans=max(ans, v[i-1]*v[k]*v[j]+find(i,k,v)+find(k+1,j,v));
+         ans=max(ans, v[i-1]*v[k]*v[j+1]+find(i,k-1,v)+find(k+1,j,v));
          
        }
        
