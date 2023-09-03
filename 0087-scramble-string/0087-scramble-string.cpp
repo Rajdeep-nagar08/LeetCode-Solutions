@@ -1,98 +1,58 @@
-/*
- break string into all posiible parts,and check for both non-swaped and swaped type:-
- // if not swaped
-        bool case1= isScramble(x.substr(0,k),y.substr(0,k));
-           bool case2= isScramble(x.substr(k,n-k),y.substr(k,n-k));
-bool type1= case1 && case2;
-        // if swaped
-           bool case3= isScramble(x.substr(0,k),y.substr(n-k,k));
-           bool case4= isScramble(x.substr(k,n-k),y.substr(0,n-k));
-bool type2= case3 && case4;
-*/
+  
+        
+        /*
+        
+        
+        have two choices, either keep both part same or swap them
+        
+        so think about dp
+        
+        
+        dp[str1_str2] = Is str1 is scrembel to str2 ?
+        
+        */
+      
+
+unordered_map<string,bool>dp;
 
 class Solution {
-    
-  map<string,bool>mp;
-    
-    
 public:
-    bool isScramble(string x, string y) {
+    bool isScramble(string s1, string s2) {
+    
+        string str=s1+" "+s2;
         
-      string key=x+' '+y;
-      
-      if(x.length()!=y.length())
-        return mp[key]=false;
-      
-    if(x.compare(y)==0)
-      return mp[key]=true;
-      
-      string s1 = x, s2 = y;
- 
-    sort(s1.begin(), s1.end());
+       
         
+           if(s1==s2)
+               return true;
         
-    sort(s2.begin(), s2.end());
- 
-    if (s1 != s2) {
-       return mp[key]=false;
+        if(s1.compare(s2)==0)
+            return true;
+        
+           if((int)s1.size()<=1 && (s1!=s2))
+               return false;
+        
+         if(dp.count(str)==1)
+            return dp[str];
+        
+        bool flag=false;
+        
+        int n=s1.size();
+        
+        // [(k)(n-k)] == [(k)(n-k)]
+        // [(k)(n-k)] == [(n-k)(k)]
+        for(int k=1;k<n;k++){
+            
+            flag=flag || (isScramble(s1.substr(0,k),s2.substr(0,k)) && (isScramble(s1.substr(k),s2.substr(k))))
+                ||
+                (isScramble(s1.substr(0,k),s2.substr(n-k)) && (isScramble(s1.substr(k),s2.substr(0,n-k))));
+            
+        }
+        
+        return dp[str]=flag;
+        
     }
     
-      int n=x.length();
+    
 
-      if(n==0)
-        return mp[key]=false;
-      
-      if(mp.find(key)!=mp.end())
-        return mp[key];
-      
-      bool flag=false;
-        
-        
-        
-      for(int k=1;k<n;k++){
-        // if not swaped
-        bool case1= isScramble(x.substr(0,k),y.substr(0,k));
-          
-           bool case2= isScramble(x.substr(k,n-k),y.substr(k,n-k));
-          
-bool type1= case1 && case2;
-      /*  if(type1==true){
-          flag=true;
-          return true;
-        }
-        //  return mp[key]=true;*/
-        // if swaped
-           bool case3= isScramble(x.substr(0,k),y.substr(n-k,k));
-
-           bool case4= isScramble(x.substr(k,n-k),y.substr(0,n-k));
-          
-           bool type2= case3 && case4;
-           
-     /*   if(type2==true){
-          flag=true;
-          return true;
-        }*/
-     //    return mp[key]=true;
-        
-        if(type1 || type2){
-          flag=true;
-          break;
-        }
-          
-          
-          
-      }
-        
-        
-        
-        
-          return mp[key]=flag;
-        
-        
-      // return false;
-        
-        
-        
-      // return mp[key]=flag;
-    }
 };
