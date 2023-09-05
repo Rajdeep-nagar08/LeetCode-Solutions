@@ -5,10 +5,21 @@
 
 select 
 
-(case when (select count(*) from myNumbers t2 where t1.num=t2.num)=1 then t1.num
+(case when(count(num))=1 then num else null end) as num
 
-else null end) as num
+from myNumbers
 
-from myNumbers t1
+group by num
 
 order by num desc limit 1;
+
+
+# select num from MyNumbers
+
+# group by num
+
+# having count(num)=1
+
+# order by num desc
+
+# limit 1;
