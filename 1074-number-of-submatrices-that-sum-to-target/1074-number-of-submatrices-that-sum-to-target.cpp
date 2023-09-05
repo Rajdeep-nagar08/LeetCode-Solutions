@@ -1,64 +1,113 @@
 /*
+
+No. of subarray's whose sum = k
+
+sum[i]=sum[0....i]
+
+let there is an index j<i, in an array such that sum[j]=sum[i]-k ,
+then , sum[i]-sum[j]= sum[(i.....j)]=k ,sum of subarray(i,,,j)=k 
+
+then no of subarrays till i whose sum is k= no of subarrays till i whose sum=sum[i]-k
+
+To store the sum[i] and their count, we can use unordered_map
+
+
+
+
 class Solution {
 public:
-    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int tar) {
-        
-     int n=matrix.size();
-      int m=matrix[0].size();
-    
-      pref=vector<vector<int>>(n,vector<int>(m,0));
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int>mp;
+        mp[0]=1;  //there is one subarray whose sum=0 =>{empty subarray}
       
-      pref[0][0]=matrix[0][0];
-      for(int i=0;i<n;i++){
-          for(int j=0;j<m;j++){
-          
-          if(i==0 && j>0)
-              pref[i][j]=matrix[i][j]+pref[i][j-1];
-            else if(j==0 && i>0)
-                pref[i][j]=matrix[i][j]+pref[i-1][j];
-              
-             else if(i>0 && j>0)  
-    pref[i][j]=matrix[i][j]+ pref[i][j-1] + pref[i-1][j] - pref[i-1][j-1];
-            }
-          }
-           
+      int sum=0;
+      int count=0;
+      for(int i=0;i<nums.size();i++){
+        sum+=nums[i];
+        int need=sum-k;
+        count+=mp[need];
+        mp[sum]++;
         
-        
+      }
+      return count;
     }
 };
 
+
 */
+
+/*
+
+LOGIC : make prefix sum for each row means: mat[i][j]+=mat[i][j-1]
+
+now, for each pair of columns (c1,c2)
+
+c1       c2
+|         |
+|         |
+|         |
+
+
+
+
+sum=0
+(k=0;k<n;k++)
+unordered_map<int,int>mp;
+mp[sum]= how many rows are there like (row0, row0+row2, row0+...rowk) whose sum=> sum (row range is between ca and c2)
+sum+=(sum of kth row between c1 and c2)
+
+Now let
+mp[sum-target]= 1
+it means there is exactly one set among (row0, row0+row1, row0......rowk) whose sum => sum-target, let its row0+row1+row2
+
+then (row3+row4+row5+...rowk = target)
+ so ans++;
+
+*/
+
+
 
 class Solution {
 public:
-    int result=0,target;
-    unordered_map<int,int> map;
-    void get_result(vector<int>& nums)                          //Get number of subarrays that sum to target.
-    {
-        int sum=0;
-        map.clear();
-        map[0]++;
-        for(int &i:nums)
-        {
-            sum+=i;
-            result+=map[sum-target];       //get number of subarrays who's sum equals target and end at i and add result to global result.
-            map[sum]++;                    //Add the occurence of running sum to map.
-        }
-    }
-    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) 
-    {
-        this->target=target;
-        vector<int> row(matrix[0].size());
-        for(int i=0;i<matrix.size();i++)                    //Convert 2D array to 1D by row.
-        {
-            fill(row.begin(),row.end(),0);                  //Clear vector to start the row with i as starting row.
-            for(int j=i;j<matrix.size();j++)
-            {
-                for(int x=0;x<matrix[0].size();x++)         //Add next row
-                    row[x]+=matrix[j][x];
-                get_result(row);
+    int numSubmatrixSumTarget(vector<vector<int>>& mat, int tar) {
+        
+        int n=mat.size();
+        
+        int m=mat[0].size();
+        
+        for(int i=0;i<n;i++){
+            for(int j=1;j<m;j++){
+                mat[i][j]+=mat[i][j-1];
             }
         }
-        return result;
+        
+        int ans=0;
+        
+        for(int c1=0;c1<m;c1++){
+            
+            for(int c2=c1;c2<m;c2++){
+                
+                unordered_map<int,int>mp;
+                                
+                mp[0]=1;  //there is one subarray whose sum=0 =>{empty subarray}
+                
+                int sum=0;
+                
+                for(int k=0;k<n;k++){
+                    
+                    sum+=(mat[k][c2]-(c1==0?0:mat[k][c1-1]));
+                    
+                    if(mp.count(sum-tar)){
+                        ans+=mp[sum-tar];
+                    }
+                    
+                    mp[sum]++;
+                }
+
+            }
+        }
+        
+        return ans;
+        
     }
 };
