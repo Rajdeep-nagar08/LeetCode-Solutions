@@ -2,17 +2,15 @@
 
 
 
-select t1.employee_id 
+select employee_id 
 
-from Employees t1  join Employees t2 
+from Employees 
 
-on t1.employee_id = t2.employee_id 
+where salary < 30000 
 
-where t1.salary < 30000 
+and manager_id not in (select employee_id from Employees)
 
-and t1.manager_id not in (select employee_id from Employees)
-
-order by t1.employee_id;
+order by employee_id;
 
 
 
