@@ -1,15 +1,4 @@
-class Solution {
-public:
-    
-    int n;
-    
-    unordered_map<int,map<map<char,int>,int>>dp;
-    
-    int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
-        
-        n=words.size();
-        
-        /*
+   /*
         
          if all chars of words[i] are available then we have choices either we build it or not
          
@@ -23,7 +12,17 @@ public:
         
         */
         
-        // dp.erase();
+
+class Solution {
+public:
+    
+    int n;
+    
+    unordered_map<int,map<map<char,int>,int>>dp;
+    
+    int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
+        
+        n=words.size();
         
         map<char,int>mp;
         
