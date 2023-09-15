@@ -37,7 +37,7 @@ class Solution {
 public:
     vector<string> findItinerary(vector<vector<string>>& tick) {
         
-         unordered_map<string,vector<string>>g;
+        unordered_map<string,vector<string>>g;
         
         for(auto it:tick){
             g[it[0]].push_back(it[1]);
@@ -50,6 +50,7 @@ public:
         string start="JFK";
         
         stack<string>st;
+        
         st.push(start);
         
         vector<string>seq;
