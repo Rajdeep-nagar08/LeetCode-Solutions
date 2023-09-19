@@ -27,13 +27,13 @@ public:
         int r=v[i][1];
         int idx=-1;
         
-        if(end==-1)// initially , to choose the first range
+          // initially , to choose the first range
+        if(end==-1)
           r=0;
         if(end>=n)
           return count;
         else{
           while(i<v.size() && v[i][0]<=r){
-            cout<<v[i][0]<<" "<<v[i][1]<<endl;
             if(end<v[i][1]){
               end=v[i][1];
               idx=i;
@@ -42,7 +42,6 @@ public:
           }
         }
         
-    //    cout<<idx<<endl;
         if(idx==-1)
           break;
         
