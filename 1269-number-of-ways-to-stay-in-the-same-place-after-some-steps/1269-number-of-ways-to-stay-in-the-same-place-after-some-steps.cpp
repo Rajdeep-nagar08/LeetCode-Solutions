@@ -7,6 +7,10 @@ as we have choices we can think about dp
 dp[i][j] = no of ways in which we can will be at index 0, using j steps, if currently we are at ith index
 
 
+NOTE : i can be maximum upto steps it means i <= steps always
+
+so array size = min(arraylen,step) * steps
+
 ans= dp[0][steps]
 
 */
@@ -14,7 +18,8 @@ ans= dp[0][steps]
 
 int mod=1e9+7;
 
-unordered_map<int, unordered_map<int,int>>dp;
+
+int dp[501][501];
 
 #define lln long long int
 
@@ -22,9 +27,9 @@ class Solution {
 public:
     int numWays(int steps, int arrLen) {
        
-        dp.clear();
-                
-        return find(0, steps, arrLen);
+        memset(dp,-1,sizeof(dp));
+        
+        return find(0, steps, min(arrLen,steps));
         
     }
     
@@ -39,7 +44,7 @@ public:
         if(steps<=0)
             return 0;
         
-        if(dp[i].count(steps)==1)
+        if(dp[i][steps]!=-1)
             return dp[i][steps];
         
  lln ans= (1ll*find(i,steps-1,n)%mod + 1ll*find(i+1,steps-1,n)%mod + 1ll*find(i-1,steps-1,n)%mod)%mod;
