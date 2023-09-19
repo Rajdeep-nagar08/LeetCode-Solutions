@@ -1,11 +1,4 @@
-
-int dp[50001];
-
-class Solution {
-public:
-    int jobScheduling(vector<int>& st, vector<int>& et, vector<int>& prof) {
-     
-     /*
+ /*
      
      maximum profit ?
     
@@ -22,14 +15,19 @@ public:
      
      
      ans=dp[0]
-     
-     
+    
       
      */
+
+
+int dp[50001];
+
+class Solution {
+public:
+    int jobScheduling(vector<int>& st, vector<int>& et, vector<int>& prof) {
         
         memset(dp,-1,sizeof(dp));
         
-
         vector<vector<int>>v(prof.size());
         
         for(int i=0;i<prof.size();i++){
