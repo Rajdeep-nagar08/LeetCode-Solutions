@@ -1,3 +1,42 @@
+/*
+
+
+Input: n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]
+Output: [6,3,4,1,5,2,0,7]
+
+
+beforeItems = [[],[6],[5],[6],[3,6],[],[],[]] :-
+
+(2nd item).......6th item
+
+(5th item).....2nd item
+
+
+(6th item)..... 3rd item
+
+(3 rd and 6th item).....4th item
+
+
+group = [-1,-1,1,0,0,1,0,-1] :-
+
+2nd item belongs to 1st group
+
+3rd and 4th item belongs to 0th group
+
+5th item belongs to 1st group
+
+6th item belongs to 0th group
+
+
+Condition :- all items of same group should be grouped together in the ans list and sorted as per the groups and follow the beforeItems array
+
+ans list = (0th group items)(1st group items)(2nd group items)........
+
+Ans= [6,3,4,1,5,2,0,7] satisy all the conditions
+*/
+
+
+
 class Solution {
 public:
     vector<int> sortItems(int n, int m, vector<int>& group, vector<vector<int>>& beforeItems) {
@@ -45,6 +84,8 @@ public:
         
         return ans;
     }
+    
+    
     
     vector<int> topoSort(vector<unordered_set<int>>& graph, vector<int>& indegree) {
         vector<int> ans;
