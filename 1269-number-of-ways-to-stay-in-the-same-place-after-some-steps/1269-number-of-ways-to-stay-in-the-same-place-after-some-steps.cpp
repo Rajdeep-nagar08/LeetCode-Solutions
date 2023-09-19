@@ -1,16 +1,50 @@
+/*
+
+at each index i we have three choices, either be at the same index i, or move to i+1, or move to i-1
+
+as we have choices we can think about dp
+
+dp[i][j] = no of ways in which we can will be at index 0, using j steps, if currently we are at ith index
+
+
+ans= dp[0][steps]
+
+*/
+
+
 int mod=1e9+7;
+
+unordered_map<int, unordered_map<int,int>>dp;
+
+#define lln long long int
+
 class Solution {
 public:
     int numWays(int steps, int arrLen) {
-        int mx_pos=min(steps,arrLen);
-        vector<vector<long long int>>dp(steps+1,vector<long long int>(mx_pos+1,0));
-         dp[0][0]=1;
-        for(int i = 1; i <= steps; i++) {
-            for(int j = 0; j < mx_pos; j++) {
-                dp[i][j] = (dp[i-1][j] + dp[i-1][j+1] + (j>0?dp[i-1][j-1]:0))%mod;
-            }
+       
+        dp.clear();
+                
+        return find(0, steps, arrLen);
+        
+    }
+    
+    int find(int i, int steps, int n){
+        if(i==0 && steps==0){
+            return 1;
         }
         
-        return (int)dp[steps][0];
+        if(i<0 || i>=n)
+            return 0;
+        
+        if(steps<=0)
+            return 0;
+        
+        if(dp[i].count(steps)==1)
+            return dp[i][steps];
+        
+ lln ans= (1ll*find(i,steps-1,n)%mod + 1ll*find(i+1,steps-1,n)%mod + 1ll*find(i-1,steps-1,n)%mod)%mod;
+ ans%=mod;
+        
+        return dp[i][steps]=ans%mod;
     }
 };
