@@ -31,8 +31,8 @@ public:
             if(i<0||j<0||i>=n||j>=m || vis[i][j]==true)
                 continue;
             
-            if(dp[i][j]!=-1)
-                return dp[i][j];
+            // if(dp[i][j]!=-1)
+            //     return dp[i][j];
             
             if(i==n-1 && j==m-1)
                 return dp[i][j]=c;
