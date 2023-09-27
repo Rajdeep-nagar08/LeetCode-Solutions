@@ -1,13 +1,11 @@
-int dp[101][101];// minimum cost to move from [i,j] to [n-1, m-1]
+// minimum cost to move from [i,j] to [n-1, m-1]
 
 // from each cell we have 4 choices => move to left, right, up down
 
 class Solution {
 public:
     int minCost(vector<vector<int>>& grid) { 
-        
-        memset(dp,-1,sizeof(dp));
-        
+                
         int n=grid.size();
         
         int m=grid[0].size();
@@ -31,11 +29,8 @@ public:
             if(i<0||j<0||i>=n||j>=m || vis[i][j]==true)
                 continue;
             
-            // if(dp[i][j]!=-1)
-            //     return dp[i][j];
-            
             if(i==n-1 && j==m-1)
-                return dp[i][j]=c;
+                return c;
 
             vis[i][j]=true;
             
