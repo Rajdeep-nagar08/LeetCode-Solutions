@@ -1,11 +1,11 @@
   
         /*
         
-        either give hats to peoples (optimal here as peoples < hats)
+        either give hats to peoples (optimal here as peoples < no of hats hats)
         (mask used to store the info of peoples having hats , as no of peoples =10 , so max size of mask = (1<<10)-1 
         
         or give peoples to hat
-        (msak used to store the info of hats whether it is weared by any people or not , as no of hats = 40, so max size of mask = (1<<40)-1
+        (mask used to store the info of hats whether it is weared by any people or not , as no of hats = 40, so max size of mask = (1<<40)-1
         
         So optimal way is to give hats to peoples 
          
