@@ -6,14 +6,17 @@ for each mailbox, we have two choice , either we place it at current position or
 
 If k =1, the minimum distance is obtained by placing the mailbox in the median of the array houses
 
-dp[i][j] represent the min dist for [i....n-1] houses if using j mailboxes (j<=k)
+dp[i][j] represent the min dist for [i....n-1] houses if need to place j mailboxes (j<=k)
 
 Ans= dp[0][k] = solve (0,k)
 
 dp[i][j] = Min( min dist for [i....k1] houses if using 1 mailbox + min dist for [k1+1.....n-1] houses                                                                        using j-1 mailboxes
+
 dp[i][j]= Min( DistFor1(i,k1) + solve(k1+1,j-1) )
 
-DistFor1(0,k1)= min dist for placing 1 mailbox in the range [0...k1]= dist for placing 1 mailbox in the middle of the range [0...k1]
+DistFor1(0,k1)= min dist for placing 1 mailbox in the range [0...k1]= dist for placing 1 
+
+mailbox in the middle of the range [0...k1]
 
 MCM..... PATTERN
 
@@ -25,7 +28,9 @@ public:
     int minDistance(vector<int>& h, int k) {
         
       memset(dp,-1,sizeof(dp));
-     sort(h.begin(),h.end());   
+        
+     sort(h.begin(),h.end());  
+        
      return solve(h,0,k);
         
     }
@@ -40,6 +45,7 @@ public:
             return dp[i][j];
         
         int ans=INT_MAX;
+        
         for(int k1=i;k1<h.size();k1++){
             if(j==1 && k1<h.size()-1)
                 continue;
