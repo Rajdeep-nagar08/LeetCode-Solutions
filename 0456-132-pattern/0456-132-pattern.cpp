@@ -1,3 +1,9 @@
+/*
+
+[smallest no. in left = a ] < [current no= b] > [No. to the right of b, just smaller than b and greater than a, this no. can be find out using lower bound on map]
+
+*/
+
 class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
