@@ -65,9 +65,7 @@ public:
                 }
             }
         }
-        
-         // cout<<freq[4][6]<<endl;
-        
+            
         
         // LCA PROCESSING
         
@@ -84,7 +82,6 @@ public:
         
     vector<int>ans(m);
         
-    // cout<<freq[5][6]<<endl;
 
    
     for(int i=0;i<m;i++){
@@ -93,18 +90,14 @@ public:
         int v=qr[i][1];
         
         int lc_a = lca(u,v,ht,height, dp);
-        
-        // cout<<u<<" "<<v<<" "<<lc_a<<endl;
-        
+            
         int mn=1e5;
         
         
         for(int w=1;w<=26;w++){
             int edgeCount=height[u]-height[lc_a] + height[v]-height[lc_a];
             int whtFreq=freq[u][w]+freq[v][w]-freq[lc_a][w]*2;
-            // if(u==6 && v==5){
-            //     cout<<w<<" "<<whtFreq<<endl;
-            // }
+
             mn=min(mn,edgeCount-whtFreq);
         }
         
