@@ -12,9 +12,12 @@
       
       
       it means we need to use paid painter to paint those walls whose sum of time >= no of left walls that not painted yet, and minimize the cost
+     
       
       dp[i][walls painted] = minimum cost that can be collected from [i....n-1] and till now "walls painted" has been painted
       
+      
+      if wainting ith wall using paid painter, then no. of walls painted = 1+time[i], becouse ith wall + time[i] walls will be painted by unpaid painter
       
       */
 
