@@ -3,6 +3,10 @@ class Solution {
 public:
     
     
+    // can return any subsequnce whose length is maximum, so not focus on particular subsequnce, just focus on maximizing the length
+    
+    
+    
     unordered_map<int, vector<string>>dp;   // dp[i] longest subseq. for [i...n-1]
     
     vector<string> getWordsInLongestSubsequence(int n, vector<string>& words, vector<int>& groups) {
