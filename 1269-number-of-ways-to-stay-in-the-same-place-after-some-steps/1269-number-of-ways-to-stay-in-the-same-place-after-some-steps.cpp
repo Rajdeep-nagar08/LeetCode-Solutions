@@ -48,6 +48,7 @@ public:
             return dp[i][steps];
         
  lln ans= (1ll*find(i,steps-1,n)%mod + 1ll*find(i+1,steps-1,n)%mod + 1ll*find(i-1,steps-1,n)%mod)%mod;
+        
  ans%=mod;
         
         return dp[i][steps]=ans%mod;
