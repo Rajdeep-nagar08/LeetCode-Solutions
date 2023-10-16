@@ -13,6 +13,7 @@ public:
         
         if(i>=s.size()){
            
+            // we can skip end part of p, if its of type ()*()*()*()*
             while(j+1<p.size()){
                 if(p[j+1]!='*')
                     return false;
