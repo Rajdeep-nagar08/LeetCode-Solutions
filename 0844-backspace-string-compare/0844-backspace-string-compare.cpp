@@ -15,7 +15,6 @@ public:
         while(i>=0){
             if(s[i]=='#'){
                 c1++;
-                // cout<<c1<<endl;
             }
             else if(c1>0){
                 c1--;
@@ -23,9 +22,7 @@ public:
             else{
                 
                 char ch1=s[i];
-                
-                // cout<<ch1<<endl;
-                
+                                
                 char ch2=' ';
                                 
                 while(j>=0){
@@ -71,9 +68,7 @@ public:
             j--;
         }
         
-        
-        // cout<<i<<" "<<j<<endl;
-        
+                
         if(i>=0 || j>=0)
             return false;
         
