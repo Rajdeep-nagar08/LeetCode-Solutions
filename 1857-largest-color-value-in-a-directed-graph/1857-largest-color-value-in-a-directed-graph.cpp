@@ -1,3 +1,15 @@
+
+  
+    /*
+To get longest path, starts traversal from starting nodes (nodes having indeg==0) => knowns as topological sorting
+
+    We can use BFS based Topological Sort to visit the nodes. When visiting the next node, we can forward the color information to the next node. Also Topo-sort can help detect circle.
+    
+    
+        v[i][j] is the maximum count of j-th color from the ancester nodes to node i. 
+            
+      */
+
 int mx=1;
 class Solution {
  vector<int>path;
@@ -11,17 +23,7 @@ class Solution {
         for(auto it: edges){
             g[it[0]].push_back(it[1]);
             indeg[it[1]]++;
-             }
-     
-    /*
-To get longest path, starts traversal from starting nodes (nodes having indeg==0) => knowns as topological sorting
-
-    We can use BFS based Topological Sort to visit the nodes. When visiting the next node, we can forward the color information to the next node. Also Topo-sort can help detect circle.
-    
-    
-        v[i][j] is the maximum count of j-th color from the ancester nodes to node i. 
-            
-      */
+        }
         
         vector<vector<int>>v(n, vector<int>(26,0));
         queue<int>q;
