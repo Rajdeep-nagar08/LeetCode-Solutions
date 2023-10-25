@@ -1,11 +1,4 @@
-class Solution {
-public:
-    
-    int n, m;
-    
-    string largestMerge(string word1, string word2) {
-        
-        /*
+   /*
         
         Form a new string in which at index i, 
         
@@ -13,7 +6,19 @@ public:
         
         new string should be lexiographically largest
         
+        applying similar concept as to merge two two sorted arrays
+        
+        if two chars are same, choose from the string that is lexiographically gretater after that index
+        
         */
+
+class Solution {
+public:
+    
+    int n, m;
+    
+    string largestMerge(string word1, string word2) {
+    
         
         n=word1.size();
         
