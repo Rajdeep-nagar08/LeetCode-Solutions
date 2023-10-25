@@ -1,14 +1,5 @@
-class Solution {
-public:
+
     
-    int n;
-    
-    int maxEqualFreq(vector<int>& nums) {
-        
-        
-        n=nums.size();
-        
-        
         /*
         
          [0.......i]
@@ -58,13 +49,30 @@ public:
          
 
 
-  CORNER CASE:
-  
-  1,2,3,4,5,6,7 all distinct no's each have freq=1
+          2 CORNER CASE:
   
   
+     
+            // 1,2,3,4,5,6 each no appeared once
+            if(minFreq==1 and maxFreq==1 and countMin==i+1 and countMax==i+1)
+                ans=i+1;
+            
+            // 1,1,1,1,1,1,  same no. repeat
+            if(minFreq==i+1 and countMin==1 and maxFreq==i+1 and countMax==1)
+                ans=i+1;
          
-        */
+*/
+        
+
+class Solution {
+public:
+    
+    int n;
+    
+    int maxEqualFreq(vector<int>& nums) {
+        
+        
+        n=nums.size();
         
         int minFreq=0, countMin=0;
         
@@ -115,18 +123,13 @@ public:
             
             countMax=it2->second.size();
             
-         // cout<<minFreq<<" "<<countMin<<"<=>"<<maxFreq<<" "<<countMax<<endl;
-            
-            
             /////// checking case1
             
     if(i%maxFreq==0 and (i/maxFreq==countMax) and minFreq==1 and countMin==1){
-                // cout<<i<<"c1"<<endl;
                 ans=i+1;
             }
             
             if(maxFreq-1!=0 and (i+1-maxFreq)%(maxFreq-1)==0 and ((i+1-maxFreq)/(maxFreq-1))==countMin and countMax==1 and minFreq==maxFreq-1){
-                // cout<<i<<"c2"<<endl;
                 ans=i+1;
             }
             
