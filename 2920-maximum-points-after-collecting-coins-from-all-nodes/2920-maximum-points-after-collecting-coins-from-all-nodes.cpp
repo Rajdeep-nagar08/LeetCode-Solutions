@@ -1,13 +1,21 @@
 // unordered_map<int,unordered_map<int,int>>dp;
 
+/*
+
+at each node, we have two choices, either collect coins by 1st way or second way
+
+
+NOTE: if we apply 2nd way to more than 13 ancestor nodes, then all the coins to their childs will become zero, as max coins can be upto 10000
+
+
+*/
+
 int dp[100001][15];
 
 class Solution {
 public:
     int maximumPoints(vector<vector<int>>& edges, vector<int>& coins, int k) {
-       
-        // dp.clear();
-        
+               
         memset(dp,-1,sizeof(dp));
         
         int n=coins.size();
