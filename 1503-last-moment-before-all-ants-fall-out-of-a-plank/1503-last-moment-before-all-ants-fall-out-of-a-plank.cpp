@@ -12,6 +12,15 @@ public:
         
         return the time when all ants fall down
         
+        
+     if two ants collide, they change their directions == NO change in direction of ant, they crossover each oter
+     
+     so its simple
+     
+     ans= position of ant which is farthest from its opposite corner
+       
+
+        
         */
     
         int l=left.size();
