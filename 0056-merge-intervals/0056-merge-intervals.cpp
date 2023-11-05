@@ -26,6 +26,8 @@ public:
             i++;
         }
           
+        
+        sort(ans.begin(),ans.end());
            
       return ans;
     }
