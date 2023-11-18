@@ -1,6 +1,8 @@
 /*
 
+maximumfreq of any no = [1,n] == mid of binary search
 
+Logic for isValid => sort the array and start checking from last
 
 
 */
@@ -10,41 +12,29 @@
 
 class Solution {
 public:
-    
-//    unordered_map<int,int>mp;
-    
-    vector<lln>pref;
-    
-    
-    int n;
-    
+            
     int maxFrequency(vector<int>& nums, int k) {
         
-        n=nums.size();
+        int n=nums.size();
         
         sort(nums.begin(),nums.end());
-  
-        pref.resize(n,0);
+        
+        vector<lln>pref(n);
         
         pref[0]=nums[0];
         
         for(int i=1;i<n;i++){
-            pref[i]+=pref[i-1]+nums[i];
+            pref[i]=nums[i]+pref[i-1];
         }
         
-//          for(int x:nums){
-//              mp[x]++;       
-//          }
-        
-        int l=1,h=n;
+        int l=1, h=n;
         
         int ans=1;
         
         while(l<=h){
-            
             int mid=(l+h)/2;
             
-            if(check(mid,nums,k)){
+            if(isValid(mid,nums,k,pref)){
                 ans=mid;
                 l=mid+1;
             }
@@ -54,46 +44,37 @@ public:
         }
         
         return ans;
-      
+        
     }
     
-    bool check(int mid,vector<int>&nums,int k){
-                
-        int i=1;
+    bool isValid(int mid, vector<int>&nums,int k,vector<lln>&pref){
+            
+        int n=nums.size();
         
-        int no,need,prev;
-        lln sum,diff;
-        
-        while(i<n){
+        for(int i=n-1;i>=0;i--){
             
-            no=nums[i];
-        
-            need=mid-1;
+            lln SumNeed=1ll*nums[i]*mid;
             
-            prev=i-need;
+            lln SumPresent;
             
-            if(prev<0)
-            {
-                i++;
-                continue;
-            }     
-            
-            sum;
-            
-            if(prev==0)
-                sum=pref[i-1];
+            if(i-mid>=0)
+            SumPresent=pref[i]-pref[i-mid];
+            else if(i-mid==-1)
+            SumPresent=pref[i];
             else
-                sum=pref[i-1]-pref[prev-1];
+                break;
             
-            diff=1ll*need*no-(sum);
+            int extra=SumNeed-SumPresent;
             
-            if(diff<=k)
+            
+            if(extra<=k)
                 return true;
-            
-            i++;
             
         }
         
+        
         return false;
+        
     }
+    
 };
