@@ -1,210 +1,185 @@
-/*
-
-jab koi naya pair aye too usse linked list ke last m add kardo
-
-jab kisi pair key value mange too uski value return kardo aur usse linked list m se dlt karke linked list ke last m add kardo
-
-jab linked list ka size full ho jaye aur naya pair add karna ho too linked list ka starting se pair remove kardo (jo ko least recently used pair h)
-
-
-*/
-
 class LRUCache {
 public:
     
-    int n;
-    
     struct ListNode{
-       
-        int key;
         
         int val;
         
+        ListNode* prev=NULL;
+        
         ListNode* next=NULL;
         
-        ListNode* prev=NULL;
-     
     };
     
-    unordered_map<int,ListNode*>mp;
     
-    ListNode* start=NULL;
+
+unordered_map<int,ListNode*>mp;  // key, Pointer to the linked list
     
-    ListNode* last=NULL;
+unordered_map<ListNode*,int>mp1;   // pointer to the linked list, key
+
+    
+ListNode* last=NULL;
+    
+ListNode* first=NULL;
+    
+int sz;
+    
+int cnt=0;
     
     
-    LRUCache(int capacity) {
+LRUCache(int cap) {
         
-    n=capacity;    
-        
+    sz=cap;
+    
     }
-    
-    
-    
     
     int get(int key) {
         
-        // return -1, if key not exist
-        
-        
-       if(mp.count(key)==1){
-           
-           // return mp[key]->val;
-           
-           // dlt node from the linkedlist and add it to the last of linked list
-           
-           ListNode* t=mp[key];
+        if(mp.count(key)){
             
-            // t->val=vl;
+          // bring this node to last
             
-            if(last!=t){
+            
+            if(last==mp[key])   // if already its the last node
+            return mp[key]->val;
+            
+            if(first==mp[key]){  // if its the first node
                 
-                if(start==t){  // it is the first node of the linked list
-                    
-                    start=start->next;
-                    
-                    start->prev=NULL;
-                    
-                    last->next=t;
-                    
-                    t->next=NULL;
-                    
-                    t->prev=last;
-                    
-                    last=t;
-                    
-                }
+                first=mp[key]->next;
                 
-                else{  // any middle node,  dlt it and add to the last
-                    
-                    
-                    t->prev->next=t->next;
-                    
-                    t->next->prev=t->prev;
-                    
-                    last->next=t;
-                    
-                    t->prev=last;
-                    
-                    t->next=NULL;
-                    
-                    last=t;
-                    
-                }
+                mp[key]->prev=last;
                 
+                last->next=mp[key];
+                
+                mp[key]->next=NULL;
+                
+                last=mp[key];
             }
             
+            else{  // somewhere in middle
+                
+                mp[key]->prev->next=mp[key]->next;
+                
+                mp[key]->next->prev=mp[key]->prev;
+                
+                mp[key]->prev=last;
+                
+                mp[key]->next=NULL;
+                
+                last->next=mp[key];
+                
+                last=mp[key];
+            }
+            
+            return mp[key]->val;
         
-           return t->val;
-           
-       
-       }
+        }
         
         return -1;
         
     }
     
-    
-    
-    void put(int ky, int vl) {
+    void put(int key, int value) {
         
-      
-        // key already present in the linked list, just update its value, dlt it from middle and put it to the last of linked list
+        // cout<<mp[key]<<endl;
         
-        if(mp.count(ky)==1){
+        cout<<cnt<<endl;
+    
+        if(mp.count(key)){
             
-            ListNode* t=mp[ky];
+            mp[key]->val=value;
             
-            t->val=vl;
+            // Bring this node to last
             
-            if(last!=t){
+           
+             if(last==mp[key])   // if already its the last node
+                 return ;
+            
+            if(first==mp[key]){  // if its the first node
                 
-                if(start==t){  // it is the first node of the linked list
-                    
-                    start=start->next;
-                    
-                    last->next=t;
-                    
-                    t->next=NULL;
-                    
-                    t->prev=last;
-                    
-                    last=t;
-                    
-                }
+                first=mp[key]->next;
                 
-                else{  // any middle node,  dlt it and add to the last
-                    
-                    
-                    t->prev->next=t->next;
-                    
-                    t->next->prev=t->prev;
-                    
-                    last->next=t;
-                    
-                    t->prev=last;
-                    
-                    t->next=NULL;
-                    
-                    last=t;
-                    
-                }
+                mp[key]->prev=last;
                 
+                last->next=mp[key];
+                
+                mp[key]->next=NULL;
+                
+                last=mp[key];
             }
             
+            else{  // somewhere in middle
+                
+                mp[key]->prev->next=mp[key]->next;
+                
+                mp[key]->next->prev=mp[key]->prev;
+                
+                mp[key]->prev=last;
+                
+                mp[key]->next=NULL;
+                
+                last->next=mp[key];
+                
+                last=mp[key];
+            }
+    
+            return;
             
         }
         
-        // add node to the end of the linked list
         
+        
+        
+        else if(cnt==sz){  // size full, remove LRU
+            
+          // remove LRU
+        
+          int lruKey=mp1[first];
+        
+          mp.erase(lruKey);
+            
+          mp1.erase(first);
+            
+         first=first->next;
+          
+         if(first)
+         first->prev=NULL;
+        
+            
+        }
+        
+     // putting in last
+            
+            ListNode* temp= new ListNode();
+        
+        if(cnt<sz)
+            cnt++;
+            
+            temp->val=value;
+            
+        if(!first){
+            first=temp;
+            last=temp;
+        }
         else{
-            
-            
-              
-        if(mp.size()==n){   //size is full,  dlt node from starting
-            
-            int ky1;
-            
-            ky1=start->key;
-            
-            mp.erase(ky1);
-            
-            if(n==1){
-            
-                start=NULL;
-                last=NULL;
-            }
-            
-            else{
-                start=start->next;
-                start->prev=NULL;
-            }
-            
-                      
+            last->next=temp;
+            temp->prev=last;
+            last=temp;
         }
+            
+            mp[key]=last;
         
-        // now add node
+            mp1[last]=key;
             
-            ListNode* t=new ListNode();
-            t->key=ky;
-            t->val=vl;
-            
-            if(last==NULL){
-                last=t;
-                start=t;
-            }
-            else{
-               last->next=t;
-               t->prev=last;
-               last=last->next;
-            }
-            
-            mp[ky]=t;
-            
-        }
         
-        
+        return ;
         
     }
 };
 
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
