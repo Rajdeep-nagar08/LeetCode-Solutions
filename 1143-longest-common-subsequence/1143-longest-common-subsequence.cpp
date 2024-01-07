@@ -34,9 +34,6 @@ public:
 		    
 		    else
 		    return dp[i][j]=max(lcs(i+1,j,text1,text2),lcs(i,j+1,text1,text2));
-		    
-		    
-		  //  return dp[i][j]=cnt;
-         
+		         
     }
 };
