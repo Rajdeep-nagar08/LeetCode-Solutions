@@ -1,3 +1,10 @@
+
+/*
+
+dp[i][j] = length of longest increasing path from [i,j]
+
+*/
+
 int m;
 int n;
 int dp[201][201];
