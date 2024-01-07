@@ -19,7 +19,13 @@ public:
     Node* copyRandomList(Node* head) {
       if(!head)
         return head;
-        Node* temp;
+        
+        /*
+        
+iterates through the original linked list, inserting a new node with the same value after each original node
+        
+        */
+      Node* temp;
       Node* curr=head;
       while(curr){
         temp=curr->next;
@@ -28,11 +34,23 @@ public:
         curr=temp;
       }
       
+        /*
+        
+         sets the random pointer for each copied node.
+        */
+        
+        
       curr=head;
       while(curr){
         curr->next->random=curr->random?curr->random->next:curr->random;
         curr=curr->next->next;
       }
+        
+        /*
+        
+separates the original and copied linked lists, restoring the original list and forming the copied list
+        */
+        
       Node* orignal=head;
       Node* copy=head->next;
       temp=copy;
