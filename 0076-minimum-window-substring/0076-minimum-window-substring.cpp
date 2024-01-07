@@ -1,79 +1,63 @@
-
-       class Solution {
+class Solution {
 public:
-    string minWindow(string s, string t)
-    {
+    string minWindow(string s, string t) {
         
-        unordered_map<char,int>mp1;
+        // minimum window substring
         
-        unordered_map<char,int>mp2;
         
-        for(auto it: t)
-        {
-
-            mp1[it]++;
+        int n=s.size();
+        
+        
+        unordered_map<char,int>mp;
+        
+        for(char ch:t){
+            mp[ch]++;
         }
-                
-        int count=0;
         
-        int i=0; // starting
+        int cnt=mp.size();
         
-        int j=0; // ending pointer
+        // cout<<cnt<<endl;
         
-        int answer=INT_MAX;
+        int i=0, j=0;
         
-        string m="";
-
-        while(j<s.size())
-        {
-            mp2[s[j]]++;
-    
-        // agar match hoga to count++ karenge but number required hona chaiye 
+        string ans;
+        
+        while(i<n){
             
-            if(mp2[s[j]]<=mp1[s[j]])
-            {
-                count++;
+            if(mp.count(s[i])){
+                mp[s[i]]--;
             }
             
-            if(count==t.size()) // valid window mil gya h ab usse chota khojna h 
-            {
+            if(mp.count(s[i]) and mp[s[i]]==0){
+                cnt--;
+            }
+            
+            // cout<<i<<" "<<cnt<<endl;
+            
+            if(cnt==0){
+                // compress the window from back
                 
-                while(mp2[s[i]]>mp1[s[i]] || mp1[s[i]]==0) // kabtk sliding window ko chota karenege jabtk required frequency se jyda mil rhi hogi 
-                    
-                {
-                    if(mp2[s[i]]>mp1[s[i]])
-                    {
-                        mp2[s[i]]--;
-                    }
-                    
-                    i++;
+//                 for(auto it:mp){
+//                     cout<<it.first<<" "<<it.second<<endl;
+//                 }
+                
+                while((mp.count(s[j])==0) || (mp.count(s[j]) and mp[s[j]]<0)){
+                    if(mp.count(s[j]))
+                     mp[s[j]]++;
+                    j++;
                 }
                 
-                if(j-i+1<answer)
-            
-                {
-                answer=j-i+1; // chota string mila to update karenge 
-                m=s.substr(i,answer);
-                
-                
-            
+                if(ans.size()==0 || ans.size()>(i-j+1)){
+                    ans=s.substr(j,i-j+1);
                 }
-            
-                
-                
                 
             }
             
-            
-      
-           j++; 
-            
+            i++;
             
         }
         
-        return m;
         
+        return ans;
     }
 };
-        
-   
