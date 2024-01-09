@@ -11,4 +11,4 @@ where t2.transaction_id is null
 
 group by t1.customer_id
 
-order by t1.customer_id;
+# order by t1.customer_id;
