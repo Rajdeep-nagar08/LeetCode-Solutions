@@ -126,53 +126,23 @@ int dp[31][1501];
 class Solution {
 public:
     
-    int lastStoneWeightII(vector<int>& nums) {
-       
-        int sum=0;
-        
-        int n=nums.size();
-        
-        memset(dp,-1,sizeof(dp));
-        
-        for(int x:nums){
-            sum+=x;
-        }
-        
-      int ans=INT_MAX;
-                
-        for(int s=sum/2;s>=0;s--){
-            if(subsetSum(s,nums,0)==true){
-                int s1=s;
-                int s2=sum-s;
-                ans=abs(s1-s2);
-                break;
-            }
-        }
-        
-        return ans;
-        
-    }
-    
-  bool subsetSum(int sum,vector<int>&nums,int i){
-      
-      if(sum==0)
-          return true;
-      
-      if(sum<0)
-          return false;
-      
-      if(i>=nums.size())
-          return false;
-      
-      if(dp[i][sum]!=-1)
-          return dp[i][sum];
-      
-      bool c1=subsetSum(sum,nums,i+1);
-      
-      bool c2=subsetSum(sum-nums[i],nums,i+1);
-      
-      return dp[i][sum]=c1||c2;
-      
-  }
+  int lastStoneWeightII(vector<int>& stones) {
+      int n = stones.size();
+      int total = 0;
+      for(int i = 0; i < n; i++){
+         total += stones[i];
+      }
+      int req = total / 2;
+      vector <bool> dp(req + 1, false);
+      dp[0] = true;
+      int reach = 0;
+      for(int i = 0; i < n; i++){
+         for(int j = req; j - stones[i] >= 0; j--){
+            dp[j] = dp[j] || dp[j - stones[i]];
+            if(dp[j]) reach = max(reach, j);
+         }
+      }
+      return total - (2 * reach);
+   }
     
 };
