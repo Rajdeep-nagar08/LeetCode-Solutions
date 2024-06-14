@@ -8,21 +8,23 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
-
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         
-        int n=lists.size();
         
-        if(n==0)
+        int countofList= lists.size();
+        
+        // base case 
+        
+        if(countofList==0)
             return nullptr;
         
-        ListNode* start=lists[0];
+        ListNode* start= lists[0];
         
         for(int i=1;i<lists.size();i++){
-            start=merge(start,lists[i]);
+            
+            start=mergeToPreviousList(start,lists[i]);
         }
         
         return start;
@@ -30,26 +32,33 @@ public:
     }
     
     
-    ListNode* merge(ListNode* l1, ListNode* l2){
+    // merege list l1 with l2
+    // both are in sorted order
+    ListNode* mergeToPreviousList(ListNode* list1, ListNode* list2){
         
-        if(!l1)
-            return l2;
+        // base case 
         
-        if(!l2)
-            return l1;
-        
-        if(l1->val<l2->val){
-            
-            l1->next=merge(l1->next,l2);
-            
-            return l1;
-            
+        if(!list1){
+            return list2;
         }
         
+        if(!list2){
+            return list1;
+        }
         
-        l2->next=merge(l1,l2->next);
+        if(list1->val<list2->val){
+            list1->next=mergeToPreviousList(list1->next,list2);
+            
+            return list1;
+        }
         
-        return l2;
+        list2->next=mergeToPreviousList(list1,list2->next);
         
+        return list2;
     }
+    
+    
 };
+
+
+
