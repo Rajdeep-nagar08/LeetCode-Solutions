@@ -65,7 +65,7 @@ public:
     
 void find(int i, int j, string& str, vector<vector<char>>& board, vector<vector<bool>>& vis, TrieNode* temp)
 {
-        if(temp->children[board[i][j]-'a']==NULL)
+        if(temp->children[board[i][j]-'a']==NULL)  // imp optimization
             return;
         
         temp=temp->children[board[i][j]-'a'];
