@@ -1,63 +1,65 @@
 class Solution {
 public:
+    vector<int>v;
+    
     vector<int> sortArray(vector<int>& nums) {
+     
+        int n=nums.size();
         
-        merge_sort(nums,0,nums.size()-1);
+        v.resize(n,0);
+                
+        merge_sort(0,n-1,nums);
         
         return nums;
     }
     
-     void merge_sort(vector<int>&nums,int l,int r){
-         if(l>=r)
-             return ;
-         
-         int mid=(l+r)/2;
-         
-         merge_sort(nums,l,mid);
-         merge_sort(nums,mid+1,r);
-         merge(nums,l,mid,r);
-     }
+    void merge_sort(int i, int j, vector<int>&nums){
+        if(i>=j)
+            return;
+        
+        int mid=(i+j)/2;
+        
+        merge_sort(i, mid,nums);
+        merge_sort(mid+1,j,nums);
+        merge(i, mid,j,nums);
+    }
     
-     void merge(vector<int>& nums,int l,int mid,int r){
-    
-        int n1=mid-l+1;
-        int n2=r-(mid+1)+1;
-         
-         vector<int>left(n1),right(n2);
-         
-         for(int i=l;i<=mid;i++)
-             left[i-l]=nums[i];
-         
-         for(int i=mid+1;i<=r;i++)
-             right[i-mid-1]=nums[i];
-         
-         int i=0,j=0;
-         
-         int k=l;
-         
-         while(i<n1 && j<n2){
-             if(left[i]<right[j]){
-                 nums[k]=left[i];
-                 i++;
-                 k++;
-             }
-             else{
-                 nums[k]=right[j];
-                 j++;
-                 k++;
-             }
-         }
-         
-         while(i<n1){
-             nums[k]=left[i];
-             i++;
-             k++;
-         }
-         
-         while(j<n2){
-             nums[k]=right[j];
-             j++;
-             k++;
-         }
-     }
+    void merge(int i, int mid,int j,vector<int>&nums){
+        
+       int i1=i;
+        
+       int i2=mid+1;
+        
+       int idx=i; 
+        
+        while(i1<=mid && i2<=j){
+           if(nums[i1]<=nums[i2]){
+               v[idx]=nums[i1];
+               idx++,i1++;
+           }
+            else{
+                v[idx]=nums[i2];
+                idx++,i2++;
+            }
+        }
+        
+        while(i1<=mid){
+           v[idx]=nums[i1];
+            idx++,i1++;
+        }
+        
+        while(i2<=j){
+            v[idx]=nums[i2];
+            idx++,i2++;
+        }
+        
+        
+        for(int k=i;k<=j;k++){
+            nums[k]=v[k];
+        }
+        
+        
+        return;
+        
+    }
 };
