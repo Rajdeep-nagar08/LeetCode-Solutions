@@ -42,11 +42,7 @@ public:
             }
         }
         
-        // for(int i=0;i<n;i++){
-        //     for(int j=0;j<n;j++){
-        //         cout<<i<<"-"<<j<<" "<<d[i][j]<<endl;
-        //     }
-        // }
+       
         vector<int>freq(n,0);
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
@@ -60,11 +56,8 @@ public:
         
         for(int i=0;i<n;i++){
                 mn=min(mn,freq[i]);
-            // cout<<freq[i]<<" ";
         }
-        
-        // cout<<d[0][5]<<endl;
-        
+                
         for(int i=n-1;i>=0;i--){
             if(freq[i]==mn)
                 return i;
