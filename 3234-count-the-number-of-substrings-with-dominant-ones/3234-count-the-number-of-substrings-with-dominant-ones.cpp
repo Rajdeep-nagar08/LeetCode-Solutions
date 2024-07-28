@@ -61,7 +61,7 @@ public:
                     // Add the minimum of:
                     // 1. Number of ways to extend to the left (zeros.front() - lastzero)
                     // 2. Number of ways to extend to the right (ones - k^2 + 1)
-                    result += std::min(zeros.front() - lastzero, ones - k * k + 1);
+                    result += min(zeros.front() - lastzero, ones - k * k + 1);
                 }
             }
         }
