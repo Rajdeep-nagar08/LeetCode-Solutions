@@ -48,7 +48,8 @@ public:
                     zeros.push_back(right);
                     // If we have more than k zeros, remove the leftmost one
                     while (zeros.size() > k) {
-                        ones -= (zeros.front() - lastzero - 1);  // Subtract ones between lastzero and the removed zero
+                        ones -= (zeros.front() - lastzero - 1);  
+                        // Subtract ones between lastzero and the removed zero
                         lastzero = zeros.front();
                         zeros.pop_front();
                     }
@@ -61,7 +62,7 @@ public:
                     // Add the minimum of:
                     // 1. Number of ways to extend to the left (zeros.front() - lastzero)
                     // 2. Number of ways to extend to the right (ones - k^2 + 1)
-                    result += min(zeros.front() - lastzero, ones - k * k + 1);
+                    result += min(zeros.front() - lastzero, ones  - k * k + 1);
                 }
             }
         }
