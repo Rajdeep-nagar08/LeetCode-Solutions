@@ -180,6 +180,14 @@ public:
         DSU dsu(n + 4);
 
         // Making edges between circles
+        // Make edges between the circles
+        
+         // total n+4 nodes
+        
+          // [0...n-1] from n circles
+        
+        // 4 nodes from 4 sides of the rectangle
+        
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
                 int x1 = circles[i][0], y1 = circles[i][1], r1 = circles[i][2];
@@ -220,6 +228,15 @@ public:
 
 private:
     bool touch(int a, int b, int c, int h, int k, int radius) {
+        // h, k= centre of circle
+        
+         // ax+by+c=0 line
+        
+         // leftTop line equation x=0 (a=1, b=0, c=0), y-y1=0 (a=0, b=1, c=-Y)
+        
+         // bottum right equation (y=0) (a=0, b=1, c=0), x-X1=0 (a=1, b=0, c=-X)
+        
+        // int dist = (abs(a * h + b * k + c)) / sqrt(a * a + b * b);
         long long distSquared = 1LL * (a * h + b * k + c) * (a * h + b * k + c);
         long long radiusSquared = 1LL * radius * radius * (a * a + b * b);
         return distSquared <= radiusSquared;
