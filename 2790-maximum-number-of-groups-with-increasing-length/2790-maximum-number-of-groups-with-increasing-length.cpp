@@ -93,7 +93,7 @@ class Solution {
 public:
     int maxIncreasingGroups(vector<int>& limit) {
         
-        sort(limit.begin(),limit.end());
+        sort(limit.rbegin(),limit.rend());
         
         int n=limit.size();
     
@@ -134,7 +134,7 @@ public:
         
         int gap=0;
         
-        for(int i=limit.size()-1;i>=0;i--){
+        for(int i=0;i<limit.size();i++){
             gap=max(mid-limit[i]+gap,0);
             if(mid)
             mid--;
